@@ -4,3 +4,31 @@ services:
     image: tubes-1:latest
     ports:
       - 8008:80
+    hostname: tubes-1-web
+    env_file:
+      - .env
+    volumes:
+      - ./src:/var/www/html
+    depends_on:
+      - db
+  db:
+    image: postgres:latest
+    restart: always
+    hostname: tubes-1-db
+    ports:
+      - 5432:5432
+    env_file:
+      - .env
+    volumes:
+      - ./data:/var/lib/postgresql/data
+  adminer:
+    image: adminer:latest
+    restart: always
+    hostname: tubes-1-adminer
+    ports:
+      - 8080:8080
+    depends_on:
+      - db
+networks:
+  tubes-1-network:
+    driver: bridge
