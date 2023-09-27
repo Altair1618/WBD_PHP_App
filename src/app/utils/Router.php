@@ -20,7 +20,7 @@ class Router {
             if ($parsedRoute[$i] == $parsedUri[$i]) {
                 continue;
             } else if (substr($parsedRoute[$i], 0, 1) == ":") {
-                $params[substr($parsedRoute[$i], 1)] = $parsedUri[$i];
+                $params[substr($parsedRoute[$i], 1)] = urldecode($parsedUri[$i]);
                 continue;
             } else {
                 return [false, null];
