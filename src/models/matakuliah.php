@@ -1,7 +1,7 @@
 <?php
 
-require __DIR__ . "/../logger.php";
-require __DIR__ . "/../db/db.php";
+require_once __DIR__ . "/../logger.php";
+require_once __DIR__ . "/../db/db.php";
 
 class MataKuliah
 {
@@ -30,7 +30,7 @@ class MataKuliahRepository
           kodeMataKuliah VARCHAR(7) PRIMARY KEY,
           namaMataKuliah VARCHAR(100) NOT NULL,
           deskripsi TEXT,
-          kodeJurusan REFERENCES Jurusan(kodeJurusan) ON DELETE SET NULL
+          kodeJurusan VARCHAR(3) REFERENCES Jurusan(kodeJurusan) ON DELETE SET NULL
         )
       SQL;
       $this->dbh->exec($stmt);

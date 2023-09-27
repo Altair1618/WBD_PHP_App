@@ -1,7 +1,7 @@
 <?php
 
-require __DIR__ . "/../logger.php";
-require __DIR__ . "/../db/db.php";
+require_once __DIR__ . "/../logger.php";
+require_once __DIR__ . "/../db/db.php";
 
 class MateriKelas
 {
@@ -41,12 +41,13 @@ class MateriKelasRepository
       $stmt = <<<SQL
         CREATE TABLE IF NOT EXISTS MateriKelas (
           idMateriKelas SERIAL PRIMARY KEY,
-          noUrutModul INT REFERENCES Modul(noUrutModul) ON DELETE SET NULL,
-          kodeMataKuliah VARCHAR(7) REFERENCES MataKuliah(kodeMataKuliah) ON DELETE SET NULL,
+          noUrutModul INT,
+          kodeMataKuliah VARCHAR(7),
           judulTopik VARCHAR(100) NOT NULL,
           tipe SMALLINT NOT NULL,
           namaFile VARCHAR(255) NOT NULL,
-          deskripsi TEXT
+          deskripsi TEXT,
+          FOREIGN KEY (noUrutModul, kodeMataKuliah) REFERENCES Modul(noUrutModul, kodeMataKuliah) ON DELETE SET NULL
         )
       SQL;
       $this->dbh->exec($stmt);

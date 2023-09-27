@@ -1,6 +1,7 @@
 <?php
 
-require __DIR__ . "/../logger.php";
+require_once __DIR__ . "/../logger.php";
+require_once __DIR__ . "/../db/db.php";
 
 class Fakultas
 {

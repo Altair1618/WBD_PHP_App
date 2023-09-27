@@ -1,7 +1,7 @@
 <?php
 
-require __DIR__ . "/../logger.php";
-require __DIR__ . "/../db/db.php";
+require_once __DIR__ . "/../logger.php";
+require_once __DIR__ . "/../db/db.php";
 
 class Modul
 {
@@ -28,7 +28,7 @@ class ModulRepository
       $stmt = <<<SQL
         CREATE TABLE IF NOT EXISTS Modul (
           noUrutModul INT,
-          kodeMataKuliah VARCHAR(7) REFERENCES MataKuliah(kodeMataKuliah) ON DELETE SET NULL
+          kodeMataKuliah VARCHAR(7) REFERENCES MataKuliah(kodeMataKuliah) ON DELETE SET NULL,
           namaModul VARCHAR(100) NOT NULL,
           deskripsi TEXT,
           PRIMARY KEY (noUrutModul, kodeMataKuliah)
