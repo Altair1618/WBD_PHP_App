@@ -52,7 +52,7 @@ class UserRepository
           namaDepan VARCHAR(40) NOT NULL,
           namaBelakang VARCHAR(40),
           tipe SMALLINT,
-          kodeJurusan VARCHAR(4),
+          kodeJurusan VARCHAR(4)
         );
       SQL;
       $this->dbh->exec($stmt);
