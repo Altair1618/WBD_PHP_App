@@ -12,4 +12,8 @@ $routes = [
     '/register' => [
         'GET' => 'AuthController@showRegisterPage'
     ],
+
+    '/user/:id' => [
+        'GET' => 'UserController@showUserPage'
+    ]
 ];
