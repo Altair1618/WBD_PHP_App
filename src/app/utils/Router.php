@@ -8,6 +8,9 @@ class Router {
     }
 
     public function match($uri, $route) {
+        $temp = explode("?", $uri);
+        $uri = $temp[0];
+
         $parsedUri = explode("/", trim($uri, "/"));
         $parsedRoute = explode("/", trim($route, "/"));
 
@@ -24,6 +27,14 @@ class Router {
                 continue;
             } else {
                 return [false, null];
+            }
+        }
+
+        if (count($temp) > 1) {
+            $queries = explode("&", $temp[1]);
+            foreach ($queries as $query) {
+                $query = explode("=", $query);
+                $params[$query[0]] = urldecode($query[1]);
             }
         }
 

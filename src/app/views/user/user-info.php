@@ -10,7 +10,7 @@
 
 <body>
   <?php
-    echo "<h1> Ini Page User " . $_GET['id'] . "</h1>"
+    echo "<h1> Ini Page User " . $_GET['id'] . "</h1>";
   ?>
 </body>
 
