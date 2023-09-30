@@ -10,6 +10,11 @@
 
 <body>
   <h1> Ini Home Page </h1>
+  <?php
+    if (isset($_GET['nama'])) {
+        echo "<h1> Hello " . $_GET['nama'] . "</h1>";
+    }
+  ?>
 </body>
 
 </html>

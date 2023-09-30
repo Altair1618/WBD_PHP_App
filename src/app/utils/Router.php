@@ -47,16 +47,16 @@ class Router {
             
             if ($match[0]) {
                 if (!isset($value[$method])) {
-                    return ["ErrorController@showErrorPage", ["errorCode" => 405]];
+                    return [['route' => "ErrorController@showErrorPage"], ["errorCode" => 405]];
                 }
 
-                $controller = $value[$method];
+                $result = $value[$method];
                 $params = $match[1];
-                return [$controller, $params];
+                return [$result, $params];
             }
         }
 
-        return ["ErrorController@showErrorPage", ["errorCode" => 404]];
+        return [['route' => "ErrorController@showErrorPage"], ["errorCode" => 404]];
     }
 
     public function run() {
@@ -64,15 +64,24 @@ class Router {
         $method = $_SERVER["REQUEST_METHOD"];
 
         $route = $this->routing($uri, $method);
-        $controller = $route[0];
+        $result = $route[0];
         $params = $route[1];
 
-        $controller = explode("@", $controller);
-        $controllerName = $controller[0];
-        $methodName = $controller[1];
+        if (isset($result["middlewares"])) {
+            foreach ($result["middlewares"] as $middleware) {
+                require_once MIDDLEWARES_DIR . $middleware . ".php";
+
+                $middleware = new $middleware();
+                $middleware->handle($params);
+            }
+        }
+
+        $temp = explode("@", $result["route"]);
+        $controllerName = $temp[0];
+        $controllerMethod = $temp[1];
 
         require_once CONTROLLERS_DIR . $controllerName . ".php";
         $controller = new $controllerName();
-        $controller->$methodName($params);
+        $controller->$controllerMethod($params);
     }
 }

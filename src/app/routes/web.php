@@ -2,18 +2,20 @@
 
 $routes = [
     '/' => [
-        'GET' => 'HomeController@showHomePage'
+        'GET' => ['route' => 'HomeController@showHomePage', 'middlewares' => [
+            'Authentication',
+        ]],
     ],
 
     '/login' => [
-        'GET' => 'AuthController@showLoginPage'
+        'GET' => ['route' => 'AuthController@showLoginPage', 'middlewares' => []],
     ],
 
     '/register' => [
-        'GET' => 'AuthController@showRegisterPage'
+        'GET' => ['route' => 'AuthController@showRegisterPage', 'middlewares' => []],
     ],
 
     '/user/:id' => [
-        'GET' => 'UserController@showUserPage'
+        'GET' => ['route' => 'UserController@showUserPage', 'middlewares' => []],
     ]
 ];
