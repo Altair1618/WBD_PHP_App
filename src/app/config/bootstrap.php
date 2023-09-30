@@ -9,3 +9,5 @@ require_once APP_DIR . 'utils/Router.php';
 require_once APP_DIR . 'routes/web.php';
 
 require_once MODELS_DIR . 'Model.php';
+
+require_once MIDDLEWARES_DIR . 'Middleware.php';
