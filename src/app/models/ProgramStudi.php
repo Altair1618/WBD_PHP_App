@@ -1,12 +1,7 @@
 <?php
 
-require_once __DIR__ . "/../utils/logger.php";
-require_once __DIR__ . "/../utils/database.php";
-
-class ProgramStudiRepository
+class ProgramStudiRepository extends Model
 {
-  private $db = new Database();
-
   function getProgramStudiList(): array
   {
     try {

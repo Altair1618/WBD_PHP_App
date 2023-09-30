@@ -1,12 +1,7 @@
 <?php
 
-require_once __DIR__ . "/../utils/logger.php";
-require_once __DIR__ . "/../utils/database.php";
-
-class MataKuliahRepository
+class MataKuliahRepository extends Model
 {
-  private $db = new Database();
-
   function getMataKuliahList(): array
   {
     try {

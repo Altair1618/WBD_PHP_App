@@ -1,12 +1,7 @@
 <?php
 
-require_once __DIR__ . "/../utils/logger.php";
-require_once __DIR__ . "/../utils/database.php";
-
-class MateriKelasRepository
+class MateriKelasRepository extends Model
 {
-  private $db = new Database();
-
   function getMateriKelasList(): array
   {
     try {

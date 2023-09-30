@@ -1,16 +1,11 @@
 <?php
 
-require_once __DIR__ . "/../utils/logger.php";
-require_once __DIR__ . "/../utils/database.php";
-
-class PenggunaRepository
+class PenggunaRepository extends Model
 {
-  private $db = new Database();
-
-  function getPenggunaList(): array
+  public function getPenggunaList(): array
   {
     try {
-      return $this->db->fetch("SELECT * FROM pengguna");
+      return $this->db->fetchAll("SELECT * FROM pengguna");
     } catch (Exception $e) {
       Logger::error(__FILE__, __LINE__, "Failed to fetch `pengguna`: " . $e->getMessage());
       throw $e;

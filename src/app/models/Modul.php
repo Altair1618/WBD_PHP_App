@@ -1,12 +1,7 @@
 <?php
 
-require_once __DIR__ . "/../utils/logger.php";
-require_once __DIR__ . "/../utils/database.php";
-
-class ModulRepository
+class ModulRepository extends Model
 {
-  private $db = new Database();
-
   function getModulList(): array
   {
     try {
