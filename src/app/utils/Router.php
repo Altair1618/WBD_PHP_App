@@ -2,9 +2,19 @@
 
 class Router {
     private $routes;
+    private static $instance;
 
     public function __construct($routes) {
         $this->routes = $routes;
+    }
+
+    public static function getInstance() {
+        if (!isset(self::$instance)) {
+            require_once APP_DIR . 'routes/web.php';
+            self::$instance = new Router($routes);
+        }
+
+        return self::$instance;
     }
 
     public function match($uri, $route) {
