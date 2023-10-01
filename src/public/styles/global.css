@@ -1,0 +1,23 @@
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+  
+  font-family: Poppins, sans-serif;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+
+  background: #F2F2F2;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
