@@ -11,11 +11,11 @@ class AuthController {
 
     public function signIn() {
         // TODO: Implement Sign In process
-        require_once VIEWS_DIR . 'home/homepage.php';
+        Router::getInstance()->redirect('/');
     }
 
     public function signUp() {
         // TODO: Implement Sign Up process
-        require_once VIEWS_DIR . 'home/homepage.php';
+        Router::getInstance()->redirect('/');
     }
 }

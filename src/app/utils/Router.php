@@ -94,4 +94,12 @@ class Router {
         $controller = new $controllerName();
         $controller->$controllerMethod($params);
     }
+
+    public function redirect($uri) {
+        if (isset($_POST)) {
+            $_SESSION["post"] = $_POST;
+        }
+
+        header("Location: " . $uri);
+    }
 }

@@ -10,7 +10,13 @@
 <body>
   <h1> Ini Home Page </h1>
   <?php
-    print_r($_POST);
+    if (isset($_SESSION['user'])) {
+      print_r($_SESSION['user']);
+    }
+
+    if (isset($_SESSION['post'])) {
+      print_r($_SESSION['post']);
+    }
   ?>
 </body>
 
