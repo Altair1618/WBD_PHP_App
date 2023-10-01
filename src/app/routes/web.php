@@ -7,12 +7,14 @@ $routes = [
         ]],
     ],
 
-    '/login' => [
-        'GET' => ['route' => 'AuthController@showLoginPage', 'middlewares' => []],
+    '/signin' => [
+        'GET' => ['route' => 'AuthController@showSignInPage', 'middlewares' => []],
+        'POST' => ['route' => 'AuthController@signIn', 'middlewares' => []],
     ],
 
-    '/register' => [
-        'GET' => ['route' => 'AuthController@showRegisterPage', 'middlewares' => []],
+    '/signup' => [
+        'GET' => ['route' => 'AuthController@showSignUpPage', 'middlewares' => []],
+        'POST' => ['route' => 'AuthController@signUp', 'middlewares' => []],
     ],
 
     '/user/:id' => [
