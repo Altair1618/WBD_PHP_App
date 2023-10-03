@@ -10,7 +10,7 @@ class Database {
     private $handle;
 
     public function __construct() {
-        $this->handle = pg_connect("host=" . $this->host . " dbname=" . $this->name . " user=" . $this->user . " password=" . $this->pass . " port=" . $this->port);
+        $this->handle = pg_connect("host=" . $this->host . " dbname=" . $this->name . " user=" . $this->user . " password=" . $this->pass . " port=" . $this->port, PGSQL_CONNECT_FORCE_NEW);
     }
 
     public function __destruct() {
