@@ -16,9 +16,9 @@ class PenggunaRepository extends Model
   {
     try {
       if (is_int($id_or_username)) {
-        $query = "SELECT * FROM pengguna WHERE id=? LIMIT 1";
+        $query = "SELECT * FROM pengguna WHERE id=$1 LIMIT 1";
       } else {
-        $query = "SELECT * FROM pengguna WHERE username=? LIMIT 1";
+        $query = "SELECT * FROM pengguna WHERE username=$2 LIMIT 1";
       }
       return $this->db->fetch($query, [$id_or_username]);
     } catch (Exception $e) {
@@ -27,22 +27,22 @@ class PenggunaRepository extends Model
     }
   }
 
-  function insertPengguna(string $username, string $email, string $password_hash, string $nama_depan, string $nama_belakang, int $tipe, ?string $kode_program_studi = null, ?string $foto_profil = null)
+  function insertPengguna(string $username, string $email, string $password_hash, string $nama, int $tipe, ?string $kode_program_studi = null, ?string $foto_profil = null)
   {
     try {
-      $query = "INSERT INTO pengguna (username, email, password_hash, nama_depan, nama_belakang, tipe, kode_program_studi, foto_profil) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-      $this->db->execute($query, [$username, $email, $password_hash, $nama_depan, $nama_belakang, $tipe, $kode_program_studi, $foto_profil]);
+      $query = "INSERT INTO pengguna (username, email, password_hash, nama, tipe, kode_program_studi, foto_profil) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)";
+      $this->db->execute($query, [$username, $email, $password_hash, $nama, $tipe, $kode_program_studi, $foto_profil]);
     } catch (Exception $e) {
       Logger::error(__FILE__, __LINE__, "Failed to insert into `pengguna`: " . $e->getMessage());
       throw $e;
     }
   }
 
-  function updatePengguna(int $id, string $username, string $email, string $nama_depan, string $nama_belakang, int $tipe, ?string $kode_program_studi = null, ?string $foto_profil = null)
+  function updatePengguna(int $id, string $username, string $email, string $nama, int $tipe, ?string $kode_program_studi = null, ?string $foto_profil = null)
   {
     try {
-      $query = "UPDATE pengguna SET username=?, email=?, nama_depan=?, nama_belakang=?, tipe=?, kode_program_studi=?, foto_profil=? WHERE id=?";
-      $this->db->execute($query, [$username, $email, $nama_depan, $nama_belakang, $tipe, $kode_program_studi, $id, $foto_profil]);
+      $query = "UPDATE pengguna SET username=$1, email=$2, nama=$3, tipe=$4, kode_program_studi=$5, foto_profil=$6 WHERE id=$7";
+      $this->db->execute($query, [$username, $email, $nama, $tipe, $kode_program_studi, $id, $foto_profil]);
     } catch (Exception $e) {
       Logger::error(__FILE__, __LINE__, "Failed to update `pengguna`: " . $e->getMessage());
       throw $e;
@@ -53,9 +53,9 @@ class PenggunaRepository extends Model
   {
     try {
       if (is_int($id_or_username)) {
-        $query = "DELETE FROM pengguna WHERE id=?";
+        $query = "DELETE FROM pengguna WHERE id=$1";
       } else {
-        $query = "DELETE FROM pengguna WHERE username=?";
+        $query = "DELETE FROM pengguna WHERE username=$2";
       }
       $this->db->execute($query, [$id_or_username]);
     } catch (Exception $e) {
@@ -68,9 +68,9 @@ class PenggunaRepository extends Model
   {
     try {
       if (is_int($id_or_username)) {
-        $query = "UPDATE pengguna SET password_hash=? WHERE id=?";
+        $query = "UPDATE pengguna SET password_hash=$1 WHERE id=$2";
       } else {
-        $query = "UPDATE pengguna SET password_hash=? WHERE username=?";
+        $query = "UPDATE pengguna SET password_hash=$1 WHERE username=$2";
       }
       $this->db->execute($query, [$new_password_hash, $id_or_username]);
     } catch (Exception $e) {
