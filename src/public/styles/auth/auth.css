@@ -1,19 +1,15 @@
 body {
   display: flex;
   padding: 40px 35px;
-  width: 100vw;
-  height: 100vh;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 30px;
+  gap: 20px;
 
   background: #F2F2F2;
 }
 
 h1.app-title {
-  margin: 0;
-  
   font-size: 32px;
   font-style: normal;
   font-weight: 700;
@@ -22,14 +18,22 @@ h1.app-title {
   color: #2357DD;
 }
 
+div.form-wrapper {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+  align-self: stretch;
+}
+
 form.form-container {
+  max-width: 450px;
   display: flex;
   padding: 30px 20px;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   gap: 35px;
-  align-self: stretch;
+  flex-grow: 1;
   
   border-radius: 20px;
   background: #FFF;
@@ -142,4 +146,8 @@ p.form-footer-text {
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+}
+
+a.form-footer-link {
+  color: #2D68C4;
 }

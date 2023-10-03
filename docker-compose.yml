@@ -17,7 +17,7 @@ services:
       - db
   db:
     image: postgres:latest
-    restart: always
+    restart: unless-stopped
     hostname: tubes-1-db
     ports:
       - 5432:5432
@@ -27,7 +27,7 @@ services:
       - ./data:/var/lib/postgresql/data
   adminer:
     image: adminer:latest
-    restart: always
+    restart: unless-stopped
     hostname: tubes-1-adminer
     ports:
       - 8080:8080
