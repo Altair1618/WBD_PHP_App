@@ -55,8 +55,7 @@ CREATE TABLE "public"."pengguna" (
     "id" integer DEFAULT nextval('pengguna_id_seq') NOT NULL,
     "username" character varying(50) NOT NULL,
     "email" character varying(100) NOT NULL,
-    "nama_depan" character varying(50) NOT NULL,
-    "nama_belakang" character varying(50),
+    "nama" character varying(50) NOT NULL,
     "tipe" smallint NOT NULL,
     "kode_program_studi" character varying(3),
     "foto_profil" character varying(255),
@@ -88,4 +87,4 @@ ALTER TABLE ONLY "public"."pengguna" ADD CONSTRAINT "pengguna_kode_program_studi
 
 ALTER TABLE ONLY "public"."program_studi" ADD CONSTRAINT "program_studi_kode_fakultas_fkey" FOREIGN KEY (kode_fakultas) REFERENCES fakultas(kode) ON UPDATE CASCADE ON DELETE CASCADE NOT DEFERRABLE;
 
--- 2023-09-27 15:10:21.050738+00
+-- 2023-10-03 13:54:02.748538+00
