@@ -34,7 +34,9 @@ INSERT INTO "fakultas" ("kode", "nama") VALUES
 ('SAPPK',	'Sekolah Arsitektur, Perencanaan dan Pengembangan Kebijakan'),
 ('SBM',	'Sekolah Bisnis dan Manajemen'),
 ('SF',	'Sekolah Farmasi'),
-('SITH',	'Sekolah Ilmu dan Teknologi Hayati');
+('SITH',	'Sekolah Ilmu dan Teknologi Hayati'),
+('SPS', 'Sekolah Pascasarjana'),
+('NONFS', 'Non Fakultas');
 
 DELIMITER ;;
 
@@ -45,9 +47,9 @@ DELIMITER ;
 DROP TABLE IF EXISTS "mata_kuliah";
 CREATE TABLE "public"."mata_kuliah" (
     "kode" character varying(10) NOT NULL,
-    "nama" character varying(100) NOT NULL,
-    "deskripsi" text NOT NULL,
-    "kode_program_studi" character varying(10),
+    "nama" character varying(250) NOT NULL,
+    "deskripsi" text,
+    "kode_program_studi" character varying(10) NOT NULL,
     "created_at" timestamp,
     "updated_at" timestamp,
     CONSTRAINT "mata_kuliah_kode" PRIMARY KEY ("kode")
@@ -300,7 +302,34 @@ INSERT INTO program_studi (kode, kode_fakultas, nama) VALUES
 ('290', 'SBM', 'Sains Manajemen'),
 ('291', 'SBM', 'Administrasi Bisnis'),
 ('293', 'SBM', 'Administrasi Bisnis (Kampus Jakarta)'),
-('390', 'SBM', 'Sains Manajemen');
+('390', 'SBM', 'Sains Manajemen'),
+('287', 'SPS', 'Teknologi Nano'),
+('387', 'SPS', 'Sains dan Teknologi Nano'),
+('100', 'NONFS', 'Non Reguler S1'),
+('179', 'NONFS', 'Mata Kuliah Umum (MKU)'),
+('800', 'NONFS', 'IVC'),
+('900', 'NONFS', 'Program Profesi Insinyur'),
+('914', 'NONFS', 'PPI'),
+('915', 'NONFS', 'PPI'),
+('920', 'NONFS', 'PPI'),
+('921', 'NONFS', 'PPI'),
+('922', 'NONFS', 'PPI'),
+('923', 'NONFS', 'PPI'),
+('925', 'NONFS', 'PPI'),
+('930', 'NONFS', 'PPI'),
+('931', 'NONFS', 'PPI'),
+('932', 'NONFS', 'PPI'),
+('933', 'NONFS', 'PPI'),
+('934', 'NONFS', 'PPI'),
+('935', 'NONFS', 'PPI'),
+('936', 'NONFS', 'PPI'),
+('937', 'NONFS', 'PPI'),
+('950', 'NONFS', 'PPI'),
+('951', 'NONFS', 'PPI'),
+('953', 'NONFS', 'PPI'),
+('954', 'NONFS', 'PPI'),
+('955', 'NONFS', 'PPI'),
+('200', 'NONFS', 'Non Reguler S2');
 
 DELIMITER ;;
 
@@ -308,7 +337,7 @@ CREATE TRIGGER "add_created_updated_timestamp" BEFORE INSERT OR UPDATE ON "publi
 
 DELIMITER ;
 
-ALTER TABLE ONLY "public"."mata_kuliah" ADD CONSTRAINT "mata_kuliah_kode_fkey" FOREIGN KEY (kode) REFERENCES program_studi(kode) ON UPDATE CASCADE ON DELETE CASCADE NOT DEFERRABLE;
+ALTER TABLE ONLY "public"."mata_kuliah" ADD CONSTRAINT "mata_kuliah_kode_program_studi_fkey" FOREIGN KEY (kode_program_studi) REFERENCES program_studi(kode) ON UPDATE CASCADE ON DELETE CASCADE NOT DEFERRABLE;
 
 ALTER TABLE ONLY "public"."materi_kelas" ADD CONSTRAINT "materi_kelas_id_modul_fkey" FOREIGN KEY (id_modul) REFERENCES modul(id) ON UPDATE CASCADE ON DELETE CASCADE NOT DEFERRABLE;
 
