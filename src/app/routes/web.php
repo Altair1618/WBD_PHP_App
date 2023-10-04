@@ -24,4 +24,10 @@ $routes = [
     '/user/:id' => [
         'GET' => ['route' => 'UserController@showUserPage', 'middlewares' => []],
     ],
+
+    '/courses' => [
+        'GET' => ['route' => 'PageController@showMyCourses', 'middlewares' => [
+            'Authentication',
+        ]],
+    ],
 ];
