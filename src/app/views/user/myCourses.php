@@ -20,19 +20,23 @@
 
   <div class="body-container">
     <div class="body-header">
-      <p class="page-title"> Mata Kuliah Saya </p>
+      <?php if (isset($params['courses']) && count($params['courses']) > 0): ?>
+        <p class="page-title"> Mata Kuliah Saya </p>
 
-      <div class="search-bar">
-        <input type="text" class="search-input" placeholder="Ketikkan kode/nama mata kuliah">
+        <div class="search-bar">
+          <input type="text" class="search-input" placeholder="Ketikkan kode/nama mata kuliah">
 
-        <button type="submit" class="search-button" >
-          <img class="search-button" src="/assets/icons/Search_Button.svg" alt="search">
-        </button>
-      </div>
+            <button type="submit" class="search-button" >
+              <img class="search-button" src="/assets/icons/Search_Button.svg" alt="search">
+            </button>
+          </div>
+        <?php endif; ?>
     </div>
 
     <?php if (!isset($params['courses']) || count($params['courses']) == 0): ?>
-      <p class='empty-message'> Anda belum mengambil mata kuliah apapun </p>
+      <div class="body-main">
+        <p class="empty-message"> Anda belum mengambil mata kuliah apapun </p>
+      </div>
     <?php else: ?>
       <div class="body-main">
         <?php
