@@ -2,7 +2,9 @@
 
 class PageController {
     public function showHomePage($params) {
-        $this->showMyCourses($params);
+        header('Location: /courses');
+
+        return;
     }
 
     public function showMyCourses($params) {
