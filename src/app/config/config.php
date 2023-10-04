@@ -29,3 +29,8 @@ define('MAX_FILE_SIZE', 100 * 1024 * 1024); // 100 MB
 
 // Debounce Configuration
 define('DEBOUNCE_TIME', 500); // 500 ms
+
+// Some enums
+define("PENGGUNA_TIPE_ADMIN", 0);
+define("PENGGUNA_TIPE_PENGAJAR", 1);
+define("PENGGUNA_TIPE_MAHASISWA", 2);

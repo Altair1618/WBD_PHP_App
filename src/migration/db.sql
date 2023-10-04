@@ -124,7 +124,8 @@ CREATE TABLE "public"."pengguna" (
     "created_at" timestamp,
     "updated_at" timestamp,
     CONSTRAINT "pengguna_pkey" PRIMARY KEY ("id"),
-    CONSTRAINT "pengguna_username" UNIQUE ("username")
+    CONSTRAINT "pengguna_username" UNIQUE ("username"),
+    CONSTRAINT "pengguna_email" UNIQUE ("email")
 ) WITH (oids = false);
 
 

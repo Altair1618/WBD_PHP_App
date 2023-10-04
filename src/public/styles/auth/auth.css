@@ -94,6 +94,12 @@ input.form-input {
   line-height: normal;
 }
 
+input.form-input.error {
+  border-width: 1px;
+  border-color: maroon;
+  border-style: solid;
+}
+
 input.form-input:hover {
   filter: brightness(0.95);
 }
@@ -104,6 +110,12 @@ input.form-input:focus {
 
 input.form-input::placeholder {
   color: #A2A5B5;
+}
+
+p.input-error {
+  color: maroon;
+  font-size: 0.65em;
+  align-self: flex-end;
 }
 
 div.form-footer-container {
