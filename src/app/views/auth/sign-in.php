@@ -17,27 +17,30 @@
 <body>
   <h1 class="app-title">LearnIt!</h1>
 
-  <form class="form-container" action="/signin" method="POST">
-    <h1 class="form-title">Sign In</h1>
-
-    <div class="form-body-container">
-      <div class="form-input-container">
-        <label for="credentials" class="form-label">Username/Email</label>
-        <input type="text" name="credentials" id="credentials" class="form-input" placeholder="Masukkan Username atau Email" required>
+  <div class="form-wrapper">
+    <form class="form-container" action="/signin" method="POST">
+      <h1 class="form-title">Sign In</h1>
+  
+      <div class="form-body-container">
+        <div class="form-input-container">
+          <label for="credentials" class="form-label">Username/Email</label>
+          <input type="text" name="credentials" id="credentials" class="form-input" placeholder="Masukkan Username atau Email" required>
+        </div>
+  
+        <div class="form-input-container">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" name="password" id="password" class="form-input" placeholder="Masukkan Password" required>
+        </div>
       </div>
-
-      <div class="form-input-container">
-        <label for="password" class="form-label">Password</label>
-        <input type="password" name="password" id="password" class="form-input" placeholder="Masukkan Password" required>
-      </div>
-    </div>
-
-    <div class="form-footer-container">
-      <button type="submit" class="form-submit-button">SIGN IN</button>
-      <p class="form-footer-text">Belum memiliki akun?
-        <a href="/signup" class="form-footer-link">Sign Up</a>
-      </p>
-  </form>
+  
+      <div class="form-footer-container">
+        <button type="submit" class="form-submit-button">SIGN IN</button>
+        <p class="form-footer-text">Belum memiliki akun?
+          <a href="/signup" class="form-footer-link">Sign Up</a>
+        </p>
+    </form>
+  </div>
+  
 </body>
 
 </html>

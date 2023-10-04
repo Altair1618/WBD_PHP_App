@@ -8,6 +8,7 @@ nav.navbar {
   align-items: center;
 
   background: #FFF;
+  z-index: 100;
 }
 
 div.navbar-brand-container {

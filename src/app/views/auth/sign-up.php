@@ -17,42 +17,44 @@
 <body>
   <h1 class="app-title">LearnIt!</h1>
 
-  <form class="form-container" action="/signup" method="POST">
-    <h1 class="form-title">Sign Up</h1>
+  <div class="form-wrapper">
+    <form class="form-container" action="/signup" method="POST">
+      <h1 class="form-title">Sign Up</h1>
 
-    <div class="form-body-container">
-      <div class="form-input-container">
-        <label for="name" class="form-label">Nama</label>
-        <input type="text" name="name" id="name" class="form-input" placeholder="Masukkan Nama Lengkap" required>
+      <div class="form-body-container">
+        <div class="form-input-container">
+          <label for="name" class="form-label">Nama</label>
+          <input type="text" name="name" id="name" class="form-input" placeholder="Masukkan Nama Lengkap" required>
+        </div>
+
+        <div class="form-input-container">
+          <label for="username" class="form-label">Username</label>
+          <input type="text" name="username" id="username" class="form-input" placeholder="Masukkan Username" required>
+        </div>
+
+        <div class="form-input-container">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" name="email" id="email" class="form-input" placeholder="Masukkan Email" required>
+        </div>
+
+        <div class="form-input-container">
+          <label for="prodi" class="form-label">Program Studi</label>
+          <input type="text" name="prodi" id="prodi" class="form-input" placeholder="Masukkan Program Studi" required>
+        </div>
+
+        <div class="form-input-container">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" name="password" id="password" class="form-input" placeholder="Masukkan Password" required>
+        </div>
       </div>
 
-      <div class="form-input-container">
-        <label for="username" class="form-label">Username</label>
-        <input type="text" name="username" id="username" class="form-input" placeholder="Masukkan Username" required>
-      </div>
-
-      <div class="form-input-container">
-        <label for="email" class="form-label">Email</label>
-        <input type="email" name="email" id="email" class="form-input" placeholder="Masukkan Email" required>
-      </div>
-
-      <div class="form-input-container">
-        <label for="prodi" class="form-label">Program Studi</label>
-        <input type="text" name="prodi" id="prodi" class="form-input" placeholder="Masukkan Program Studi" required>
-      </div>
-
-      <div class="form-input-container">
-        <label for="password" class="form-label">Password</label>
-        <input type="password" name="password" id="password" class="form-input" placeholder="Masukkan Password" required>
-      </div>
-    </div>
-
-    <div class="form-footer-container">
-      <button type="submit" class="form-submit-button">SIGN UP</button>
-      <p class="form-footer-text">Sudah memiliki akun?
-        <a href="/signin" class="form-footer-link">Sign In</a>
-      </p>
-  </form>
+      <div class="form-footer-container">
+        <button type="submit" class="form-submit-button">SIGN UP</button>
+        <p class="form-footer-text">Sudah memiliki akun?
+          <a href="/signin" class="form-footer-link">Sign In</a>
+        </p>
+    </form>
+  </div>
 </body>
 
 </html>

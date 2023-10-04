@@ -1,8 +1,9 @@
 <?php
 
 $routes = [
+    // Web Routes
     '/' => [
-        'GET' => ['route' => 'HomeController@showHomePage', 'middlewares' => [
+        'GET' => ['route' => 'PageController@showHomePage', 'middlewares' => [
             'Authentication',
         ]],
     ],
@@ -23,5 +24,16 @@ $routes = [
 
     '/user/:id' => [
         'GET' => ['route' => 'UserController@showUserPage', 'middlewares' => []],
+    ],
+
+    '/courses' => [
+        'GET' => ['route' => 'PageController@showMyCourses', 'middlewares' => [
+            'Authentication',
+        ]],
+    ],
+
+    // API Routes
+    '/api/courses' => [
+        'GET' => ['route' => 'CourseController@getCoursesHTML', 'middlewares' => []],
     ],
 ];

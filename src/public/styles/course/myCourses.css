@@ -1,0 +1,199 @@
+div.body-header {
+  display: flex;
+  padding: 10px 20px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  align-self: stretch;
+}
+
+p.page-title {
+  color: #000;
+  
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+div.search-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  align-self: stretch;
+
+  border-radius: 17px;
+  border: 0.1px solid #000;
+  background: #FFF;
+}
+
+input.search-input {
+  display: flex;
+  padding: 5px 15px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+
+  width: 100%;
+  border-radius: 17px 0 0 17px;
+}
+
+button.search-button {
+  display: flex;
+  padding: 0px 15px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  align-self: stretch;
+
+  background: #EEE;
+  border-radius: 0 17px 17px 0;
+}
+
+div.body-main {
+  display: flex;
+  padding: 10px;
+  justify-content: center;
+  align-items: flex-start;
+  align-content: flex-start;
+  gap: 20px 0px;
+  flex: 1 0 0;
+  align-self: stretch;
+  flex-wrap: wrap;
+}
+
+div.course-card {
+  display: flex;
+  margin: 0 10px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 10px;
+  background: #FFF;
+}
+
+img.course-image {
+  padding: 30px 45px;
+}
+
+div.course-info {
+  display: flex;
+  padding: 10px;
+  flex-direction: column;
+  align-items: flex-start;
+  align-self: stretch;
+}
+
+p.course-code {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  align-self: stretch;
+
+  overflow: hidden;
+  color: rgba(0, 0, 0, 0.60);
+  text-overflow: ellipsis;
+  font-size: 6px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+p.course-name {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  align-self: stretch;
+
+  overflow: hidden;
+  color: #000;
+  text-overflow: ellipsis;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+p.course-lecturer {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  align-self: stretch;
+
+  overflow: hidden;
+  color: #000;
+  text-overflow: ellipsis;
+  font-family: Poppins;
+  font-size: 8px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+div.course-button-container {
+  display: flex;
+  padding-top: 15px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  align-self: stretch;
+}
+
+a.course-detail-button {
+  padding: 5px 15px;
+  border-radius: 14px;
+  background: #2357DD;
+
+  color: #FFF;
+  font-family: Poppins;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+div.body-footer {
+  display: flex;
+  padding: 20px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+button.page-button {
+  display: flex;
+  width: 35px;
+  height: 25px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  color: #000;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+
+  cursor: pointer;
+}
+
+button.current-page-button {
+  display: flex;
+  width: 25px;
+  height: 25px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  border-radius: 5px;
+  background: #2357DD;
+
+  color: #FFF;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
