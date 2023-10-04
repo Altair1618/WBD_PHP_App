@@ -60,6 +60,7 @@ if (isset($_GET['error'])) {
         <p class="form-footer-text">Belum memiliki akun?
           <a href="/signup" class="form-footer-link">Sign Up</a>
         </p>
+      </div>
     </form>
   </div>
 

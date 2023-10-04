@@ -3,7 +3,7 @@ nav.navbar {
 
   display: flex;
   flex-wrap: wrap;
-  width: 100vw;
+  width: 100%;
   justify-content: space-between;
   align-items: center;
 
@@ -59,11 +59,12 @@ div.navbar-hamburger-menu-active:hover {
 }
 
 ul.navbar-menu {
+  padding: 0 10px;
   display: none;
 }
 
 ul.navbar-menu-active {
-  width: 100vw;
+  width: 100%;
 }
 
 li.navbar-menu-item {

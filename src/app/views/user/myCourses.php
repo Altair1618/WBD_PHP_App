@@ -29,6 +29,40 @@
           <img class="search-button" src="/assets/icons/Search_Button.svg" alt="search">
         </button>
       </div>
+
+      <div class="filter-sort-bar">
+        <div class="filter-bar">
+          <p class="selector-title">Filter:</p>
+
+          <select id="fakultas-selector" class="selector">
+            <option value="all"></option>
+            <?php foreach ($params['fakultas'] as $fakultas): ?>
+              <option value="<?=$fakultas['kode']; ?>"><?=$fakultas['kode']; ?></option>
+            <?php endforeach; ?>
+          </select>
+
+          <select id="prodi-selector" class="selector">
+            <option value="all"></option>
+            <?php foreach ($params['program_studi'] as $program_studi): ?>
+              <option value="<?=$program_studi['kode']; ?>"><?=$program_studi['kode'] . ' - ' . $program_studi['nama']; ?></option>
+            <?php endforeach; ?>
+          </select>
+        </div>
+
+        <div class="sort-bar">
+          <p class="selector-title">Urutkan:</p>
+
+          <select id="sort-selector" class="selector">
+            <option value="nama">Nama</option>
+            <option value="kode">Kode</option>
+          </select>
+            
+          <select id="order-selector" class="selector">
+            <option value="asc">A-Z</option>
+            <option value="desc">Z-A</option>
+          </select>
+        </div>
+      </div>
     </div>
 
     <div id="body-main-container" class="body-main-container">

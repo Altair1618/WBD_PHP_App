@@ -36,4 +36,12 @@ $routes = [
     '/api/courses' => [
         'GET' => ['route' => 'CourseController@getCoursesHTML', 'middlewares' => []],
     ],
+
+    '/api/fakultas' => [
+        'GET' => ['route' => 'FakultasController@getFakultas', 'middlewares' => []],
+    ],
+
+    '/api/prodi' => [
+        'GET' => ['route' => 'ProgramStudiController@getProgramStudi', 'middlewares' => []],
+    ],
 ];
