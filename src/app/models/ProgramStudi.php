@@ -12,7 +12,7 @@ class ProgramStudiRepository extends Model
     }
   }
 
-  function getProgramStudi(string $kode): array
+  function getProgramStudi(string $kode): array|false
   {
     try {
       return $this->db->fetch("SELECT * FROM program_studi WHERE kode=$1 LIMIT 1", [$kode]);

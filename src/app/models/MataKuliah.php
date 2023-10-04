@@ -12,7 +12,7 @@ class MataKuliahRepository extends Model
     }
   }
 
-  function getMataKuliah(string $kode): array
+  function getMataKuliah(string $kode): array|false
   {
     try {
       return $this->db->fetch("SELECT * FROM mata_kuliah WHERE kode=$1 LIMIT 1", [$kode]);

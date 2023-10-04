@@ -12,13 +12,13 @@ class PenggunaRepository extends Model
     }
   }
 
-  function getPengguna(int|string $id_or_username): array
+  function getPengguna(int|string $id_or_username): array|false
   {
     try {
       if (is_int($id_or_username)) {
         $query = "SELECT * FROM pengguna WHERE id=$1 LIMIT 1";
       } else {
-        $query = "SELECT * FROM pengguna WHERE username=$2 LIMIT 1";
+        $query = "SELECT * FROM pengguna WHERE username=$1 LIMIT 1";
       }
       return $this->db->fetch($query, [$id_or_username]);
     } catch (Exception $e) {
@@ -30,7 +30,7 @@ class PenggunaRepository extends Model
   function insertPengguna(string $username, string $email, string $password_hash, string $nama, int $tipe, ?string $kode_program_studi = null, ?string $foto_profil = null)
   {
     try {
-      $query = "INSERT INTO pengguna (username, email, password_hash, nama, tipe, kode_program_studi, foto_profil) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)";
+      $query = "INSERT INTO pengguna (username, email, password_hash, nama, tipe, kode_program_studi, foto_profil) VALUES ($1, $2, $3, $4, $5, $6, $7)";
       $this->db->execute($query, [$username, $email, $password_hash, $nama, $tipe, $kode_program_studi, $foto_profil]);
     } catch (Exception $e) {
       Logger::error(__FILE__, __LINE__, "Failed to insert into `pengguna`: " . $e->getMessage());

@@ -12,7 +12,7 @@ class MateriKelasRepository extends Model
     }
   }
 
-  function getMateriKelas(int $id): array
+  function getMateriKelas(int $id): array|false
   {
     try {
       return $this->db->fetch("SELECT * FROM materi_kelas WHERE id=$1 LIMIT 1", [$id]);
@@ -22,11 +22,11 @@ class MateriKelasRepository extends Model
     }
   }
 
-  function insertMateriKelas(int $no_urut_modul, string $kode_mata_kuliah, string $judul_topik, int $tipe, string $nama_file, string $deskripsi)
+  function insertMateriKelas(int $no_urut_modul, string $kode_mata_kuliah, string $judul_topik, int $tipe, string $nama_file)
   {
     try {
-      $query = "INSERT INTO materi_kelas (no_urut_modul, kode_mata_kuliah, judul_topik, tipe, nama_file, deskripsi) VALUES ($1, $2, $3, $4, $5, $6)";
-      $this->db->execute($query, [$no_urut_modul, $kode_mata_kuliah, $judul_topik, $tipe, $nama_file, $deskripsi]);
+      $query = "INSERT INTO materi_kelas (no_urut_modul, kode_mata_kuliah, judul_topik, tipe, nama_file) VALUES ($1, $2, $3, $4, $5, $6)";
+      $this->db->execute($query, [$no_urut_modul, $kode_mata_kuliah, $judul_topik, $tipe, $nama_file]);
     } catch (Exception $e) {
       Logger::error(__FILE__, __LINE__, "Failed to insert into `materi_kelas`: " . $e->getMessage());
       throw $e;
