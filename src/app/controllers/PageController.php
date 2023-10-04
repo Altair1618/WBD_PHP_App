@@ -8,9 +8,9 @@ class PageController {
         }
         
         if ($_SESSION['user']['tipe'] === 'mahasiswa') {
-            require_once CONTROLLERS_DIR . 'UserController.php';
+            require_once CONTROLLERS_DIR . 'CourseController.php';
 
-            $controller = new UserController();
+            $controller = new CourseController();
             $controller->showMyCourses($params);
         } else {
             require_once CONTROLLERS_DIR . 'ErrorController.php';
