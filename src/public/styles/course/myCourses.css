@@ -161,7 +161,7 @@ div.body-footer {
   gap: 10px;
 }
 
-a.page-button {
+button.page-button {
   display: flex;
   width: 35px;
   height: 25px;
@@ -175,9 +175,11 @@ a.page-button {
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+
+  cursor: pointer;
 }
 
-a.current-page-button {
+button.current-page-button {
   display: flex;
   width: 25px;
   height: 25px;

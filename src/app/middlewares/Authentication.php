@@ -9,8 +9,8 @@ class Authentication extends Middleware {
         $_SESSION['isAuthenticated'] = true;
         $_SESSION['user'] = [
             'id' => 1,
-            'name' => 'Yi Long Musk',
-            'email' => 'yilongmuskx@mail.com',
+            'name' => 'Yi Long Ma',
+            'email' => 'yilongma@mail.com',
             'tipe' => 'mahasiswa',
         ];
     }

@@ -1,6 +1,10 @@
 <?php
 
 class PageController {
+    public function showHomePage($params) {
+        $this->showMyCourses($params);
+    }
+
     public function showMyCourses($params) {
         if (!isset($_SESSION['isAuthenticated']) || !$_SESSION['isAuthenticated']) {
             header('Location: /signin');
