@@ -27,11 +27,11 @@ class PenggunaRepository extends Model
     }
   }
 
-  function insertPengguna(string $username, string $email, string $password_hash, string $nama, int $tipe, ?string $kode_program_studi = null, ?string $foto_profil = null)
+  function insertPengguna(string $username, string $email, string $password_hash, string $nama, int $tipe)
   {
     try {
-      $query = "INSERT INTO pengguna (username, email, password_hash, nama, tipe, kode_program_studi, foto_profil) VALUES ($1, $2, $3, $4, $5, $6, $7)";
-      $this->db->execute($query, [$username, $email, $password_hash, $nama, $tipe, $kode_program_studi, $foto_profil]);
+      $query = "INSERT INTO pengguna (username, email, password_hash, nama) VALUES ($1, $2, $3, $4, $5)";
+      $this->db->execute($query, [$username, $email, $password_hash, $nama, $tipe]);
     } catch (Exception $e) {
       Logger::error(__FILE__, __LINE__, "Failed to insert into `pengguna`: " . $e->getMessage());
       throw $e;
@@ -41,8 +41,8 @@ class PenggunaRepository extends Model
   function updatePengguna(int $id, string $username, string $email, string $nama, int $tipe, ?string $kode_program_studi = null, ?string $foto_profil = null)
   {
     try {
-      $query = "UPDATE pengguna SET username=$1, email=$2, nama=$3, tipe=$4, kode_program_studi=$5, foto_profil=$6 WHERE id=$7";
-      $this->db->execute($query, [$username, $email, $nama, $tipe, $kode_program_studi, $id, $foto_profil]);
+      $query = "UPDATE pengguna SET username=$1, email=$2, nama=$3, tipe=$4 WHERE id=$5";
+      $this->db->execute($query, [$username, $email, $nama, $tipe, $id]);
     } catch (Exception $e) {
       Logger::error(__FILE__, __LINE__, "Failed to update `pengguna`: " . $e->getMessage());
       throw $e;
@@ -55,7 +55,7 @@ class PenggunaRepository extends Model
       if (is_int($id_or_username)) {
         $query = "DELETE FROM pengguna WHERE id=$1";
       } else {
-        $query = "DELETE FROM pengguna WHERE username=$2";
+        $query = "DELETE FROM pengguna WHERE username=$1";
       }
       $this->db->execute($query, [$id_or_username]);
     } catch (Exception $e) {
