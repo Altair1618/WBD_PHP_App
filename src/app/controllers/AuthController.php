@@ -10,8 +10,22 @@ class AuthController {
     }
 
     public function signIn() {
-        // TODO: Implement Sign In process
-        Router::getInstance()->redirect('/');
+        $user_repo = new PenggunaRepository();
+
+        $credentials = $_POST['credentials'];
+        $password = $_POST['password'];
+        if (filter_var($credentials, FILTER_VALIDATE_EMAIL)) {
+            $user = $user_repo->getPengguna(email: $credentials);
+        } else {
+            $user = $user_repo->getPengguna(username: $credentials);
+        }
+        if ($user !== false && password_verify($password, $user['password_hash'])) {
+            $_SESSION["user"] = $user;
+            Logger::info(__FILE__, __LINE__, "User `{$user['username']}` is logged in");
+            Router::getInstance()->redirect('/');
+        } else {
+            Router::getInstance()->redirect('/signin?error');
+        }
     }
 
     public function signUp() {
