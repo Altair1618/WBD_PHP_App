@@ -12,15 +12,21 @@ class PenggunaRepository extends Model
     }
   }
 
-  function getPengguna(int|string $id_or_username): array|false
+  function getPengguna(?int $id = null, ?string $username = null, ?string $email = null): array|false
   {
     try {
-      if (is_int($id_or_username)) {
+      if (isset($id)) {
         $query = "SELECT * FROM pengguna WHERE id=$1 LIMIT 1";
-      } else {
+        return $this->db->fetch($query, [$id]);
+      } else if (isset($username)) {
         $query = "SELECT * FROM pengguna WHERE username=$1 LIMIT 1";
+        return $this->db->fetch($query, [$username]);
+      } else if (isset($email)) {
+        $query = "SELECT * FROM pengguna WHERE email=$1 LIMIT 1";
+        return $this->db->fetch($query, [$email]);
+      } else {
+        return false;
       }
-      return $this->db->fetch($query, [$id_or_username]);
     } catch (Exception $e) {
       Logger::error(__FILE__, __LINE__, "Failed to fetch `pengguna`: " . $e->getMessage());
       throw $e;
@@ -30,7 +36,7 @@ class PenggunaRepository extends Model
   function insertPengguna(string $username, string $email, string $password_hash, string $nama, int $tipe)
   {
     try {
-      $query = "INSERT INTO pengguna (username, email, password_hash, nama) VALUES ($1, $2, $3, $4, $5)";
+      $query = "INSERT INTO pengguna (username, email, password_hash, nama, tipe) VALUES ($1, $2, $3, $4, $5)";
       $this->db->execute($query, [$username, $email, $password_hash, $nama, $tipe]);
     } catch (Exception $e) {
       Logger::error(__FILE__, __LINE__, "Failed to insert into `pengguna`: " . $e->getMessage());
@@ -38,7 +44,7 @@ class PenggunaRepository extends Model
     }
   }
 
-  function updatePengguna(int $id, string $username, string $email, string $nama, int $tipe, ?string $kode_program_studi = null, ?string $foto_profil = null)
+  function updatePengguna(int $id, string $username, string $email, string $nama, int $tipe)
   {
     try {
       $query = "UPDATE pengguna SET username=$1, email=$2, nama=$3, tipe=$4 WHERE id=$5";
