@@ -5,13 +5,10 @@ class Authentication extends Middleware {
         // TODO: Implement Validation process
         // Put boolean into $_SESSION['isAuthenticated']
         // If authenticated, put user data into $_SESSION['user']
-        
+
+        if (!isset($_SESSION['user'])) {
+            Router::getInstance()->redirect('/signin');
+        }
         $_SESSION['isAuthenticated'] = true;
-        $_SESSION['user'] = [
-            'id' => 1,
-            'name' => 'Yi Long Ma',
-            'email' => 'yilongma@mail.com',
-            'tipe' => 'mahasiswa',
-        ];
     }
 }

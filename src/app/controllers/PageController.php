@@ -13,7 +13,7 @@ class PageController {
             return;
         }
         
-        if ($_SESSION['user']['tipe'] === 'mahasiswa') {
+        if ($_SESSION['user']['tipe'] == PENGGUNA_TIPE_MAHASISWA) {
             require_once CONTROLLERS_DIR . 'CourseController.php';
 
             $controller = new CourseController();

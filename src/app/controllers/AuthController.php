@@ -15,8 +15,23 @@ class AuthController {
     }
 
     public function signUp() {
-        // TODO: Implement Sign Up process
-        Router::getInstance()->redirect('/');
+        $user_repo = new PenggunaRepository();
+
+        $nama = $_POST['name'];
+        $username = $_POST['username'];
+        $email = $_POST['email'];
+        $password_hash = password_hash($_POST['password'], PASSWORD_DEFAULT);
+
+        if ($user_repo->getPengguna(username: $username) !== false) {
+            Router::getInstance()->redirect('/signup?error=username');
+        } else if ($user_repo->getPengguna(email: $email) !== false) {
+            Router::getInstance()->redirect('/signup?error=email');
+        } else {
+            $user_repo->insertPengguna($username, $email, $password_hash, $nama, PENGGUNA_TIPE_MAHASISWA);
+            $_SESSION["user"] = $user_repo->getPengguna(username: $username);
+            Logger::info(__FILE__, __LINE__, "user `$username` is logged in");
+            Router::getInstance()->redirect('/');
+        }
     }
 
     public function signOut() {

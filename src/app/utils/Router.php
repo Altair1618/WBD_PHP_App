@@ -28,7 +28,7 @@ class Router {
             return [false, null];
         }
         
-        $params = [];
+        $params = $_GET;
         for ($i = 0; $i < count($parsedRoute); $i++) {
             if ($parsedRoute[$i] == $parsedUri[$i]) {
                 continue;
@@ -40,13 +40,13 @@ class Router {
             }
         }
 
-        if (count($temp) > 1) {
-            $queries = explode("&", $temp[1]);
-            foreach ($queries as $query) {
-                $query = explode("=", $query);
-                $params[$query[0]] = urldecode($query[1]);
-            }
-        }
+        // if (count($temp) > 1) {
+        //    $queries = explode("&", $temp[1]);
+        //    foreach ($queries as $query) {
+        //        $query = explode("=", $query);
+        //        $params[$query[0]] = urldecode($query[1]);
+        //    }
+        // }
 
         return [true, $params];
     }
