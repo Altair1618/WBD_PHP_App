@@ -49,7 +49,10 @@ class AuthController {
     }
 
     public function signOut() {
-        // TODO: Delete User from Session or anything that implemented in signIn
+        Logger::info(__FILE__, __LINE__, "User `{$_SESSION['user']['username']}` is logged out");
+        if (isset($_SESSION['user'])) {
+            unset($_SESSION['user']);
+        }
         Router::getInstance()->redirect('/signin');
     }
 }
