@@ -50,6 +50,55 @@ button.search-button {
   border-radius: 0 17px 17px 0;
 }
 
+div.filter-sort-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  align-self: stretch;
+
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+div.filter-bar, div.sort-bar {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+p.selector-title {
+  color: #000;
+  
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+select.selector {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+
+  max-width: 200px;
+  
+  border-radius: 5px;
+  border: 0.1px solid #000;
+  background: #FFF;
+}
+
+div.body-main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-self: stretch;
+}
+
 div.body-main {
   display: flex;
   padding: 10px;

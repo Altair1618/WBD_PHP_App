@@ -26,7 +26,15 @@ class CourseController {
 
     public function showMyCourses($params) {
         $params = $this->getManyCourses($params);
+        
+        require_once MODELS_DIR . 'Fakultas.php';
+        $fakultas = new FakultasRepository();
 
+        require_once MODELS_DIR . 'ProgramStudi.php';
+        $program_studi = new ProgramStudiRepository();
+
+        $params['fakultas'] = $fakultas->getFakultasList();
+        $params['program_studi'] = $program_studi->getProgramStudiList();
         require_once VIEWS_DIR . 'user/myCourses.php';
     }
 
