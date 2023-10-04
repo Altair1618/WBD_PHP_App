@@ -12,7 +12,7 @@ class FakultasRepository extends Model
     }
   }
 
-  function getFakultas(string $kode): array
+  function getFakultas(string $kode): array|false
   {
     try {
       return $this->db->fetch("SELECT * FROM fakultas WHERE kode=$1 LIMIT 1", [$kode]);
