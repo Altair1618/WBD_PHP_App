@@ -131,6 +131,7 @@ CREATE TABLE "public"."pengguna" (
     "nama" character varying(50) NOT NULL,
     "tipe" smallint NOT NULL,
     "password_hash" character varying(255) NOT NULL,
+    "gambar_profil" character varying(255),
     "created_at" timestamp,
     "updated_at" timestamp,
     CONSTRAINT "pengguna_pkey" PRIMARY KEY ("id"),
