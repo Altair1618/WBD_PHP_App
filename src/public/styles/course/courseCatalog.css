@@ -214,6 +214,15 @@ div.body-footer {
   padding: 20px;
   justify-content: center;
   align-items: center;
+}
+
+div.page-container {
+  width: 100px;
+  
+  display: flex;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
   gap: 10px;
 }
 

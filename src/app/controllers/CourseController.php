@@ -99,6 +99,7 @@ class CourseController {
             </div>
 
             <div id='body-footer' class='body-footer'>
+                <div class='page-container'>
             ";
             
             if ($params['page'] > 1) {
@@ -114,9 +115,13 @@ class CourseController {
             }
 
             $body_html .= "
+                </div>
+
                 <button id='current-page-button' class='current-page-button'>
                     {$params['page']}
                 </button>
+
+                <div class='page-container'>
             ";
             
             if ($params['page'] < $params['page_count']) {
@@ -132,6 +137,7 @@ class CourseController {
             }
 
             $body_html .= "
+                </div>
             </div>
             ";
         }
@@ -184,7 +190,7 @@ class CourseController {
                         <p class='course-lecturer'> {$course['pengajar']} </p>
 
                         <div class='course-button-container'>
-                            <form action='/enroll?course=" . $course['kode'] . "&user=" . $_SESSION['user']['id'] . "' method='POST' class='course-button-container'>
+                            <form action='/api/enroll?kode=" . $course['kode'] . "&user=" . $_SESSION['user']['id'] . "' method='POST' class='course-button-container'>
                                 <button class='course-enroll-button' type='submit'>DAFTAR</a>
                             </form>
                         </div>
@@ -197,6 +203,7 @@ class CourseController {
             </div>
 
             <div id='body-footer' class='body-footer'>
+                <div class='page-container'>
             ";
             
             if ($params['page'] > 1) {
@@ -208,13 +215,17 @@ class CourseController {
                     <button class='page-button'>
                         {$target}
                     </button>
-                ";
-            }
-
+                    ";
+                }
+                
             $body_html .= "
+                </div>
+
                 <button id='current-page-button' class='current-page-button'>
                     {$params['page']}
                 </button>
+
+                <div class='page-container'>
             ";
             
             if ($params['page'] < $params['page_count']) {
@@ -226,11 +237,12 @@ class CourseController {
                     <button class='page-button'>
                         NEXT
                     </button>
-                ";
-            }
-
+                    ";
+                }
+                
             $body_html .= "
-            </div>
+                </div>
+                </div>
             ";
         }
 
