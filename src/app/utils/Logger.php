@@ -4,9 +4,9 @@ class Logger
 {
   private static function write_log(string $level, string $source_file, string $line_number, string $msg): bool
   {
-    $file = fopen($_ENV["LOG_FILE"], "a");
+    $file = fopen(LOG_FILE, "a");
     if ($file === false) {
-      echo "Unable to open file `" . $_ENV["LOG_FILE"] . "`";
+      echo "Unable to open file `" . LOG_FILE . "`";
       return false;
     }
     $msg = "[" . date("Y-m-d H:i:s") . "] $level $source_file:$line_number: $msg\n";

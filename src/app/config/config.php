@@ -5,7 +5,7 @@ define('HTTP_PORT', 8008);
 define('DB_PORT', 5432);
 
 // URL
-define('BASE_URL', 'http://localhost:'. HTTP_PORT .'/');
+define('BASE_URL', 'http://localhost:' . HTTP_PORT . '/');
 
 // Directory
 define('APP_DIR', __DIR__ . '/../');
@@ -14,6 +14,9 @@ define('CONTROLLERS_DIR', APP_DIR . 'controllers/');
 define('MIDDLEWARES_DIR', APP_DIR . 'middlewares/');
 define('MODELS_DIR', APP_DIR . 'models/');
 define('VIEWS_DIR', APP_DIR . 'views/');
+
+// Log File
+define("LOG_FILE", APP_DIR . 'logs.log');
 
 // Database Configuration
 define('DB_HOST', $_ENV['POSTGRES_HOST']);
