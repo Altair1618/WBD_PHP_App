@@ -19,7 +19,7 @@
       <a class="navbar-menu-link" href="/catalog">Katalog Mata Kuliah</a>
     </li>
     <li class="navbar-menu-item">
-      <a class="navbar-menu-link" href="/settings">Pengaturan</a>
+      <a class="navbar-menu-link" href="/profile">Profil</a>
     </li>
     <li class="navbar-menu-item">
       <form action="/signout" method="POST">

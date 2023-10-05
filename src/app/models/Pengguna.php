@@ -2,86 +2,75 @@
 
 class PenggunaRepository extends Model
 {
-  public function getPenggunaList(): array
-  {
-    try {
-      return $this->db->fetchAll("SELECT * FROM pengguna");
-    } catch (Exception $e) {
-      Logger::error(__FILE__, __LINE__, "Failed to fetch `pengguna`: " . $e->getMessage());
-      throw $e;
+    public function getPenggunaList(): array
+    {
+        try {
+            return $this->db->fetchAll("SELECT * FROM pengguna");
+        } catch (Exception $e) {
+            Logger::error(__FILE__, __LINE__, "Failed to fetch `pengguna`: " . $e->getMessage());
+            throw $e;
+        }
     }
-  }
 
-  function getPengguna(?int $id = null, ?string $username = null, ?string $email = null): array|false
-  {
-    try {
-      if (isset($id)) {
-        $query = "SELECT * FROM pengguna WHERE id=$1 LIMIT 1";
-        return $this->db->fetch($query, [$id]);
-      } else if (isset($username)) {
-        $query = "SELECT * FROM pengguna WHERE username=$1 LIMIT 1";
-        return $this->db->fetch($query, [$username]);
-      } else if (isset($email)) {
-        $query = "SELECT * FROM pengguna WHERE email=$1 LIMIT 1";
-        return $this->db->fetch($query, [$email]);
-      } else {
-        return false;
-      }
-    } catch (Exception $e) {
-      Logger::error(__FILE__, __LINE__, "Failed to fetch `pengguna`: " . $e->getMessage());
-      throw $e;
+    function getPengguna(?int $id = null, ?string $username = null, ?string $email = null): array|false
+    {
+        try {
+            if (isset($id)) {
+                $query = "SELECT * FROM pengguna WHERE id=$1 LIMIT 1";
+                return $this->db->fetch($query, [$id]);
+            } else if (isset($username)) {
+                $query = "SELECT * FROM pengguna WHERE username=$1 LIMIT 1";
+                return $this->db->fetch($query, [$username]);
+            } else if (isset($email)) {
+                $query = "SELECT * FROM pengguna WHERE email=$1 LIMIT 1";
+                return $this->db->fetch($query, [$email]);
+            } else {
+                return false;
+            }
+        } catch (Exception $e) {
+            Logger::error(__FILE__, __LINE__, "Failed to fetch `pengguna`: " . $e->getMessage());
+            throw $e;
+        }
     }
-  }
 
-  function insertPengguna(string $username, string $email, string $password_hash, string $nama, int $tipe)
-  {
-    try {
-      $query = "INSERT INTO pengguna (username, email, password_hash, nama, tipe) VALUES ($1, $2, $3, $4, $5)";
-      $this->db->execute($query, [$username, $email, $password_hash, $nama, $tipe]);
-    } catch (Exception $e) {
-      Logger::error(__FILE__, __LINE__, "Failed to insert into `pengguna`: " . $e->getMessage());
-      throw $e;
+    function insertPengguna(string $username, string $email, string $password_hash, string $nama, int $tipe, ?string $gambar_profil = null)
+    {
+        try {
+            $query = "INSERT INTO pengguna (username, email, password_hash, nama, tipe, gambar_profil) VALUES ($1, $2, $3, $4, $5, $6)";
+            $this->db->execute($query, [$username, $email, $password_hash, $nama, $tipe, $gambar_profil]);
+        } catch (Exception $e) {
+            Logger::error(__FILE__, __LINE__, "Failed to insert into `pengguna`: " . $e->getMessage());
+            throw $e;
+        }
     }
-  }
 
-  function updatePengguna(int $id, string $username, string $email, string $nama, int $tipe)
-  {
-    try {
-      $query = "UPDATE pengguna SET username=$1, email=$2, nama=$3, tipe=$4 WHERE id=$5";
-      $this->db->execute($query, [$username, $email, $nama, $tipe, $id]);
-    } catch (Exception $e) {
-      Logger::error(__FILE__, __LINE__, "Failed to update `pengguna`: " . $e->getMessage());
-      throw $e;
+    function updatePengguna(int $id, string $username, string $email, string $password_hash, string $nama, int $tipe, ?string $gambar_profil = null)
+    {
+        try {
+            $query = "UPDATE pengguna SET username=$1, email=$2, password_hash=$3, nama=$4, tipe=$5, gambar_profil=$6 WHERE id=$7";
+            $this->db->execute($query, [$username, $email, $password_hash, $nama, $tipe, $gambar_profil, $id]);
+        } catch (Exception $e) {
+            Logger::error(__FILE__, __LINE__, "Failed to update `pengguna`: " . $e->getMessage());
+            throw $e;
+        }
     }
-  }
 
-  function deletePengguna(int|string $id_or_username)
-  {
-    try {
-      if (is_int($id_or_username)) {
-        $query = "DELETE FROM pengguna WHERE id=$1";
-      } else {
-        $query = "DELETE FROM pengguna WHERE username=$1";
-      }
-      $this->db->execute($query, [$id_or_username]);
-    } catch (Exception $e) {
-      Logger::error(__FILE__, __LINE__, "Failed to delete from `pengguna`: " . $e->getMessage());
-      throw $e;
+    function deletePengguna(?int $id = null, ?string $username = null, ?string $email = null)
+    {
+        try {
+            if (isset($id)) {
+                $query = "DELETE FROM pengguna WHERE id=$1";
+                $this->db->fetch($query, [$id]);
+            } else if (isset($username)) {
+                $query = "DELETE FROM pengguna WHERE username=$1";
+                $this->db->fetch($query, [$username]);
+            } else if (isset($email)) {
+                $query = "DELETE FROM pengguna WHERE email=$1";
+                $this->db->fetch($query, [$email]);
+            }
+        } catch (Exception $e) {
+            Logger::error(__FILE__, __LINE__, "Failed to delete from `pengguna`: " . $e->getMessage());
+            throw $e;
+        }
     }
-  }
-
-  function changePassword(int|string $id_or_username, string $new_password_hash)
-  {
-    try {
-      if (is_int($id_or_username)) {
-        $query = "UPDATE pengguna SET password_hash=$1 WHERE id=$2";
-      } else {
-        $query = "UPDATE pengguna SET password_hash=$1 WHERE username=$2";
-      }
-      $this->db->execute($query, [$new_password_hash, $id_or_username]);
-    } catch (Exception $e) {
-      Logger::error(__FILE__, __LINE__, "Failed to update `pengguna`: " . $e->getMessage());
-      throw $e;
-    }
-  }
 }

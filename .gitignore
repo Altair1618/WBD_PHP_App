@@ -3,3 +3,6 @@
 
 # Data
 data/
+
+# Upload folder
+src/public/assets/uploads/
