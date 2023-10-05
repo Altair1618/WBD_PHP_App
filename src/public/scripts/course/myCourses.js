@@ -39,7 +39,7 @@ function buildCourseFetchURI(caller, value) {
 function updateBodyHTML(responseText) {
     document.getElementById("body-main-container").innerHTML = responseText;
     footer = document.getElementById("body-footer");
-    footer.addEventListener("click", footerEventHandler);
+    if (footer) footer.addEventListener("click", footerEventHandler);
 }
 
 // Search Handler
@@ -98,6 +98,7 @@ fakultasSelector.addEventListener("change", function() {
 
             xhr2.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
+                    console.log(this.responseText);
                     prodiSelector.innerHTML = "<option value='all'></option>";
 
                     const prodiList = JSON.parse(this.responseText);
@@ -143,7 +144,6 @@ sortSelector.addEventListener("change", function() {
         }
     }
 
-    console.log(uri);
     xhr.send();
 });
 
