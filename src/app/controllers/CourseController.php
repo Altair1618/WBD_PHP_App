@@ -2,30 +2,28 @@
 
 class CourseController {
     public function getManyCourses($params) {
-        // TODO: Get From DB
-        $itemCount = 100;
-        $params['page_count'] = ceil($itemCount / ITEMS_PER_PAGE);
-        
-        $params['courses'] = [];
-        if (!isset($params['page'])) $params['page'] = 1;
+        if (!isset($params['q-search'])) $params['q-search'] = null;
+        if (!isset($params['q-fakultas'])) $params['q-fakultas'] = null;
+        if (!isset($params['q-kode_prodi'])) $params['q-kode_prodi'] = null;
+        if (!isset($params['q-sort_param'])) $params['q-sort_param'] = 'nama';
+        if (!isset($params['q-sort_order'])) $params['q-sort_order'] = 'asc';
 
-        for ($i = 0; $i < ITEMS_PER_PAGE; $i++) {
-            $number = ($params['page'] - 1) * ITEMS_PER_PAGE + $i + 1;
+        require_once MODELS_DIR . 'MataKuliah.php';
+        $mata_kuliah = new MataKuliahRepository();
+        $params['courses'] = $mata_kuliah->getMataKuliahFiltered($params['q-search'], $params['q-fakultas'], $params['q-kode_prodi'], $params['q-sort_param'], $params['q-sort_order'], $params['page'], ITEMS_PER_PAGE);
 
-            if ($number > $itemCount) break;
-
-            $params['courses'][] = [
-                "kode" => 'IF100' . $number,
-                "nama" => 'Mata Kuliah ' . $number,
-                "pengajar" => 'Dosen ' . $number,
-            ];
+        for ($i = 0; $i < count($params['courses']); $i++) {
+            $params['courses'][$i]['pengajar'] = 'Yudhistira Dwi Wardhana Asnar';
         }
+
+        $item_count = $mata_kuliah->getMataKuliahFilteredCount($params['q-search'], $params['q-fakultas'], $params['q-kode_prodi']);
+        $params['page_count'] = ceil($item_count / ITEMS_PER_PAGE);
 
         return $params;
     }
 
     public function showMyCourses($params) {
-        $params = $this->getManyCourses($params);
+        if (!isset($params['page'])) $params['page'] = 1;
         
         require_once MODELS_DIR . 'Fakultas.php';
         $fakultas = new FakultasRepository();
@@ -35,6 +33,7 @@ class CourseController {
 
         $params['fakultas'] = $fakultas->getFakultasList();
         $params['program_studi'] = $program_studi->getProgramStudiList();
+
         require_once VIEWS_DIR . 'user/myCourses.php';
     }
 

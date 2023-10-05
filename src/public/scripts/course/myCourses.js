@@ -22,11 +22,11 @@ function buildCourseFetchURI(caller, value) {
     order = caller === "order" ? value : document.getElementById("order-selector").value;
     page = caller === "page" ? value : 1;
 
-    if (search && search.trim() !== "") uri += `q=${encodeURI(search)}&`;
-    if (fakultas && fakultas !== "all") uri += `fakultas=${encodeURI(fakultas)}&`;
-    if (prodi && prodi !== "all") uri += `prodi=${encodeURI(prodi)}&`;
-    if (sort) uri += `sort=${encodeURI(sort)}&`;
-    if (order) uri += `order=${encodeURI(order)}&`;
+    if (search && search.trim() !== "") uri += `q-search=${encodeURI(search)}&`;
+    if (fakultas && fakultas !== "all") uri += `q-fakultas=${encodeURI(fakultas)}&`;
+    if (prodi && prodi !== "all") uri += `q-kode_prodi=${encodeURI(prodi)}&`;
+    if (sort) uri += `q-sort_param=${encodeURI(sort)}&`;
+    if (order) uri += `q-sort_order=${encodeURI(order)}&`;
     if (page) uri += `page=${encodeURI(page)}&`;
 
     // Remove trailing '?' or '&' if exists
@@ -43,14 +43,14 @@ function updateBodyHTML(responseText) {
 }
 
 // Search Handler
-var searchDebounceTimeout;
+let searchDebounceTimeout;
 
-function searchDebounce(func, delay) {
+function searchDebounce(func, wait) {
     return function() {
         const context = this;
         const args = arguments;
-        clearTimeout(debounceTimeout);
-        debounceTimeout = setTimeout(() => {
+        clearTimeout(searchDebounceTimeout);
+        searchDebounceTimeout = setTimeout(() => {
             func.apply(context, args);
         }, wait);
     };
@@ -138,9 +138,12 @@ sortSelector.addEventListener("change", function() {
     xhr.open("GET", uri, true);
     
     xhr.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) updateBodyHTML(this.responseText);
+        if (this.readyState == 4 && this.status == 200) {
+            updateBodyHTML(this.responseText);
+        }
     }
 
+    console.log(uri);
     xhr.send();
 });
 
@@ -178,3 +181,5 @@ function footerEventHandler(event) {
         xhr.send();
     }
 }
+
+footer.addEventListener("click", footerEventHandler);
