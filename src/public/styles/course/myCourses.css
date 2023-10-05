@@ -113,6 +113,7 @@ div.body-main {
 
 div.course-card {
   display: flex;
+  width: 150px;
   margin: 0 10px;
   flex-direction: column;
   justify-content: center;
@@ -152,7 +153,7 @@ p.course-code {
 p.course-name {
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 1;
   align-self: stretch;
 
   overflow: hidden;

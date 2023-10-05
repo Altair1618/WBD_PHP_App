@@ -5,7 +5,7 @@ class ProgramStudiRepository extends Model
   function getProgramStudiList(): array
   {
     try {
-      return $this->db->fetchAll("SELECT * FROM program_studi");
+      return $this->db->fetchAll("SELECT * FROM program_studi ORDER BY kode ASC");
     } catch (Exception $e) {
       Logger::error(__FILE__, __LINE__, "Failed to fetch `program_studi`: " . $e->getMessage());
       throw $e;
@@ -25,7 +25,7 @@ class ProgramStudiRepository extends Model
   function getProgramStudiByFakultas(string $kode_fakultas): array|false
   {
     try {
-      return $this->db->fetchAll("SELECT * FROM program_studi WHERE kode_fakultas = $1", [$kode_fakultas]);
+      return $this->db->fetchAll("SELECT * FROM program_studi WHERE kode_fakultas = $1 ORDER BY kode ASC", [$kode_fakultas]);
     } catch (Exception $e) {
       Logger::error(__FILE__, __LINE__, "Failed to fetch `program_studi`: " . $e->getMessage());
       throw $e;

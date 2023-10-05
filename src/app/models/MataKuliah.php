@@ -22,6 +22,49 @@ class MataKuliahRepository extends Model
     }
   }
 
+  function getMataKuliahFiltered(string $search = null, string $fakultas = null, string $kode_prodi = null, string $sort_param, string $sort_order, int $page, int $limit): array
+  {
+    try {
+      $offset = ($page - 1) * $limit;
+
+      $query = "
+        SELECT mk.kode, mk.nama
+        FROM mata_kuliah mk
+        JOIN program_studi ps ON mk.kode_program_studi = ps.kode
+        JOIN fakultas f ON ps.kode_fakultas = f.kode
+        WHERE (mk.kode ILIKE $1 OR mk.nama ILIKE $1)
+        AND (ps.kode = $2 OR $2 = '')
+        AND (f.kode = $3 OR $3 = '')
+        ORDER BY $sort_param $sort_order
+        LIMIT $4 OFFSET $5
+      ";
+
+      return $this->db->fetchAll($query, ["%$search%", "$kode_prodi", "$fakultas", $limit, $offset]);
+    } catch (Exception $e) {
+      Logger::error(__FILE__, __LINE__, "Failed to fetch `mata_kuliah`: " . $e->getMessage());
+      throw $e;
+    }
+  }
+
+  function getMataKuliahFilteredCount(string $search = null, string $fakultas = null, string $kode_prodi = null) {
+    try {
+      $query = "
+        SELECT 1
+        FROM mata_kuliah mk
+        JOIN program_studi ps ON mk.kode_program_studi = ps.kode
+        JOIN fakultas f ON ps.kode_fakultas = f.kode
+        WHERE (mk.nama ILIKE $1)
+        AND (ps.kode = $2 OR $2 = '')
+        AND (f.kode = $3 OR $3 = '')
+      ";
+
+      return $this->db->rowCount($query, ["%$search%", "$kode_prodi", "$fakultas"]);
+    } catch (Exception $e) {
+      Logger::error(__FILE__, __LINE__, "Failed to fetch `mata_kuliah`: " . $e->getMessage());
+      throw $e;
+    }
+  }
+
   function insertMataKuliah(string $kode, string $nama, ?string $deskripsi, ?string $kode_program_studi)
   {
     try {
