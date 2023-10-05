@@ -109,9 +109,9 @@ CREATE SEQUENCE pendaftaran_modul_id_seq INCREMENT 1 MINVALUE 1 MAXVALUE 2147483
 CREATE TABLE "public"."pendaftaran_mata_kuliah" (
     "id" integer DEFAULT nextval('pendaftaran_modul_id_seq') NOT NULL,
     "id_pengguna" integer NOT NULL,
-    "kode_mata_kuliah" character varying(3) NOT NULL,
-    "created_at" integer,
-    "updated_at" integer,
+    "kode_mata_kuliah" character varying(6) NOT NULL,
+    "created_at" timestamp,
+    "updated_at" timestamp,
     CONSTRAINT "pendaftaran_modul_pkey" PRIMARY KEY ("id")
 ) WITH (oids = false);
 

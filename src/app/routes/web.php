@@ -3,7 +3,7 @@
 $routes = [
     // Web Routes
     '/' => [
-        'GET' => ['route' => 'PageController@showHomePage', 'middlewares' => [
+        'GET' => ['route' => 'PageController@home', 'middlewares' => [
             'Authentication',
         ]],
     ],
@@ -27,21 +27,31 @@ $routes = [
     ],
 
     '/courses' => [
-        'GET' => ['route' => 'PageController@showMyCourses', 'middlewares' => [
+        'GET' => ['route' => 'PageController@courses', 'middlewares' => [
+            'Authentication',
+        ]],
+    ],
+
+    '/catalog' => [
+        'GET' => ['route' => 'PageController@catalog', 'middlewares' => [
             'Authentication',
         ]],
     ],
 
     // API Routes
+    '/api/fakultas' => [
+        'GET' => ['route' => 'FakultasController@getFakultas', 'middlewares' => []],
+    ],
+    
+    '/api/prodi' => [
+        'GET' => ['route' => 'ProgramStudiController@getProgramStudi', 'middlewares' => []],
+    ],
+
     '/api/courses' => [
         'GET' => ['route' => 'CourseController@getCoursesHTML', 'middlewares' => []],
     ],
 
-    '/api/fakultas' => [
-        'GET' => ['route' => 'FakultasController@getFakultas', 'middlewares' => []],
-    ],
-
-    '/api/prodi' => [
-        'GET' => ['route' => 'ProgramStudiController@getProgramStudi', 'middlewares' => []],
+    '/api/catalog' => [
+        'GET' => ['route' => 'CourseController@getCatalogHTML', 'middlewares' => []],
     ],
 ];

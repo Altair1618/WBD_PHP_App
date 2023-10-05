@@ -190,7 +190,11 @@ div.course-button-container {
   align-self: stretch;
 }
 
-a.course-detail-button {
+form.course-button-container {
+  width: fit-content;
+}
+
+button.course-enroll-button {
   padding: 5px 15px;
   border-radius: 14px;
   background: #2357DD;
@@ -201,6 +205,8 @@ a.course-detail-button {
   font-style: normal;
   font-weight: 700;
   line-height: normal;
+
+  cursor: pointer;
 }
 
 div.body-footer {
