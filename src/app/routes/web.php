@@ -38,6 +38,15 @@ $routes = [
         ]],
     ],
 
+    '/profile/edit' => [
+        'GET' => ['route' => 'UserController@showEditProfilePage', 'middlewares' => [
+            'Authentication',
+        ]],
+        'POST' => ['route' => 'UserController@editProfile', 'middlewares' => [
+            'Authentication',
+        ]],
+    ],
+
     // API Routes
     '/api/courses' => [
         'GET' => ['route' => 'CourseController@getCoursesHTML', 'middlewares' => []],

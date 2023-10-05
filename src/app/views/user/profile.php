@@ -1,9 +1,13 @@
 <?php
 assert(isset($_SESSION['user']));
 $user = $_SESSION['user'];
-$profpic_src = "/assets/images/profpics/{$user['id']}.png";
-if (!file_exists($profpic_src)) {
-  $profpic_src = "/assets/images/profpics/Portrait_Placeholder.png";
+if (isset($user['gambar_profil'])) {
+  $profpic_src = "/assets/uploads/{$user['id']}-{$user['gambar_profil']}";
+  if (!file_exists("/var/www/html" . $profpic_src)) {
+    $profpic_src = "/assets/images/Portrait_Placeholder.png";
+  }
+} else {
+  $profpic_src = "/assets/images/Portrait_Placeholder.png";
 }
 ?>
 
@@ -72,15 +76,13 @@ if (!file_exists($profpic_src)) {
               </div>
             </div>
             <div class="button-wrapper">
-              <a href="/profile/edit" id="button-ubah">UBAH</a>
+              <button onclick="window.location='/profile/edit'" id="button-ubah">UBAH</a>
             </div>
           </section>
         </div>
       </div>
     </main>
   </div>
-
-  <script src="/scripts/course/myCourses.js"></script>
 </body>
 
 </html>
