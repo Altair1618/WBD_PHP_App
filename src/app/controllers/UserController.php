@@ -1,6 +1,7 @@
 <?php
 
-class UserController {
+class UserController
+{
     private static $ALLOWED_FILE_TYPES = [
         "image/avif",
         "image/bmp",
@@ -12,15 +13,19 @@ class UserController {
         "image/webp",
     ];
 
-    public function showProfilePage() {
+    public function showProfilePage()
+    {
+        unset($_SESSION['errors']);
         require_once VIEWS_DIR . 'user/profile.php';
     }
 
-    public function showEditProfilePage() {
+    public function showEditProfilePage()
+    {
         require_once VIEWS_DIR . 'user/editProfile.php';
     }
 
-    public function editProfile() {
+    public function editProfile()
+    {
         $_SESSION['errors'] = [];
 
         $user_repo = new PenggunaRepository();
@@ -37,18 +42,23 @@ class UserController {
                 assert(!empty($_POST['new-password'])); // kalo fail berarti ada bug
                 $new_password = password_hash($_POST['new-password'], PASSWORD_DEFAULT);
             } else {
-                $_SESSION['errors']['password'] = true;
+                $_SESSION['errors']['password'] = "Password salah";
             }
         } else {
             $new_password = $user['password_hash'];
         }
 
         if ($new_username !== $user['username'] && $user_repo->getPengguna(username: $new_username) !== false) {
-            $_SESSION['errors']['username'] = true;
+            $_SESSION['errors']['username'] = "Username sudah ada";
         }
 
         if ($new_email !== $user['email'] && $user_repo->getPengguna(email: $new_email) !== false) {
-            $_SESSION['errors']['email'] = true;
+            $_SESSION['errors']['email'] = "Email sudah ada";
+        }
+
+        if (!filter_var($new_email, FILTER_VALIDATE_EMAIL)) {
+            // asumsi semua email yang ada di database sudah valid
+            $_SESSION['errors']['email'] = "Email tidak valid";
         }
 
         if (isset($_FILES['image']) && !empty($_FILES['image']['name'])) {
@@ -58,7 +68,7 @@ class UserController {
                     $image_name = $_FILES['image']['name'];
 
                     if (!file_exists(UPLOADS_DIR)) {
-                      mkdir(UPLOADS_DIR, recursive: true);
+                        mkdir(UPLOADS_DIR, recursive: true);
                     }
 
                     move_uploaded_file($tmp_name, UPLOADS_DIR . "{$user['id']}-{$image_name}");
@@ -67,10 +77,10 @@ class UserController {
                         unlink(UPLOADS_DIR . "{$user['id']}-{$user['gambar_profil']}");
                     }
                 } else {
-                    $_SESSION['errors']['filetype'] = true;
+                    $_SESSION['errors']['file'] = "Tipe file tidak didukung";
                 }
             } else {
-                $_SESSION['errors']['upload'] = true;
+                $_SESSION['errors']['file'] = "Upload file gagal";
             }
         } else {
             $image_name = $user['gambar_profil'];

@@ -1,3 +1,5 @@
+html { font-size: 12px; }
+
 div.body-container {
   display: flex;
   flex-direction: column;
@@ -18,7 +20,7 @@ main.body-main-container {
 header.body-header {
   color: #000;
   font-family: Poppins;
-  font-size: 12px;
+  font-size: 1.25rem;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
@@ -107,7 +109,7 @@ div.profile-detail-container {
 .profile-label {
   color: #000;
   font-family: Poppins;
-  font-size: 8px;
+  font-size: .85rem;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
@@ -127,7 +129,7 @@ div.profile-value-container, input.form-input {
 p.profile-value, input.form-input {
   color: #000;
   font-family: Poppins;
-  font-size: 10px;
+  font-size: .9rem;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
@@ -182,7 +184,6 @@ button:hover {
 
   color: #FFF;
   font-family: Poppins;
-  font-size: 10px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
@@ -210,8 +211,24 @@ button:hover {
   background: var(--Green, #3ACB22);
 }
 
+p.input-error {
+  color: maroon;
+  font-size: .75rem;
+  align-self: flex-start;
+}
+
+p.input-error.image {
+  margin-top: .5rem;
+  text-align: center;
+  align-self: center;
+}
+
+input.form-input.error {
+    border: 1px solid maroon;
+}
+
 @media (min-width: 1025px) {
-  header.body-header {
+  html {
     font-size: 16px;
   }
   
@@ -233,17 +250,5 @@ button:hover {
 
   section.profile-detail-section {
     flex: 1 0 0;
-  }
-
-  .profile-label {
-    font-size: 12px;
-  }
-
-  p.profile-value, input.form-input {
-    font-size: 14px;
-  }
-
-  #button-ubah, #button-batal, #button-simpan {
-    font-size: 14px;
   }
 }

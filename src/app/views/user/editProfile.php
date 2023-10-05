@@ -9,6 +9,9 @@ if (isset($user['gambar_profil'])) {
 } else {
   $profpic_src = "/assets/images/Portrait_Placeholder.png";
 }
+if (isset($_SESSION['errors'])) {
+  $errors = $_SESSION['errors'];
+}
 ?>
 
 <!DOCTYPE html>
@@ -43,6 +46,11 @@ if (isset($user['gambar_profil'])) {
             <div class="profile-picture-box">
               <input type="file" id="profile-picture-input" name="image" accept="image/*">
               <img id="profile-picture" class="profile-picture edit" src="<?= $profpic_src ?>" alt="profile picture" />
+              <?php
+              if (isset($errors) && isset($errors['file'])) {
+                echo '<p class="input-error image">' . $errors['file'] . '</p>';
+              }
+              ?>
             </div>
           </section>
           <section class="profile-detail-section">
@@ -54,17 +62,47 @@ if (isset($user['gambar_profil'])) {
 
               <div class="profile-detail-container">
                 <label for="username" class="profile-label">Username</label>
-                <input type="text" value="<?= $user['username'] ?>" name="username" id="username" class="form-input" placeholder="Masukkan Username" required>
+                <?php
+                if (isset($errors) && isset($errors['username'])) {
+                  $class = "form-input error";
+                  $error = '<p class="input-error">' . $errors['username'] . '</p>';
+                } else {
+                  $class = "form-input";
+                  $error = "";
+                }
+                ?>
+                <input type="text" value="<?= $user['username'] ?>" name="username" id="username" class="<?= $class ?>" placeholder="Masukkan Username" required>
+                <?= $error ?>
               </div>
 
               <div class="profile-detail-container">
                 <label for="email" class="profile-label">Email</label>
-                <input type="email" value="<?= $user['email'] ?>" name="email" id="email" class="form-input" placeholder="Masukkan Email" required>
+                <?php
+                if (isset($errors) && isset($errors['email'])) {
+                  $class = "form-input error";
+                  $error = '<p class="input-error">' . $errors['email'] . '</p>';
+                } else {
+                  $class = "form-input";
+                  $error = "";
+                }
+                ?>
+                <input type="email" value="<?= $user['email'] ?>" name="email" id="email" class="<?= $class ?>" placeholder="Masukkan Email" required>
+                <?= $error ?>
               </div>
 
               <div class="profile-detail-container">
                 <label for="old-password" class="profile-label">Password Lama</label>
-                <input type="password" name="old-password" id="old-password" class="form-input" placeholder="Masukkan Password Lama">
+                <?php
+                if (isset($errors) && isset($errors['password'])) {
+                  $class = "form-input error";
+                  $error = '<p class="input-error">' . $errors['password'] . '</p>';
+                } else {
+                  $class = "form-input";
+                  $error = "";
+                }
+                ?>
+                <input type="password" name="old-password" id="old-password" class="<?= $class ?>" placeholder="Masukkan Password Lama">
+                <?= $error ?>
               </div>
 
               <div class="profile-detail-container">
