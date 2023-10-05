@@ -54,4 +54,8 @@ $routes = [
     '/api/catalog' => [
         'GET' => ['route' => 'CourseController@getCatalogHTML', 'middlewares' => []],
     ],
+
+    '/api/enroll' => [
+        'POST' => ['route' => 'EnrollController@createEnroll', 'middlewares' => []],
+    ]
 ];
