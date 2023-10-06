@@ -36,6 +36,7 @@ $routes = [
         'GET' => ['route' => 'PageController@catalog', 'middlewares' => [
             'Authentication',
         ]],
+    ],
      
     '/profile' => [
         'GET' => ['route' => 'UserController@showProfilePage', 'middlewares' => [
@@ -71,5 +72,5 @@ $routes = [
 
     '/api/enroll' => [
         'POST' => ['route' => 'EnrollController@createEnroll', 'middlewares' => []],
-    ]
+    ],
 ];
