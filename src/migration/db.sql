@@ -85,8 +85,11 @@ CREATE TRIGGER "add_created_updated_timestamp" BEFORE INSERT OR UPDATE ON "publi
 DELIMITER ;
 
 DROP TABLE IF EXISTS "modul";
+DROP SEQUENCE IF EXISTS modul_id_seq;
+CREATE SEQUENCE modul_id_seq INCREMENT 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1;
+
 CREATE TABLE "public"."modul" (
-    "id" integer NOT NULL,
+    "id" integer DEFAULT nextval('modul_id_seq') NOT NULL,
     "kode_mata_kuliah" character varying(10) NOT NULL,
     "nama" character varying(100) NOT NULL,
     "deskripsi" text NOT NULL,
@@ -209,9 +212,7 @@ INSERT INTO program_studi (kode, kode_fakultas, nama) VALUES
 ('222', 'FTTM', 'Teknik Perminyakan'),
 ('223', 'FTTM', 'Teknik Geofisika'),
 ('225', 'FTTM', 'Teknik Metalurgi'),
-('226', 'FTTM', 'Teknik Geotermal'),
-('321', 'FTTM', 'Rekayasa Pertambangan'),
-('322', 'FTTM', 'Teknik Perminyakan'),
+('226', 'FTTM', 'Teknik Geotermal'), ('321', 'FTTM', 'Rekayasa Pertambangan'), ('322', 'FTTM', 'Teknik Perminyakan'),
 ('323', 'FTTM', 'Teknik Geofisika'),
 ('120', 'FITB', 'Teknik Geologi'),
 ('128', 'FITB', 'Meteorologi'),
