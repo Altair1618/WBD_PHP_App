@@ -6,3 +6,6 @@ data/
 
 # Upload folder
 src/public/assets/uploads/
+
+# Log
+src/app/logs.log
