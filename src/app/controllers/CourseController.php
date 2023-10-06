@@ -269,4 +269,66 @@ class CourseController {
 
         echo $body_html;
     }
+
+    public function showCourseDetail($params) {
+        require_once MODELS_DIR . 'MataKuliah.php';
+
+        $mata_kuliah = new MataKuliahRepository();
+        $params['course'] = $mata_kuliah->getMataKuliah($params['id']);
+        $params['pengajar'] = 'Yudhistira Dwi Wardhana Asnar';
+        $params['course']['modules'] = [
+            [
+                'id' => 1,
+                'nama' => 'Modul 1',
+                'deskripsi' => 'Deskripsi Modul 1',
+            ],
+            [
+                'id' => 2,
+                'nama' => 'Modul 2',
+                'deskripsi' => 'Deskripsi Modul 2',
+            ],
+            [
+                'id' => 3,
+                'nama' => 'Modul 3',
+                'deskripsi' => 'Deskripsi Modul 3',
+            ],
+            [
+                'id' => 4,
+                'nama' => 'Modul 4',
+                'deskripsi' => 'Deskripsi Modul 4',
+            ],
+            [
+                'id' => 5,
+                'nama' => 'Modul 5',
+                'deskripsi' => 'Deskripsi Modul 5',
+            ],
+            [
+                'id' => 6,
+                'nama' => 'Modul 6',
+                'deskripsi' => 'Deskripsi Modul 6',
+            ],
+            [
+                'id' => 7,
+                'nama' => 'Modul 7',
+                'deskripsi' => 'Deskripsi Modul 7',
+            ],
+            [
+                'id' => 8,
+                'nama' => 'Modul 8',
+                'deskripsi' => 'Deskripsi Modul 8',
+            ],
+            [
+                'id' => 9,
+                'nama' => 'Modul 9',
+                'deskripsi' => 'Deskripsi Modul 9',
+            ],
+            [
+                'id' => 10,
+                'nama' => 'Modul 10',
+                'deskripsi' => 'Deskripsi Modul 10',
+            ],
+        ];
+
+        require_once VIEWS_DIR . 'user/courseDetail.php';
+    }
 }
