@@ -8,7 +8,7 @@
 
   <link href="/styles/global.css" rel="stylesheet">
   <link href="/styles/navbar/navbar.css" rel="stylesheet">
-  <link href="/styles/course/myCourses.css" rel="stylesheet">
+  <link href="/styles/course/courseCatalog.css" rel="stylesheet">
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -68,12 +68,12 @@
     <div id="body-main-container" class="body-main-container">
       <?php
         $controller = new CourseController();
-        $controller->getCoursesHTML($params);
+        $controller->getCatalogHTML($params);
       ?>
     </div>
   </div>
 
-  <script src="/scripts/course/myCourses.js"></script>
+  <script src="/scripts/course/courseCatalog.js"></script>
 </body>
 
 </html>
