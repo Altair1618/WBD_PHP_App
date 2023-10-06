@@ -22,7 +22,10 @@ class AuthController {
         if ($user !== false && password_verify($password, $user['password_hash'])) {
             $_SESSION["user"] = $user;
             Logger::info(__FILE__, __LINE__, "User `{$user['username']}` is logged in");
-            Router::getInstance()->redirect('/');
+            if (isset($_SESSION['referer']) && $_SESSION['referer'] !== '/signout') {
+                $redirect = $_SESSION['referer'];
+            }
+            Router::getInstance()->redirect($redirect ?? '/');
         } else {
             Router::getInstance()->redirect('/signin?error');
         }

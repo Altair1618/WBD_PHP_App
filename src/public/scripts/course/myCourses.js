@@ -58,7 +58,7 @@ function searchDebounce(func, wait) {
 
 function searchFunction() {
     const uri = buildCourseFetchURI("search", this.value);
-    
+
     var xhr = new XMLHttpRequest();
     xhr.open("GET", uri, true);
 
@@ -82,7 +82,7 @@ fakultasSelector.addEventListener("change", function() {
     prodiSelector.value = "all";
 
     const uri = buildCourseFetchURI("fakultas", this.value);
-    
+
     var xhr = new XMLHttpRequest();
     xhr.open("GET", uri, true);
 
@@ -120,10 +120,10 @@ fakultasSelector.addEventListener("change", function() {
 // Prodi Filter Handler
 prodiSelector.addEventListener("change", function() {
     const uri = buildCourseFetchURI("prodi", this.value);
-    
+
     var xhr = new XMLHttpRequest();
     xhr.open("GET", uri, true);
-    
+
     xhr.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) updateBodyHTML(this.responseText);
     }
@@ -134,10 +134,10 @@ prodiSelector.addEventListener("change", function() {
 // Sort Selector Handler
 sortSelector.addEventListener("change", function() {
     const uri = buildCourseFetchURI("sort", this.value);
-    
+
     var xhr = new XMLHttpRequest();
     xhr.open("GET", uri, true);
-    
+
     xhr.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             updateBodyHTML(this.responseText);
@@ -150,10 +150,10 @@ sortSelector.addEventListener("change", function() {
 // Order Selector Handler
 orderSelector.addEventListener("change", function() {
     const uri = buildCourseFetchURI("order", this.value);
-    
+
     var xhr = new XMLHttpRequest();
     xhr.open("GET", uri, true);
-    
+
     xhr.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) updateBodyHTML(this.responseText);
     }

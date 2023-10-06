@@ -14,6 +14,7 @@ define('CONTROLLERS_DIR', APP_DIR . 'controllers/');
 define('MIDDLEWARES_DIR', APP_DIR . 'middlewares/');
 define('MODELS_DIR', APP_DIR . 'models/');
 define('VIEWS_DIR', APP_DIR . 'views/');
+define('UPLOADS_DIR', "/var/www/html/assets/uploads/");
 
 // Log File
 define("LOG_FILE", APP_DIR . 'logs.log');
