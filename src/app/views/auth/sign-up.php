@@ -1,18 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-
 <?php
-$user_repo = new PenggunaRepository();
-if (isset($_SESSION['post'])); {
+if (isset($_SESSION['errors']) && isset($_SESSION['post']) ) {
   $post = $_SESSION['post'];
-}
-if (isset($_GET['error'])) {
-  $error = $_GET['error'];
+  $errors = $_SESSION['errors'];
 }
 ?>
 
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-  <title>LearnIt!</title>
+  <title>LearnIt! - Sign-Up</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -34,60 +31,42 @@ if (isset($_GET['error'])) {
       <div class="form-body-container">
         <div class="form-input-container">
           <label for="name" class="form-label">Nama</label>
-          <?php
-          if (isset($error) && isset($post) && isset($post['name'])) {
-            $name = $post['name'];
-            echo "<input value=\"$name\" type=\"text\" name=\"name\" id=\"name\" class=\"form-input\" placeholder=\"Masukkan Nama Lengkap\" required>";
-          } else {
-            echo '<input type="text" name="name" id="name" class="form-input" placeholder="Masukkan Nama Lengkap" required>';
-          }
-          ?>
+          <input value="<?= $post['name'] ?? '' ?>" type="text" name="name" id="name" class="form-input" placeholder="Masukkan Nama Lengkap" required>
         </div>
 
         <div class="form-input-container">
           <label for="username" class="form-label">Username</label>
           <?php
-          if (isset($post) && isset($post['username'])) {
-            $username = $post['username'];
-            if (isset($error) && $error === "username") {
-              echo "<input value=\"$username\" type=\"text\" name=\"username\" id=\"username\" class=\"form-input error\" placeholder=\"Masukkan Username\" required>";
-              echo '<p class="input-error">Username sudah dipakai</p>';
-            } else {
-              echo "<input value=\"$username\" type=\"text\" name=\"username\" id=\"username\" class=\"form-input\" placeholder=\"Masukkan Username\" required>";
-            }
+          if (isset($errors) && isset($errors['username'])) {
+            $class = "form-input error";
+            $error = '<p class="input-error">' . $errors['username'] . '</p>';
           } else {
-            echo '<input type="text" name="username" id="username" class="form-input" placeholder="Masukkan Username" required>';
+            $class = "form-input";
+            $error = "";
           }
           ?>
+          <input value="<?= $post['username'] ?? "" ?>" type="text" name="username" id="username" class="<?= $class ?>" placeholder="Masukkan Username" required>
+          <?= $error ?>
         </div>
 
         <div class="form-input-container">
           <label for="email" class="form-label">Email</label>
           <?php
-          if (isset($post) && isset($post['email'])) {
-            $email = $post['email'];
-            if (isset($error) && $error === "email" ) {
-              echo "<input value=\"$email\" type=\"email\" name=\"email\" id=\"email\" class=\"form-input error\" placeholder=\"Masukkan Email\" required>";
-              echo '<p class="input-error">Email sudah dipakai</p>';
-            } else {
-              echo "<input value=\"$email\" type=\"email\" name=\"email\" id=\"email\" class=\"form-input\" placeholder=\"Masukkan Email\" required>";
-            }
+          if (isset($errors) && isset($errors['email'])) {
+            $class = "form-input error";
+            $error = '<p class="input-error">' . $errors['email'] . '</p>';
           } else {
-            echo '<input type="email" name="email" id="email" class="form-input" placeholder="Masukkan Email" required>';
+            $class = "form-input";
+            $error = "";
           }
           ?>
+          <input value="<?= $post['email'] ?? '' ?>" type="email" name="email" id="email" class="<?= $class ?>" placeholder="Masukkan Email" required>
+          <?= $error ?>
         </div>
 
         <div class="form-input-container">
           <label for="password" class="form-label">Password</label>
-          <?php
-          if (isset($error) && isset($post) && isset($post['password'])) {
-            $password = $post['password'];
-            echo "<input value=\"$password\" type=\"password\" name=\"password\" id=\"password\" class=\"form-input\" placeholder=\"Masukkan Password\" required>";
-          } else {
-            echo '<input type="password" name="password" id="password" class="form-input" placeholder="Masukkan Password" required>';
-          }
-          ?>
+          <input type="password" name="password" id="password" class="form-input" placeholder="Masukkan Password" required>
         </div>
       </div>
 

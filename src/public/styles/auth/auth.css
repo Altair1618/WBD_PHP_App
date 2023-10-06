@@ -114,8 +114,8 @@ input.form-input::placeholder {
 
 p.input-error {
   color: maroon;
-  font-size: 0.65em;
-  align-self: flex-end;
+  font-size: 12px;
+  align-self: flex-start;
 }
 
 div.form-footer-container {
