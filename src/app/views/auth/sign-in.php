@@ -1,9 +1,7 @@
 <?php
-if (isset($_SESSION['post'])) {
+if (isset($_SESSION['errors']) && isset($_SESSION['post']) ) {
   $post = $_SESSION['post'];
-}
-if (isset($_GET['error'])) {
-  $error = $_GET['error'];
+  $errors = $_SESSION['errors'];
 }
 ?>
 
@@ -34,24 +32,21 @@ if (isset($_GET['error'])) {
         <div class="form-input-container">
           <label for="credentials" class="form-label">Username/Email</label>
           <?php
-          if (isset($error) && isset($post) && isset($post['credentials'])) {
-            echo "<input value=\"{$post['credentials']}\"type=\"text\" name=\"credentials\" id=\"credentials\" class=\"form-input error\" placeholder=\"Masukkan Username atau Email\" required>";
+          if (isset($errors) && isset($errors['auth'])) {
+            $class = "form-input error";
+            $error = '<p class="input-error">' . $errors['auth'] . '</p>';
           } else {
-            echo '<input type="text" name="credentials" id="credentials" class="form-input" placeholder="Masukkan Username atau Email" required>';
+            $class = "form-input";
+            $error = "";
           }
           ?>
+          <input value="<?= $post['credentials'] ?? '' ?>" type="text" name="credentials" id="credentials" class="<?= $class ?>" placeholder="Masukkan Username atau Email" required>
         </div>
 
         <div class="form-input-container">
           <label for="password" class="form-label">Password</label>
-          <?php
-          if (isset($error) && isset($post) && isset($post['password'])) {
-            echo "<input value=\"{$post['password']}\"type=\"password\" name=\"password\" id=\"password\" class=\"form-input error\" placeholder=\"Masukkan Password\" required>";
-            echo '<p class="input-error">Username, email, atau password salah</p>';
-          } else {
-            echo '<input type="password" name="password" id="password" class="form-input" placeholder="Masukkan Password" required>';
-          }
-          ?>
+          <input type="password" name="password" id="password" class="<?= $class ?>" placeholder="Masukkan Password" required>
+          <?= $error ?>
         </div>
       </div>
 
