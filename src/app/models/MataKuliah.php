@@ -72,6 +72,33 @@ class MataKuliahRepository extends Model
     }
   }
 
+  function getCatalog(string $search = null, string $fakultas = null, string $kode_prodi = null, string $sort_param, string $sort_order, int $page, int $limit): array
+  {
+    try {
+      $offset = ($page - 1) * $limit;
+
+      $query = "
+        SELECT mk.kode, mk.nama
+        FROM mata_kuliah mk
+        JOIN program_studi ps ON mk.kode_program_studi = ps.kode
+        JOIN fakultas f ON ps.kode_fakultas = f.kode
+        LEFT JOIN pendaftaran_mata_kuliah pmk ON mk.kode = pmk.kode_mata_kuliah
+          AND pmk.id_pengguna = " . $_SESSION['user']['id'] . "
+        WHERE (mk.kode ILIKE $1 OR mk.nama ILIKE $1)
+        AND (ps.kode = $2 OR $2 = '')
+        AND (f.kode = $3 OR $3 = '')
+        AND pmk.id_pengguna IS NULL
+        ORDER BY $sort_param $sort_order
+        LIMIT $4 OFFSET $5
+      ";
+
+      return $this->db->fetchAll($query, ["%$search%", "$kode_prodi", "$fakultas", $limit, $offset]);
+    } catch (Exception $e) {
+      Logger::error(__FILE__, __LINE__, "Failed to fetch `mata_kuliah`: " . $e->getMessage());
+      throw $e;
+    }
+  }
+
   function getMataKuliahFilteredCount(string $search = null, string $fakultas = null, string $kode_prodi = null) {
     try {
       $query = "
@@ -103,6 +130,28 @@ class MataKuliahRepository extends Model
         AND (ps.kode = $2 OR $2 = '')
         AND (f.kode = $3 OR $3 = '')
         AND (id_pengguna = " . $_SESSION['user']['id'] . ")
+      ";
+
+      return $this->db->rowCount($query, ["%$search%", "$kode_prodi", "$fakultas"]);
+    } catch (Exception $e) {
+      Logger::error(__FILE__, __LINE__, "Failed to fetch `mata_kuliah`: " . $e->getMessage());
+      throw $e;
+    }
+  }
+
+  function getCatalogCount(string $search = null, string $fakultas = null, string $kode_prodi = null) {
+    try {
+      $query = "
+        SELECT mk.kode, mk.nama
+        FROM mata_kuliah mk
+        JOIN program_studi ps ON mk.kode_program_studi = ps.kode
+        JOIN fakultas f ON ps.kode_fakultas = f.kode
+        LEFT JOIN pendaftaran_mata_kuliah pmk ON mk.kode = pmk.kode_mata_kuliah
+          AND pmk.id_pengguna = " . $_SESSION['user']['id'] . "
+        WHERE (mk.kode ILIKE $1 OR mk.nama ILIKE $1)
+        AND (ps.kode = $2 OR $2 = '')
+        AND (f.kode = $3 OR $3 = '')
+        AND pmk.id_pengguna IS NULL
       ";
 
       return $this->db->rowCount($query, ["%$search%", "$kode_prodi", "$fakultas"]);

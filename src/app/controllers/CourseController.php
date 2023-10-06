@@ -22,6 +22,27 @@ class CourseController {
         return $params;
     }
 
+    public function getCatalogData($params) {
+        if (!isset($params['q-search'])) $params['q-search'] = null;
+        if (!isset($params['q-fakultas'])) $params['q-fakultas'] = null;
+        if (!isset($params['q-kode_prodi'])) $params['q-kode_prodi'] = null;
+        if (!isset($params['q-sort_param'])) $params['q-sort_param'] = 'nama';
+        if (!isset($params['q-sort_order'])) $params['q-sort_order'] = 'asc';
+
+        require_once MODELS_DIR . 'MataKuliah.php';
+        $mata_kuliah = new MataKuliahRepository();
+        $params['courses'] = $mata_kuliah->getCatalog($params['q-search'], $params['q-fakultas'], $params['q-kode_prodi'], $params['q-sort_param'], $params['q-sort_order'], $params['page'], ITEMS_PER_PAGE);
+
+        for ($i = 0; $i < count($params['courses']); $i++) {
+            $params['courses'][$i]['pengajar'] = 'Yudhistira Dwi Wardhana Asnar';
+        }
+
+        $item_count = $mata_kuliah->getCatalogCount($params['q-search'], $params['q-fakultas'], $params['q-kode_prodi']);
+        $params['page_count'] = ceil($item_count / ITEMS_PER_PAGE);
+
+        return $params;
+    }
+
     public function getManyCoursesByUser($params) {
         if (!isset($params['q-search'])) $params['q-search'] = null;
         if (!isset($params['q-fakultas'])) $params['q-fakultas'] = null;
@@ -161,7 +182,7 @@ class CourseController {
     }
 
     public function getCatalogHTML($params) {
-        $params = $this->getManyCourses($params);
+        $params = $this->getCatalogData($params);
 
         $body_html = '';
         if (!isset($params['courses']) || count($params['courses']) == 0) {
