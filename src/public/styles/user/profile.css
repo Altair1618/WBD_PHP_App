@@ -1,5 +1,3 @@
-html { font-size: 12px; }
-
 div.body-container {
   display: flex;
   flex-direction: column;
@@ -20,7 +18,7 @@ main.body-main-container {
 header.body-header {
   color: #000;
   font-family: Poppins;
-  font-size: 1.25rem;
+  font-size: 0.75rem;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
@@ -74,6 +72,8 @@ img.profile-picture {
   border-radius: 50px;
   border: 0.2px solid #000;
   background: #FFF;
+
+  object-fit: cover;
 }
 
 img.profile-picture.edit:hover {
@@ -109,7 +109,7 @@ div.profile-detail-container {
 .profile-label {
   color: #000;
   font-family: Poppins;
-  font-size: .85rem;
+  font-size: .5rem;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
@@ -129,7 +129,7 @@ div.profile-value-container, input.form-input {
 p.profile-value, input.form-input {
   color: #000;
   font-family: Poppins;
-  font-size: .9rem;
+  font-size: .625rem;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
@@ -180,7 +180,7 @@ button:hover {
   gap: 10px;
 
   border-radius: 16px;
-  background: #247FEA;
+  background: #2357DD;
 
   color: #FFF;
   font-family: Poppins;
@@ -204,21 +204,21 @@ button:hover {
 }
 
 #button-batal {
-  background: var(--Red, #FF4B4B);
+  background: var(--Red, #E71313);
 }
 
 #button-simpan {
-  background: var(--Green, #3ACB22);
+  background: var(--Green, #108910);
 }
 
 p.input-error {
   color: maroon;
-  font-size: .75rem;
+  font-size: .625rem;
   align-self: flex-start;
 }
 
 p.input-error.image {
-  margin-top: .5rem;
+  margin-top: .625rem;
   text-align: center;
   align-self: center;
 }
@@ -229,7 +229,7 @@ input.form-input.error {
 
 @media (min-width: 1025px) {
   html {
-    font-size: 16px;
+    font-size: 21px;
   }
   
   div.inner-flex-container, form.form-container {

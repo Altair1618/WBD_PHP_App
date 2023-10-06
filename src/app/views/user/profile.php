@@ -15,7 +15,7 @@ if (isset($user['gambar_profil'])) {
 <html lang="en">
 
 <head>
-  <title></title>
+  <title>Pengaturan Profil</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
