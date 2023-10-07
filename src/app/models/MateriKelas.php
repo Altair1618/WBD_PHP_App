@@ -22,6 +22,16 @@ class MateriKelasRepository extends Model
     }
   }
 
+  function getMateriKelasByModul(int $id_modul): array
+  {
+    try {
+      return $this->db->fetchAll("SELECT * FROM materi_kelas WHERE id_modul=$1", [$id_modul]);
+    } catch (Exception $e) {
+      Logger::error(__FILE__, __LINE__, "Failed to fetch `materi_kelas`: " . $e->getMessage());
+      throw $e;
+    }
+  }
+
   function insertMateriKelas(int $no_urut_modul, string $kode_mata_kuliah, string $judul_topik, int $tipe, string $nama_file)
   {
     try {

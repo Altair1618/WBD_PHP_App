@@ -38,6 +38,12 @@ $routes = [
         ]],
     ],
 
+    '/courses/:course-id/modules/:modul-id' => [
+        'GET' => ['route' => 'PageController@coursesIdModulesId', 'middlewares' => [
+            'Authentication',
+        ]],
+    ],
+
     '/catalog' => [
         'GET' => ['route' => 'PageController@catalog', 'middlewares' => [
             'Authentication',
