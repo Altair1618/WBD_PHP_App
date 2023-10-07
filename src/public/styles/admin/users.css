@@ -302,6 +302,15 @@ button#current-page-button {
   background: #2357DD;
 }
 
+button.page-number-button.disabled {
+  color: #000;
+  background: #FFF;
+}
+
+button.page-number-button.disabled:hover {
+  background: #FFF;
+}
+
 div.button-group {
   display: flex;
   height: 50px;

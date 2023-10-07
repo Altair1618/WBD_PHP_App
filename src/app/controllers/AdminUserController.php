@@ -139,25 +139,27 @@ class AdminUserController
     </div>
     <div class="body-footer" id="body-footer">
       <div class="page-number-centered">
-        <?php $current_page = (int) $params['page'] ?>
-        <?php $max_page = (int) $params['page_count'] ?>
+        <?php $current_page = max((int) $params['page'], 1) ?>
+        <?php $max_page = max((int) $params['page_count'], 1) ?>
         <?php $delta = $max_page - $current_page ?>
         <?php if ($current_page !== 1) : ?>
           <button class="page-control-button" id="button-prev">PREV</button>
         <?php else : ?>
-          <button class="page-control-button hidden" id="button-prev">PREV</button>
+          <button class="page-control-button hidden" id="button-prev" disabled>PREV</button>
         <?php endif ?>
         <div class="page-number-container" id="page-numbers">
-          <?php if (0 < $delta && $delta  < 2) {
+          <?php if (0 <= $delta && $delta  < 2) {
             $min_page = max($current_page - 4 + $delta, 1);
           } else {
             $min_page = max($current_page - 2, 1);
           } ?>
-          <?php for ($i = $min_page, $j = 1; $i <= min(5, $max_page); $i++, $j++) : ?>
-            <?php if ($j === 5) : ?>
+          <?php for ($i = $min_page, $j = 1; $i <= $max_page && $j <= min($max_page - $min_page + 1, 5); $i++, $j++) : ?>
+            <?php if ($j === 1) : ?>
+              <button class="page-number-button" <?php if ($i === $current_page) : ?> id="current-page-button" <?php endif ?>>1</button>
+            <?php elseif ($j === 5) : ?>
               <button class="page-number-button" <?php if ($i === $current_page) : ?> id="current-page-button" <?php endif ?>><?= $max_page ?></button>
-            <?php elseif ($j === 4 && $i !== ($max_page - 1)) : ?>
-              <button class="page-number-button" disabled>...</button>
+            <?php elseif (($j === 4 && $i !== ($max_page - 1)) || ($j === 2 && $i !== 2)) : ?>
+              <button class="page-number-button disabled" disabled>...</button>
             <?php else : ?>
               <button class="page-number-button" <?php if ($i === $current_page) : ?> id="current-page-button" <?php endif ?>><?= $i ?></button>
             <?php endif ?>
@@ -166,7 +168,7 @@ class AdminUserController
         <?php if ($current_page !== $max_page) : ?>
           <button class="page-control-button" id="button-next">NEXT</button>
         <?php else : ?>
-          <button class="page-control-button hidden" id="button-next">NEXT</button>
+          <button class="page-control-button hidden" id="button-next" disabled>NEXT</button>
         <?php endif ?>
       </div>
     </div>
