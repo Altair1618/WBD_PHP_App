@@ -12,6 +12,7 @@ class EnrollController {
     public function createEnroll($params) {
         $this->model->insertEnroll($params['user'], $params['kode']);
 
+        $_SESSION['messages'][] = "Berhasil mendaftar mata kuliah " . $params['kode'];
         $router = Router::getInstance();
         $router->redirect('/courses');
     }

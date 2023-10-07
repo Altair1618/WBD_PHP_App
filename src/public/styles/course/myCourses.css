@@ -99,6 +99,31 @@ div.body-main-container {
   align-self: stretch;
 }
 
+div.message-container {
+  display: flex;
+  padding: 10px 20px;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  
+  background-color: rgb(28, 163, 28);
+  border-radius: 5px;
+}
+
+p.message-text {
+  color: #FFF;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+svg.message-close-button {
+  color: rgba(0, 0, 0, 0.60);
+
+  cursor: pointer;
+}
+
 div.body-main {
   display: flex;
   padding: 10px;

@@ -100,6 +100,10 @@ class Router {
             $_SESSION["post"] = $_POST;
         }
 
+        if (isset($messages)) {
+            $_SESSION["messages"] = $messages;
+        } 
+
         $_SESSION["referer"] = $_SERVER["REQUEST_URI"];
         header("Location: " . $uri);
     }

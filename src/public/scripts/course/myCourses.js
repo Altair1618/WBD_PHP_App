@@ -1,4 +1,5 @@
 //  Variables
+const messageCloseButton = document.getElementsByClassName("message-close-button");
 const searchInput = document.getElementById("search-input");
 const searchButton = document.getElementById("search-button");
 const fakultasSelector = document.getElementById("fakultas-selector");
@@ -40,6 +41,22 @@ function updateBodyHTML(responseText) {
     document.getElementById("body-main-container").innerHTML = responseText;
     footer = document.getElementById("body-footer");
     if (footer) footer.addEventListener("click", footerEventHandler);
+}
+
+// Message Container Handler
+function messageContainerHandler(event) {
+    let messageContainer = event.target.parentElement;
+
+    while (messageContainer.className !== "message-container") {
+        messageContainer = messageContainer.parentElement;
+        console.log(messageContainer)
+    }
+
+    messageContainer.style.display = "none";
+}
+
+for (let i = 0; i < messageCloseButton.length; i++) {
+    messageCloseButton[i].addEventListener("click", messageContainerHandler);
 }
 
 // Search Handler
