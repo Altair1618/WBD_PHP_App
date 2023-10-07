@@ -47,23 +47,27 @@
         </div>
 
         <div class="main-body-content">
-          <?php foreach($params['modules'] as $modul): ?>
-            <div class="module-container">
-              <div class="module-header">
-                <p class="module-name"><?=$modul['nama']; ?></p>
-                
-                <?php if (isset($modul['deskripsi']) && $modul['deskripsi'] != null): ?>
-                  <p class="module-description"><?=$modul['deskripsi']; ?></p>
-                <?php endif; ?>
+          <?php if (isset($params['modules']) && $params['modules'] != null): ?>
+            <?php foreach($params['modules'] as $modul): ?>
+              <div class="module-container">
+                <div class="module-header">
+                  <p class="module-name"><?=$modul['nama']; ?></p>
+                  
+                  <?php if (isset($modul['deskripsi']) && $modul['deskripsi'] != null): ?>
+                    <p class="module-description"><?=$modul['deskripsi']; ?></p>
+                  <?php endif; ?>
+                </div>
+    
+                <div class="module-buttons">
+                  <a href="/courses/<?=$params['id']; ?>/modules/<?=$modul['id']; ?>" class="module-detail-button">
+                    LIHAT
+                  </a>
+                </div>
               </div>
-  
-              <div class="module-buttons">
-                <a href="/courses/<?=$params['id']; ?>/modules/<?=$modul['id']; ?>" class="module-detail-button">
-                  LIHAT
-                </a>
-              </div>
-            </div>
-          <?php endforeach; ?>
+            <?php endforeach; ?>
+          <?php else: ?>
+            <p class="main-body-title">Modul Mata Kuliah Masih Kosong</p>
+          <?php endif; ?>
         </div>
       </div>
     </div>
