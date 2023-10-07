@@ -73,4 +73,47 @@ class PenggunaRepository extends Model
             throw $e;
         }
     }
+
+    function getPenggunaFiltered(string $search = null, int $user_type = null, string $sort_param, string $sort_order, int $page, int $limit): array
+    {
+        try {
+            $offset = ($page - 1) * $limit;
+
+            $sort_param = in_array($sort_param, ["id", "nama", "username", "created_at", "updated_at"]) ? $sort_param : "id";
+            $sort_order = in_array($sort_order, ["asc", "desc"]) ? $sort_order : "asc";
+
+            $args = ["%$search%", $limit, $offset];
+
+            if (isset($user_type)) {
+                $filter_user_type = "AND tipe = $4";
+                $args[] = $user_type;
+            } else {
+                $filter_user_type = "";
+            }
+
+            $query = <<<SQL
+            SELECT * FROM pengguna
+            WHERE (nama ILIKE $1 OR username ILIKE $1)
+            $filter_user_type
+            ORDER BY $sort_param $sort_order
+            LIMIT $2 OFFSET $3
+            SQL;
+
+            return $this->db->fetchAll($query, $args);
+        } catch (Exception $e) {
+            Logger::error(__FILE__, __LINE__, "Failed to fetch `pengguna`: " . $e->getMessage());
+            throw $e;
+        }
+    }
+
+    function getPenggunaFilteredCount(string $search = null): int
+    {
+        try {
+            $query = "SELECT 1 FROM pengguna WHERE (nama ILIKE $1 OR username ILIKE $1)";
+            return $this->db->rowCount($query, ["%$search%"]);
+        } catch (Exception $e) {
+            Logger::error(__FILE__, __LINE__, "Failed to fetch `pengguna`: " . $e->getMessage());
+            throw $e;
+        }
+    }
 }

@@ -103,4 +103,10 @@ class Router {
         $_SESSION["referer"] = $_SERVER["REQUEST_URI"];
         header("Location: " . $uri);
     }
+
+    public function error(int $code) {
+        http_response_code($code);
+        require_once VIEWS_DIR . 'error.php';
+        die();
+    }
 }

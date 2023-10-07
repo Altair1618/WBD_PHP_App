@@ -22,13 +22,18 @@ class AuthController {
             $user = $user_repo->getPengguna(username: $credentials);
         }
         if ($user !== false && password_verify($password, $user['password_hash'])) {
-            $_SESSION["user"] = $user;
+            $_SESSION['user'] = $user;
+            $_SESSION['isAuthenticated'] = true;
             Logger::info(__FILE__, __LINE__, "User `{$user['username']}` is logged in");
             if (isset($_SESSION['referer']) && $_SESSION['referer'] !== '/signout' && $_SESSION['referer'] !== '/signin') {
                 $redirect = $_SESSION['referer'];
             }
             unset($_SESSION['errors']);
-            Router::getInstance()->redirect($redirect ?? '/');
+            if ($_SESSION['user']['tipe'] == PENGGUNA_TIPE_ADMIN) {
+                Router::getInstance()->redirect($redirect ?? '/admin/users');
+            } else {
+                Router::getInstance()->redirect($redirect ?? '/');
+            }
         } else {
             $_SESSION['errors']['auth'] = 'Username, email, atau password salah';
             Router::getInstance()->redirect('/signin');

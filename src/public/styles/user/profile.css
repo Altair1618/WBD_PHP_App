@@ -166,11 +166,6 @@ div.button-form-wrapper {
   /* align-self: stretch; */
 }
 
-button:hover {
-  filter: brightness(0.9);
-  cursor: pointer;
-}
-
 #button-ubah {
   display: flex;
   padding: 7px 60px;

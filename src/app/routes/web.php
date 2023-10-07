@@ -59,6 +59,12 @@ $routes = [
         ]],
     ],
 
+    '/admin/users' => [
+        'GET' => ['route' => 'AdminUserController@showUsers', 'middlewares' => [
+            'AdminAuthentication',
+        ]],
+    ],
+
     // API Routes
     '/api/fakultas' => [
         'GET' => ['route' => 'FakultasController@getFakultas', 'middlewares' => []],
@@ -79,4 +85,8 @@ $routes = [
     '/api/enroll' => [
         'POST' => ['route' => 'EnrollController@createEnroll', 'middlewares' => []],
     ],
+
+    '/api/admin/users' => [
+        'GET' => ['route' => 'AdminUserController@getUsersHTML', 'middlewares' => []],
+    ]
 ];
