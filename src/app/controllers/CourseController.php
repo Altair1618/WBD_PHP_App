@@ -86,7 +86,7 @@ class CourseController {
         if (!isset($params['courses']) || count($params['courses']) == 0) {
             $body_html = "
             <div class='body-main'>
-                <p class='empty-message'>Tidak ada mata kuliah tersedia</p>
+                <p class='empty-message'>Tidak ada mata kuliah yang sesuai</p>
             </div>
             ";
         } else {
@@ -188,7 +188,7 @@ class CourseController {
         if (!isset($params['courses']) || count($params['courses']) == 0) {
             $body_html = "
             <div class='body-main'>
-                <p class='empty-message'>Tidak ada mata kuliah tersedia</p>
+                <p class='empty-message'>Tidak ada katalog mata kuliah yang sesuai</p>
             </div>
             ";
         } else {

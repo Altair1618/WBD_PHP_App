@@ -13,6 +13,7 @@ services:
     volumes:
       - ./src/app:/var/www/app
       - ./src/public:/var/www/html
+      - ./src/migration:/var/www/migration
     depends_on:
       - db
   db:

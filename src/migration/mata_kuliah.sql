@@ -1658,14 +1658,7 @@ INSERT INTO mata_kuliah (kode, nama, kode_program_studi) VALUES
 ('IF2124', 'Teori Bahasa Formal dan Otomata', '135'),
 ('IF2130', 'Organisasi dan Arsitektur Komputer', '135'),
 ('IF2140', 'Pemodelan Basis Data', '135'),
-('IF3110', 'Pengembangan Aplikasi Berbasis Web', '135'),
-('IF3130', 'Jaringan Komputer', '135'),
-('IF3140', 'Manajemen Basis Data', '135'),
-('IF3141', 'Sistem Informasi', '135'),
-('IF3150', 'Manajemen Proyek Perangkat Lunak', '135'),
-('IF3151', 'Interaksi Manusia Komputer', '135'),
 ('IF3152', 'Rekayasa Perangkat Lunak STI', '135'),
-('IF3170', 'Inteligensi Buatan', '135'),
 ('IF4031', 'Pengembangan Aplikasi Terdistribusi', '135'),
 ('IF4040', 'Pemodelan Data Lanjut', '135'),
 ('IF4041', 'Ilmu Data dan Penggalian Data', '135'),
@@ -2931,3 +2924,12 @@ INSERT INTO mata_kuliah (kode, nama, kode_program_studi) VALUES
 ('PI5004', 'Praktek Keinsinyuran', '914'),
 ('PI5005', 'Studi Kasus (Panduan, Perancangan dan Pengelolaan)', '914'),
 ('PI5006', 'Seminar, Workshop, Diskusi', '914');
+
+INSERT INTO mata_kuliah (kode, nama, kode_program_studi, deskripsi) VALUES
+('IF3110', 'Pengembangan Aplikasi Berbasis Web', '135', 'Mata Kuliah Wajib IF Semester 5'),
+('IF3130', 'Jaringan Komputer', '135', 'Mata Kuliah Wajib IF Semester 5'),
+('IF3140', 'Manajemen Basis Data', '135', 'Mata Kuliah Wajib IF Semester 5'),
+('IF3141', 'Sistem Informasi', '135', 'Mata Kuliah Wajib IF Semester 5'),
+('IF3150', 'Manajemen Proyek Perangkat Lunak', '135', 'Mata Kuliah Wajib IF Semester 5'),
+('IF3151', 'Interaksi Manusia Komputer', '135', 'Mata Kuliah Wajib IF Semester 5'),
+('IF3170', 'Inteligensi Buatan', '135', 'Mata Kuliah Wajib IF Semester 5');

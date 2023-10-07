@@ -59,6 +59,14 @@ $routes = [
         ]],
     ],
 
+    '/seed/keep' => [
+        'POST' => ['route' => 'SeederController@seed', 'middlewares' => []],
+    ],
+
+    '/seed/rebuild' => [
+        'POST' => ['route' => 'SeederController@seedRebuild', 'middlewares' => []],
+    ],
+
     // API Routes
     '/api/fakultas' => [
         'GET' => ['route' => 'FakultasController@getFakultas', 'middlewares' => []],

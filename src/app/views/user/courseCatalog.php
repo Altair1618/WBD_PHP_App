@@ -20,7 +20,7 @@
 
   <div class="body-container">
     <div class="body-header">
-      <p class="page-title"> Mata Kuliah Saya </p>
+      <p class="page-title"> Katalog Mata Kuliah </p>
 
       <div class="search-bar">
         <input type="text" id="search-input" class="search-input" placeholder="Ketikkan kode/nama mata kuliah">
