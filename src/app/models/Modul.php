@@ -12,10 +12,19 @@ class ModulRepository extends Model
     }
   }
 
-  function getModul(int $id, string $kode_mata_kuliah): array|false
+  function getModul(int $id): array|false
   {
     try {
-      return $this->db->fetch("SELECT * FROM modul WHERE id=$1 AND kode_mata_kuliah=$2 LIMIT 1", [$id, $kode_mata_kuliah]);
+      return $this->db->fetch("SELECT * FROM modul WHERE id=$1 LIMIT 1", [$id]);
+    } catch (Exception $e) {
+      Logger::error(__FILE__, __LINE__, "Failed to fetch `modul`: " . $e->getMessage());
+      throw $e;
+    }
+  }
+
+  function getModulByMatKul(string $kode_mata_kuliah) {
+    try {
+      return $this->db->fetchAll("SELECT * FROM modul WHERE kode_mata_kuliah=$1", [$kode_mata_kuliah]);
     } catch (Exception $e) {
       Logger::error(__FILE__, __LINE__, "Failed to fetch `modul`: " . $e->getMessage());
       throw $e;

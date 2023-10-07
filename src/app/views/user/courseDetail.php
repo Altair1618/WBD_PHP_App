@@ -47,7 +47,7 @@
         </div>
 
         <div class="main-body-content">
-          <?php foreach($params['course']['modules'] as $modul): ?>
+          <?php foreach($params['modules'] as $modul): ?>
             <div class="module-container">
               <div class="module-header">
                 <p class="module-name"><?=$modul['nama']; ?></p>
