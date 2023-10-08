@@ -94,12 +94,36 @@ $routes = [
         'POST' => ['route' => 'CourseController@createCourse', 'middlewares' => []],
     ],
 
-    'api/courses/:id/edit' => [
+    '/api/courses/:id/edit' => [
         'POST' => ['route' => 'CourseController@editCourse', 'middlewares' => []],
     ],
 
-    'api/courses/:id/delete' => [
+    '/api/courses/:id/delete' => [
         'POST' => ['route' => 'CourseController@deleteCourse', 'middlewares' => []],
+    ],
+
+    '/api/modules/create' => [
+        'POST' => ['route' => 'ModulController@createModul', 'middlewares' => []],
+    ],
+
+    '/api/modules/:modul-id/edit' => [
+        'POST' => ['route' => 'ModulController@editModul', 'middlewares' => []],
+    ],
+
+    '/api/modules/:modul-id/delete' => [
+        'POST' => ['route' => 'ModulController@deleteModul', 'middlewares' => []],
+    ],
+
+    '/api/materi/create' => [
+        'POST' => ['route' => 'MateriController@createMateri', 'middlewares' => []],
+    ],
+
+    '/api/materi/:materi-id/edit' => [
+        'POST' => ['route' => 'MateriController@editMateri', 'middlewares' => []],
+    ],
+
+    '/api/materi/:materi-id/delete' => [
+        'POST' => ['route' => 'MateriController@deleteMateri', 'middlewares' => []],
     ],
 
     '/api/catalog' => [
