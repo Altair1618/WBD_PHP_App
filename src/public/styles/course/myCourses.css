@@ -236,9 +236,8 @@ p.course-lecturer {
 div.course-button-container {
   display: flex;
   padding-top: 15px;
-  justify-content: flex-end;
+  flex-direction: row-reverse;
   align-items: center;
-  align-self: stretch;
   gap: 15px;
 }
 
