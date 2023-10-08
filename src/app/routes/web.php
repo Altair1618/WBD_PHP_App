@@ -90,6 +90,18 @@ $routes = [
         'GET' => ['route' => 'CourseController@getCoursesTaughtHTML', 'middlewares' => []],
     ],
 
+    '/api/courses/create' => [
+        'POST' => ['route' => 'CourseController@createCourse', 'middlewares' => []],
+    ],
+
+    'api/courses/:id/edit' => [
+        'POST' => ['route' => 'CourseController@editCourse', 'middlewares' => []],
+    ],
+
+    'api/courses/:id/delete' => [
+        'POST' => ['route' => 'CourseController@deleteCourse', 'middlewares' => []],
+    ],
+
     '/api/catalog' => [
         'GET' => ['route' => 'CourseController@getCatalogHTML', 'middlewares' => []],
     ],

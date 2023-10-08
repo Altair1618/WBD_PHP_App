@@ -176,7 +176,7 @@ class MataKuliahRepository extends Model
     }
   }
 
-  function insertMataKuliah(string $kode, string $nama, ?string $deskripsi, ?string $kode_program_studi)
+  function insertMataKuliah(string $kode, string $nama, ?string $deskripsi, string $kode_program_studi)
   {
     try {
       $query = "INSERT INTO mata_kuliah (kode, nama, deskripsi, kode_program_studi) VALUES ($1, $2, $3, $4)";
@@ -187,7 +187,7 @@ class MataKuliahRepository extends Model
     }
   }
 
-  function updateMataKuliah(string $kode, string $nama, string $deskripsi, ?string $kode_program_studi)
+  function updateMataKuliah(string $kode, string $nama, string $deskripsi, string $kode_program_studi)
   {
     try {
       $query = "UPDATE mata_kuliah SET nama=$1, deskripsi=$2, kode_program_studi=$3 WHERE kode=$4";
