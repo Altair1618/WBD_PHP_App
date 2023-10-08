@@ -27,7 +27,7 @@
   <div class="body-container">
     <main id="body-main-container" class="body-main-container">
       <header class="body-header">
-        <p class="page-title"> Tambah Mata Kuliah </p>
+        <p class="page-title"> Ubah Mata Kuliah </p>
       </header>
 
       <div class="main-flex-container">
@@ -36,7 +36,7 @@
             <div class="course-detail-wrapper">
               <div class="course-detail-container">
                 <label for="kode" class="course-label">Kode</label>
-                <input type="text" value="<?=$course['kode']?>" name="kode" id="kode" class="<?= $class ?>" placeholder="Masukkan Kode Mata Kuliah" readonly>
+                <input type="text" value="<?=$course['kode']?>" name="kode" id="kode" class="form-input" placeholder="Masukkan Kode Mata Kuliah" readonly>
               </div>
 
               <div class="course-detail-container">

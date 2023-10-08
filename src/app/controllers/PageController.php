@@ -112,6 +112,46 @@ class PageController {
         }
     }
 
+    public function coursesIdModulesCreate($params) {
+        if (!isset($_SESSION['isAuthenticated']) || !$_SESSION['isAuthenticated']) {
+            header('Location: /signin');
+            return;
+        }
+
+        if ($_SESSION['user']['tipe'] == PENGGUNA_TIPE_PENGAJAR) {
+            require_once CONTROLLERS_DIR . 'ModulController.php';
+
+            $controller = new ModulController();
+            $controller->showCreateModulPage($params);
+        } else {
+            require_once CONTROLLERS_DIR . 'ErrorController.php';
+
+            $params['errorCode'] = 403;
+            $controller = new ErrorController();
+            $controller->showErrorPage($params);
+        }
+    }
+
+    public function coursesIdModulesIdEdit($params) {
+        if (!isset($_SESSION['isAuthenticated']) || !$_SESSION['isAuthenticated']) {
+            header('Location: /signin');
+            return;
+        }
+
+        if ($_SESSION['user']['tipe'] == PENGGUNA_TIPE_PENGAJAR) {
+            require_once CONTROLLERS_DIR . 'ModulController.php';
+
+            $controller = new ModulController();
+            $controller->showEditModulPage($params);
+        } else {
+            require_once CONTROLLERS_DIR . 'ErrorController.php';
+
+            $params['errorCode'] = 403;
+            $controller = new ErrorController();
+            $controller->showErrorPage($params);
+        }
+    }
+
     public function catalog($params) {
         if (!isset($_SESSION['isAuthenticated']) || !$_SESSION['isAuthenticated']) {
             header('Location: /signin');
