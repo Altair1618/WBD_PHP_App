@@ -4,31 +4,29 @@ class ModulController {
     public function createModul($params) {
         require_once MODELS_DIR . 'Modul.php';
 
-        try {
-            $modul = new ModulRepository();
-            $modul->insertModul($params['kode'], $params['nama'], $params['deskripsi']);
+        $modul = new ModulRepository();
+        $modul->insertModul($_POST['kode'], $_POST['name'], $_POST['deskripsi']);
 
-            $_SESSION['messages'][] = "Modul berhasil ditambahkan";
-            header('Location: /courses/' . $params['kode']);
-        } catch (Exception $e) {
-            $_SESSION['errors'][] = "Terjadi kesalahan saat menambahkan modul";
-            header('Location: /courses/' . $params['kode'] . '/modules/create');
-        }
+        $_SESSION['messages'][] = "Modul berhasil ditambahkan";
+        Logger::info(__FILE__, __LINE__, 'Modul berhasil ditambahkan');
+
+        $kode = $_POST['kode'];
+        unset($_POST['kode']); unset($_POST['name']); unset($_POST['deskripsi']);
+        Router::getInstance()->redirect("/courses/{$kode}");
     }
 
     public function editModul($params) {
         require_once MODELS_DIR . 'Modul.php';
 
-        try {
-            $modul = new ModulRepository();
-            $modul->updateModul($params['modul-id'], $params['kode'], $params['nama'], $params['deskripsi']);
+        $modul = new ModulRepository();
+        $modul->updateModul($params['modul-id'], $_POST['kode'], $_POST['name'], $_POST['deskripsi']);
 
-            $_SESSION['messages'][] = "Modul berhasil diubah";
-            header('Location: /courses/' . $params['kode']);
-        } catch (Exception $e) {
-            $_SESSION['errors'][] = "Terjadi kesalahan saat mengubah modul";
-            header('Location: /courses/' . $params['kode'] . '/modules/' . $params['modul-id'] . '/edit');
-        }
+        $_SESSION['messages'][] = "Modul berhasil ditambahkan";
+        Logger::info(__FILE__, __LINE__, 'Modul berhasil ditambahkan');
+
+        $kode = $_POST['kode'];
+        unset($_POST['kode']); unset($_POST['name']); unset($_POST['deskripsi']);
+        Router::getInstance()->redirect("/courses/{$kode}");
     }
 
     public function deleteModul($params) {
@@ -61,5 +59,17 @@ class ModulController {
         $params['materi_kelas'] = $materi_kelas->getMateriKelasByModul($params['modul-id']);
 
         require_once VIEWS_DIR . 'user/modulDetail.php';
+    }
+
+    public function showCreateModulPage($params) {
+        require_once VIEWS_DIR . 'lecturer/createModul.php';
+    }
+
+    public function showEditModulPage($params) {
+        require_once MODELS_DIR . 'Modul.php';
+        $modul = new ModulRepository();
+        $modul = $modul->getModul($params['modul-id']);
+
+        require_once VIEWS_DIR . 'lecturer/editModul.php';
     }
 }
