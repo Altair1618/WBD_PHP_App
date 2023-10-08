@@ -31,7 +31,7 @@
           </button>
         </div>
   
-        <a href="/courses/add">  
+        <a href="/courses/create">  
           <button class="add-course-button">
             TAMBAH
           </button>

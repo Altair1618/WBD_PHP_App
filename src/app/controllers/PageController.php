@@ -58,7 +58,7 @@ class PageController {
             return;
         }
         
-        if ($_SESSION['user']['tipe'] == PENGGUNA_TIPE_MAHASISWA) {
+        if ($_SESSION['user']['tipe'] == PENGGUNA_TIPE_MAHASISWA || $_SESSION['user']['tipe'] == PENGGUNA_TIPE_PENGAJAR) {
             require_once CONTROLLERS_DIR . 'ModulController.php';
 
             $controller = new ModulController();
