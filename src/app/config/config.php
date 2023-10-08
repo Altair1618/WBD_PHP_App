@@ -38,3 +38,6 @@ define('DEBOUNCE_TIME', 500); // 500 ms
 define("PENGGUNA_TIPE_ADMIN", 0);
 define("PENGGUNA_TIPE_PENGAJAR", 1);
 define("PENGGUNA_TIPE_MAHASISWA", 2);
+
+// File Types
+define("ALLOWED_FILE_TYPES", array("image/avif", "image/bmp", "image/gif", "image/vnd.microsoft.icon", "image/jpeg", "image/png", "image/svg+xml", "image/webp"));

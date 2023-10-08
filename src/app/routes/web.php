@@ -43,7 +43,7 @@ $routes = [
             'Authentication',
         ]],
     ],
-     
+
     '/profile' => [
         'GET' => ['route' => 'UserController@showProfilePage', 'middlewares' => [
             'Authentication',
@@ -65,11 +65,20 @@ $routes = [
         ]],
     ],
 
+    '/admin/adduser' => [
+        'GET' => ['route' => 'AdminUserController@showAddUserPage', 'middlewares' => [
+            'AdminAuthentication',
+        ]],
+        'POST' => ['route' => 'AdminUserController@addUser', 'middlewares' => [
+            'AdminAuthentication',
+        ]],
+    ],
+
     // API Routes
     '/api/fakultas' => [
         'GET' => ['route' => 'FakultasController@getFakultas', 'middlewares' => []],
     ],
-    
+
     '/api/prodi' => [
         'GET' => ['route' => 'ProgramStudiController@getProgramStudi', 'middlewares' => []],
     ],

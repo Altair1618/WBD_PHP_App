@@ -1,11 +1,11 @@
 <?php
-assert(isset($_SESSION['user']));
 $user = $_SESSION['user'];
 if (isset($user['gambar_profil'])) {
   $profpic_src = "/assets/uploads/{$user['id']}-{$user['gambar_profil']}";
-  if (!file_exists("/var/www/html" . $profpic_src)) {
-    $profpic_src = "/assets/images/Portrait_Placeholder.png";
-  }
+  // asumsi: file ada
+  // if (!file_exists("/var/www/html" . $profpic_src)) {
+  //   $profpic_src = "/assets/images/Portrait_Placeholder.png";
+  // }
 } else {
   $profpic_src = "/assets/images/Portrait_Placeholder.png";
 }
@@ -112,7 +112,7 @@ if (isset($_SESSION['errors'])) {
             </div>
 
             <div class="button-form-wrapper">
-              <button form="" id="button-batal" onclick="window.location='/profile';return true;">BATAL</button>
+              <button form="" id="button-batal" onclick="window.location='/profile'">BATAL</button>
               <button type="submit" id="button-simpan">SIMPAN</button>
             </div>
           </section>
