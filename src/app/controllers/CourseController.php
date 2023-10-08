@@ -1,6 +1,54 @@
 <?php
 
 class CourseController {
+    public function createCourse($params) {
+        require_once MODELS_DIR . 'MataKuliah.php';
+
+        try {
+            $mata_kuliah = new MataKuliahRepository();
+            $mata_kuliah->insertMataKuliah($params['kode'], $params['nama'], $params['deskripsi'], $params['kode_program_studi'], $params['image']);
+
+            $_SESSION['messages'][] = 'Mata kuliah berhasil dibuat';
+            header('Location: /courses');
+        } catch (Exception $e) {
+            Logger::error(__FILE__, __LINE__, "Failed to create `mata_kuliah`: " . $e->getMessage());
+            $_SESSION['errors'][] = $e->getMessage();
+            header('Location: /courses/create');
+        }
+    }
+
+    public function editCourse($params) {
+        require_once MODELS_DIR . 'MataKuliah.php';
+
+        try {
+            $mata_kuliah = new MataKuliahRepository();
+            $mata_kuliah->updateMataKuliah($params['kode'], $params['nama'], $params['deskripsi'], $params['kode_program_studi'], $params['image']);
+
+            $_SESSION['messages'][] = 'Mata kuliah berhasil diubah';
+            header('Location: /courses');
+        } catch (Exception $e) {
+            Logger::error(__FILE__, __LINE__, "Failed to edit `mata_kuliah`: " . $e->getMessage());
+            $_SESSION['errors'][] = $e->getMessage();
+            header('Location: /courses');
+        }
+    }
+
+    public function deleteCourse($params) {
+        require_once MODELS_DIR . 'MataKuliah.php';
+
+        try {
+            $mata_kuliah = new MataKuliahRepository();
+            $mata_kuliah->deleteMataKuliah($params['id']);
+
+            $_SESSION['messages'][] = 'Mata kuliah berhasil dihapus';
+            header('Location: /courses');
+        } catch (Exception $e) {
+            Logger::error(__FILE__, __LINE__, "Failed to delete `mata_kuliah`: " . $e->getMessage());
+            $_SESSION['errors'][] = $e->getMessage();
+            header('Location: /courses/' . $params['id'] . '/delete');
+        }
+    }
+
     public function getManyCourses($params) {
         if (!isset($params['q-search'])) $params['q-search'] = null;
         if (!isset($params['q-fakultas'])) $params['q-fakultas'] = null;
@@ -357,7 +405,7 @@ class CourseController {
                                 </svg>
                             </a>
     
-                            <form action='/courses/{$course['kode']}/delete' method='POST'>
+                            <form action='/api/courses/{$course['kode']}/delete' method='POST'>
                                 <button aria-label='course-delete-button' type='submit'>
                                     <svg width='14' height='15' viewBox='0 0 14 15' fill='none' xmlns='http://www.w3.org/2000/svg'>
                                         <g clip-path='url(#clip0_155_780)'>
