@@ -152,6 +152,46 @@ class PageController {
         }
     }
 
+    public function coursesIdModulesIdMateriCreate($params) {
+        if (!isset($_SESSION['isAuthenticated']) || !$_SESSION['isAuthenticated']) {
+            header('Location: /signin');
+            return;
+        }
+
+        if ($_SESSION['user']['tipe'] == PENGGUNA_TIPE_PENGAJAR) {
+            require_once CONTROLLERS_DIR . 'MateriController.php';
+
+            $controller = new MateriController();
+            $controller->showCreateMateriPage($params);
+        } else {
+            require_once CONTROLLERS_DIR . 'ErrorController.php';
+
+            $params['errorCode'] = 403;
+            $controller = new ErrorController();
+            $controller->showErrorPage($params);
+        }
+    }
+
+    public function coursesIdModulesIdMateriIdEdit($params) {
+        if (!isset($_SESSION['isAuthenticated']) || !$_SESSION['isAuthenticated']) {
+            header('Location: /signin');
+            return;
+        }
+
+        if ($_SESSION['user']['tipe'] == PENGGUNA_TIPE_PENGAJAR) {
+            require_once CONTROLLERS_DIR . 'MateriController.php';
+
+            $controller = new MateriController();
+            $controller->showEditMateriPage($params);
+        } else {
+            require_once CONTROLLERS_DIR . 'ErrorController.php';
+
+            $params['errorCode'] = 403;
+            $controller = new ErrorController();
+            $controller->showErrorPage($params);
+        }
+    }
+
     public function catalog($params) {
         if (!isset($_SESSION['isAuthenticated']) || !$_SESSION['isAuthenticated']) {
             header('Location: /signin');
