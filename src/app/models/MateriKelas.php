@@ -43,11 +43,11 @@ class MateriKelasRepository extends Model
     }
   }
 
-  function updateMateriKelas(int $id, int $id_modul, string $judul_topik, int $tipe, string $nama_file, string $deskripsi)
+  function updateMateriKelas(int $id, int $id_modul, string $judul_topik, int $tipe, string $nama_file)
   {
     try {
       $query = " UPDATE materi_kelas SET id_modul=$1, judul_topik=$2, tipe=$3, nama_file=$4 WHERE id=$5";
-      $this->db->execute($query, [$id_modul, $judul_topik, $tipe, $nama_file, $deskripsi, $id]);
+      $this->db->execute($query, [$id_modul, $judul_topik, $tipe, $nama_file, $id]);
     } catch (Exception $e) {
       Logger::error(__FILE__, __LINE__, "Failed to update `materi_kelas`: " . $e->getMessage());
       throw $e;
