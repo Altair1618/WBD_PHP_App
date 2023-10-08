@@ -9,10 +9,10 @@ class MateriController {
             $materi_kelas->insertMateriKelas($params['id_modul'], $params['judul_topik'], $params['tipe'], $params['nama_file']);
 
             $_SESSION['messages'][] = "Materi berhasil ditambahkan";
-            header('Location: /courses/' . $params['kode']);
+            header('Location: /courses/' . $params['kode'] . '/modules/' . $params['modul-id']);
         } catch (Exception $e) {
             $_SESSION['errors'][] = "Terjadi kesalahan saat menambahkan materi";
-            header('Location: /courses/' . $params['kode'] . '/modules/' . $params['modul-id'] . '/materi/create');
+            header('Location: /courses/' . $params['kode'] . '/modules/' . $params['modul-id'] . '/create');
         }
     }
 
@@ -24,10 +24,10 @@ class MateriController {
             $materi_kelas->updateMateriKelas($params['materi-id'], $params['id_modul'], $params['judul_topik'], $params['tipe'], $params['nama_file'], $params['deskripsi']);
 
             $_SESSION['messages'][] = "Materi berhasil diubah";
-            header('Location: /courses/' . $params['kode']);
+            header('Location: /courses/' . $params['kode'] . '/modules/' . $params['modul-id']);
         } catch (Exception $e) {
             $_SESSION['errors'][] = "Terjadi kesalahan saat mengubah materi";
-            header('Location: /courses/' . $params['kode'] . '/modules/' . $params['modul-id'] . '/materi/' . $params['materi-id'] . '/edit');
+            header('Location: /courses/' . $params['kode'] . '/modules/' . $params['modul-id'] . '/' . $params['materi-id'] . '/edit');
         }
     }
 
@@ -39,10 +39,10 @@ class MateriController {
             $materi_kelas->deleteMateriKelas($params['materi-id']);
 
             $_SESSION['messages'][] = "Materi berhasil dihapus";
-            header('Location: /courses/' . $params['kode']);
+            header('Location: /courses/' . $params['kode'] . '/modules/' . $params['modul-id']);
         } catch (Exception $e) {
             $_SESSION['errors'][] = "Terjadi kesalahan saat menghapus materi";
-            header('Location: /courses/' . $params['kode'] . '/modules/' . $params['modul-id'] . '/materi/' . $params['materi-id'] . '/edit');
+            header('Location: /courses/' . $params['kode'] . '/modules/' . $params['modul-id'] . '/' . $params['materi-id'] . '/edit');
         }
     }
 }

@@ -32,14 +32,50 @@ $routes = [
         ]],
     ],
 
+    '/courses/create' => [
+        'GET' => ['route' => 'PageController@coursesCreate', 'middlewares' => [
+            'Authentication',
+        ]],
+    ],
+
     '/courses/:id' => [
         'GET' => ['route' => 'PageController@coursesId', 'middlewares' => [
             'Authentication',
         ]],
     ],
 
+    '/courses/:id/edit' => [
+        'GET' => ['route' => 'PageController@coursesIdEdit', 'middlewares' => [
+            'Authentication',
+        ]],
+    ],
+
+    '/courses/:course-id/modules/create' => [
+        'GET' => ['route' => 'PageController@coursesIdModulesCreate', 'middlewares' => [
+            'Authentication',
+        ]],
+    ],
+
     '/courses/:course-id/modules/:modul-id' => [
         'GET' => ['route' => 'PageController@coursesIdModulesId', 'middlewares' => [
+            'Authentication',
+        ]],
+    ],
+
+    '/courses/:course-id/modules/:modul-id/edit' => [
+        'GET' => ['route' => 'PageController@coursesIdModulesIdEdit', 'middlewares' => [
+            'Authentication',
+        ]],
+    ],
+
+    '/courses/:course-id/modules/:modul-id/create' => [
+        'GET' => ['route' => 'PageController@coursesIdModulesIdMateriCreate', 'middlewares' => [
+            'Authentication',
+        ]],
+    ],
+
+    '/courses/:course-id/modules/:modul-id/:materi-id/edit' => [
+        'GET' => ['route' => 'PageController@coursesIdModulesIdMateriIdEdit', 'middlewares' => [
             'Authentication',
         ]],
     ],
