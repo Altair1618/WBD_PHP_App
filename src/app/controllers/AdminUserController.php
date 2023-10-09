@@ -304,4 +304,15 @@ class AdminUserController
       Router::getInstance()->redirect('/admin/users');
     }
   }
+
+  public function deleteUser($params)
+  {
+    $user_repo = new PenggunaRepository();
+    $user = $user_repo->getPengguna(id: (int) $params['id']);
+    if ($user !== false) {
+      $user_repo->deletePengguna(id: (int) $user['id']);
+    }
+    Logger::warn(__FILE__, __LINE__, "User `{$user['username']}` deleted");
+    Router::getInstance()->redirect('/admin/users');
+  }
 }
