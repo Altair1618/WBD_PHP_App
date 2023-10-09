@@ -1,11 +1,8 @@
 <?php
-$user = $_SESSION['user'];
+$user_repo = new PenggunaRepository();
+$user = $user_repo->getPengguna(id: (int) $params['id']);
 if (isset($user['gambar_profil'])) {
   $profpic_src = "/assets/uploads/{$user['id']}-{$user['gambar_profil']}";
-  // asumsi: file ada
-  // if (!file_exists("/var/www/html" . $profpic_src)) {
-  //   $profpic_src = "/assets/images/Portrait_Placeholder.png";
-  // }
 } else {
   $profpic_src = "/assets/images/Portrait_Placeholder.png";
 }
@@ -18,13 +15,13 @@ if (isset($_SESSION['errors'])) {
 <html lang="en">
 
 <head>
-  <title>Ubah Profil</title>
+  <title>LearnIt! - Ubah Pengguna</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <link href="/styles/global.css" rel="stylesheet">
   <link href="/styles/navbar/navbar.css" rel="stylesheet">
-  <link href="/styles/user/profile.css" rel="stylesheet">
+  <link href="/styles/admin/add_edit_user.css" rel="stylesheet">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -37,17 +34,17 @@ if (isset($_SESSION['errors'])) {
   <div class="body-container">
     <main id="body-main-container" class="body-main-container">
       <header class="body-header">
-        <p class="page-title"> Pengaturan Profil </p>
+        <p class="page-title"> Tambah Pengguna </p>
       </header>
 
       <div class="main-flex-container">
-        <form class="form-container" action="/profile/edit" method="POST" enctype="multipart/form-data">
+        <form class="form-container" action="/admin/edituser/<?= $user['id'] ?>" method="POST" enctype="multipart/form-data">
           <section class="profile-picture-section">
             <div class="profile-picture-box">
               <input type="file" id="profile-picture-input" name="image" accept="image/*">
               <img id="profile-picture" class="profile-picture edit" src="<?= $profpic_src ?>" alt="profile picture" />
               <?php if (isset($errors) && isset($errors['file'])) : ?>
-                <p class="input-error image"><?= $errors['file'] ?></p>
+                <p class="input-error image"> <?= $errors['file'] ?> </p>;
               <?php endif ?>
             </div>
           </section>
@@ -64,7 +61,7 @@ if (isset($_SESSION['errors'])) {
                   <input type="text" value="<?= $user['username'] ?>" name="username" id="username" class="form-input error" placeholder="Masukkan Username" required>
                   <p class="input-error"><?= $errors['username'] ?></p>
                 <?php else : ?>
-                  <input type="text" name="username" id="username" class="form-input" placeholder="Masukkan Username" required>
+                  <input type="text" value="<?= $user['username'] ?>" name="username" id="username" class="form-input" placeholder="Masukkan Username" required>
                 <?php endif ?>
               </div>
 
@@ -74,7 +71,7 @@ if (isset($_SESSION['errors'])) {
                   <input type="email" value="<?= $user['email'] ?>" name="email" id="email" class="form-input error" placeholder="Masukkan Email" required>
                   <p class="input-error"><?= $errors['email'] ?></p>
                 <?php else : ?>
-                  <input type="email" name="email" id="email" class="form-input" placeholder="Masukkan Email" required>
+                  <input type="email" value="<?= $user['email'] ?>" name="email" id="email" class="form-input" placeholder="Masukkan Email" required>
                 <?php endif ?>
               </div>
 
@@ -92,19 +89,28 @@ if (isset($_SESSION['errors'])) {
                 <label for="new-password" class="profile-label">Password Baru</label>
                 <input type="password" name="new-password" id="new-password" class="form-input" placeholder="Masukkan Password Baru">
               </div>
-            </div>
 
-            <div class="button-form-wrapper">
-              <button form="" id="button-batal" onclick="window.location='/profile'">BATAL</button>
-              <button type="submit" id="button-simpan">SIMPAN</button>
-            </div>
+              <div class="profile-detail-container">
+                <p class="profile-label">Tipe:</p>
+                <div class="radio-group">
+                  <input type="radio" name="tipe" id="radio-dosen" value="dosen" checked />
+                  <label for="radio-dosen" class="radio-label">Dosen</label>
+                  <input type="radio" name="tipe" id="radio-mahasiswa" value="mahasiswa" />
+                  <label for="radio-mahasiswa" class="radio-label">Mahasiswa</label>
+                </div>
+              </div>
+
+              <div class="button-form-wrapper">
+                <button form="" id="button-batal" onclick="window.location='/admin/users'">BATAL</button>
+                <button type="submit" id="button-simpan">SIMPAN</button>
+              </div>
           </section>
         </form>
       </div>
     </main>
   </div>
 
-  <script src="/scripts/user/editProfile.js"></script>
+  <script src="/scripts/admin/add_edit_user.js"></script>
 </body>
 
 </html>

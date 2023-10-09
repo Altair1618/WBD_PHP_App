@@ -41,6 +41,11 @@ input {
   outline: none;
 }
 
+button:hover {
+  filter: brightness(0.9);
+  cursor: pointer;
+}
+
 button {
   background-color: transparent;
   cursor: pointer;

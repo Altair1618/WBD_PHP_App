@@ -222,6 +222,25 @@ input.form-input.error {
     border: 1px solid maroon;
 }
 
+div.radio-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+label.radio-label {
+  color: #000;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  font-size: .625rem;
+
+  padding-right: 10px;
+  padding-left: 5px;
+}
+
 @media (min-width: 1025px) {
   html {
     font-size: 21px;

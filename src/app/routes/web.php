@@ -85,7 +85,7 @@ $routes = [
             'Authentication',
         ]],
     ],
-     
+
     '/profile' => [
         'GET' => ['route' => 'UserController@showProfilePage', 'middlewares' => [
             'Authentication',
@@ -101,19 +101,43 @@ $routes = [
         ]],
     ],
 
+    '/admin/users' => [
+        'GET' => ['route' => 'AdminUserController@showUsers', 'middlewares' => [
+            'AdminAuthentication',
+        ]],
+    ],
+
+    '/admin/adduser' => [
+        'GET' => ['route' => 'AdminUserController@showAddUserPage', 'middlewares' => [
+            'AdminAuthentication',
+        ]],
+        'POST' => ['route' => 'AdminUserController@addUser', 'middlewares' => [
+            'AdminAuthentication',
+        ]],
+    ],
+
+    '/admin/edituser/:id' => [
+        'GET' => ['route' => 'AdminUserController@showEditUserPage', 'middlewares' => [
+            'AdminAuthentication',
+        ]],
+        'POST' => ['route' => 'AdminUserController@editUser', 'middlewares' => [
+            'AdminAuthentication',
+        ]],
+
     '/seed/keep' => [
         'POST' => ['route' => 'SeederController@seed', 'middlewares' => []],
     ],
 
     '/seed/rebuild' => [
         'POST' => ['route' => 'SeederController@seedRebuild', 'middlewares' => []],
+
     ],
 
     // API Routes
     '/api/fakultas' => [
         'GET' => ['route' => 'FakultasController@getFakultas', 'middlewares' => []],
     ],
-    
+
     '/api/prodi' => [
         'GET' => ['route' => 'ProgramStudiController@getProgramStudi', 'middlewares' => []],
     ],
@@ -169,4 +193,8 @@ $routes = [
     '/api/enroll' => [
         'POST' => ['route' => 'EnrollController@createEnroll', 'middlewares' => []],
     ],
+
+    '/api/admin/users' => [
+        'GET' => ['route' => 'AdminUserController@getUsersHTML', 'middlewares' => []],
+    ]
 ];

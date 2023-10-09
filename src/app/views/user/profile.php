@@ -1,11 +1,11 @@
 <?php
-assert(isset($_SESSION['user']));
 $user = $_SESSION['user'];
 if (isset($user['gambar_profil'])) {
   $profpic_src = "/assets/uploads/{$user['id']}-{$user['gambar_profil']}";
-  if (!file_exists("/var/www/html" . $profpic_src)) {
-    $profpic_src = "/assets/images/Portrait_Placeholder.png";
-  }
+  // asumsi: file ada
+  // if (!file_exists("/var/www/html" . $profpic_src)) {
+  //   $profpic_src = "/assets/images/Portrait_Placeholder.png";
+  // }
 } else {
   $profpic_src = "/assets/images/Portrait_Placeholder.png";
 }
@@ -41,9 +41,7 @@ if (isset($user['gambar_profil'])) {
         <div class="inner-flex-container">
           <section class="profile-picture-section">
             <div class="profile-picture-box">
-              <?=
-              "<img class=\"profile-picture\" src=\"$profpic_src\" alt=\"profile picture\" />"
-              ?>
+              <img class="profile-picture" src="<?= $profpic_src ?>" alt="profile picture" />
             </div>
           </section>
           <section class="profile-detail-section">

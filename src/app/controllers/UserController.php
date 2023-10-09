@@ -2,17 +2,6 @@
 
 class UserController
 {
-    private static $ALLOWED_FILE_TYPES = [
-        "image/avif",
-        "image/bmp",
-        "image/gif",
-        "image/vnd.microsoft.icon",
-        "image/jpeg",
-        "image/png",
-        "image/svg+xml",
-        "image/webp",
-    ];
-
     public function showProfilePage()
     {
         unset($_SESSION['errors']);
@@ -63,7 +52,7 @@ class UserController
 
         if (isset($_FILES['image']) && !empty($_FILES['image']['name'])) {
             if ($_FILES['image']['error'] === UPLOAD_ERR_OK) {
-                if (in_array($_FILES['image']['type'], UserController::$ALLOWED_FILE_TYPES)) {
+                if (in_array($_FILES['image']['type'], ALLOWED_FILE_TYPES)) {
                     $tmp_name = $_FILES['image']['tmp_name'];
                     $image_name = $_FILES['image']['name'];
 
