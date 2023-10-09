@@ -5,7 +5,7 @@ if ($_SESSION['user']['tipe'] == PENGGUNA_TIPE_ADMIN) {
     '/admin/users' => 'Pengguna',
     '/admin/courses' => 'Mata Kuliah',
     '/admin/modules' => 'Modul',
-    '/admin/fakulties' => 'Fakultas',
+    '/admin/fakultas' => 'Fakultas',
     '/admin/departments' => 'Program Studi',
   ];
 } elseif ($_SESSION['user']['tipe'] == PENGGUNA_TIPE_PENGAJAR) {

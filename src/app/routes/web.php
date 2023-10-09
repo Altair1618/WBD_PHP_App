@@ -125,6 +125,12 @@ $routes = [
         ]],
     ],
 
+    '/admin/fakultas' => [
+        'GET' => ['route' => 'AdminFakultasController@showFakultas', 'middlewares' => [
+            'AdminAuthentication',
+        ]],
+    ],
+
     '/seed/keep' => [
         'POST' => ['route' => 'SeederController@seed', 'middlewares' => []],
     ],
@@ -197,5 +203,9 @@ $routes = [
 
     '/api/admin/users' => [
         'GET' => ['route' => 'AdminUserController@getUsersHTML', 'middlewares' => []],
-    ]
+    ],
+
+    '/api/admin/fakultas' => [
+        'GET' => ['route' => 'AdminFakultasController@getFakultasHTML', 'middlewares' => []],
+    ],
 ];
