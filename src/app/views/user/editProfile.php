@@ -46,11 +46,9 @@ if (isset($_SESSION['errors'])) {
             <div class="profile-picture-box">
               <input type="file" id="profile-picture-input" name="image" accept="image/*">
               <img id="profile-picture" class="profile-picture edit" src="<?= $profpic_src ?>" alt="profile picture" />
-              <?php
-              if (isset($errors) && isset($errors['file'])) {
-                echo '<p class="input-error image">' . $errors['file'] . '</p>';
-              }
-              ?>
+              <?php if (isset($errors) && isset($errors['file'])) : ?>
+                <p class="input-error image"><?= $errors['file'] ?></p>
+              <?php endif ?>
             </div>
           </section>
           <section class="profile-detail-section">
@@ -62,47 +60,32 @@ if (isset($_SESSION['errors'])) {
 
               <div class="profile-detail-container">
                 <label for="username" class="profile-label">Username</label>
-                <?php
-                if (isset($errors) && isset($errors['username'])) {
-                  $class = "form-input error";
-                  $error = '<p class="input-error">' . $errors['username'] . '</p>';
-                } else {
-                  $class = "form-input";
-                  $error = "";
-                }
-                ?>
-                <input type="text" value="<?= $user['username'] ?>" name="username" id="username" class="<?= $class ?>" placeholder="Masukkan Username" required>
-                <?= $error ?>
+                <?php if (isset($errors) && isset($errors['username'])) : ?>
+                  <input type="text" value="<?= $user['username'] ?>" name="username" id="username" class="form-input error" placeholder="Masukkan Username" required>
+                  <p class="input-error"><?= $errors['username'] ?></p>
+                <?php else : ?>
+                  <input type="text" name="username" id="username" class="form-input" placeholder="Masukkan Username" required>
+                <?php endif ?>
               </div>
 
               <div class="profile-detail-container">
                 <label for="email" class="profile-label">Email</label>
-                <?php
-                if (isset($errors) && isset($errors['email'])) {
-                  $class = "form-input error";
-                  $error = '<p class="input-error">' . $errors['email'] . '</p>';
-                } else {
-                  $class = "form-input";
-                  $error = "";
-                }
-                ?>
-                <input type="email" value="<?= $user['email'] ?>" name="email" id="email" class="<?= $class ?>" placeholder="Masukkan Email" required>
-                <?= $error ?>
+                <?php if (isset($errors) && isset($errors['email'])) : ?>
+                  <input type="email" value="<?= $user['email'] ?>" name="email" id="email" class="form-input error" placeholder="Masukkan Email" required>
+                  <p class="input-error"><?= $errors['email'] ?></p>
+                <?php else : ?>
+                  <input type="email" name="email" id="email" class="form-input" placeholder="Masukkan Email" required>
+                <?php endif ?>
               </div>
 
               <div class="profile-detail-container">
-                <label for="old-password" class="profile-label">Password Lama</label>
-                <?php
-                if (isset($errors) && isset($errors['password'])) {
-                  $class = "form-input error";
-                  $error = '<p class="input-error">' . $errors['password'] . '</p>';
-                } else {
-                  $class = "form-input";
-                  $error = "";
-                }
-                ?>
-                <input type="password" name="old-password" id="old-password" class="<?= $class ?>" placeholder="Masukkan Password Lama">
-                <?= $error ?>
+                <label for="old-password" class="profile-label">Password</label>
+                <?php if (isset($errors) && isset($errors['password'])) : ?>
+                  <input type="password" name="old-password" id="old-password" class="form-input error" placeholder="Masukkan Password Lama" required>
+                  <p class="input-error"><?= $errors['password'] ?></p>
+                <?php else : ?>
+                  <input type="password" name="old-password" id="old-password" class="form-input" placeholder="Masukkan Password Lama">
+                <?php endif ?>
               </div>
 
               <div class="profile-detail-container">
@@ -125,3 +108,7 @@ if (isset($_SESSION['errors'])) {
 </body>
 
 </html>
+
+<?php
+unset($_SESSION['errors']);
+?>

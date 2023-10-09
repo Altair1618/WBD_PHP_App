@@ -74,6 +74,15 @@ $routes = [
         ]],
     ],
 
+    '/admin/edituser/:id' => [
+        'GET' => ['route' => 'AdminUserController@showEditUserPage', 'middlewares' => [
+            'AdminAuthentication',
+        ]],
+        'POST' => ['route' => 'AdminUserController@editUser', 'middlewares' => [
+            'AdminAuthentication',
+        ]],
+    ],
+
     // API Routes
     '/api/fakultas' => [
         'GET' => ['route' => 'FakultasController@getFakultas', 'middlewares' => []],

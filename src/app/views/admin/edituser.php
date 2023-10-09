@@ -1,7 +1,13 @@
 <?php
-if (isset($_SESSION['errors']) && isset($_SESSION['post'])) {
+$user_repo = new PenggunaRepository();
+$user = $user_repo->getPengguna(id: (int) $params['id']);
+if (isset($user['gambar_profil'])) {
+  $profpic_src = "/assets/uploads/{$user['id']}-{$user['gambar_profil']}";
+} else {
+  $profpic_src = "/assets/images/Portrait_Placeholder.png";
+}
+if (isset($_SESSION['errors'])) {
   $errors = $_SESSION['errors'];
-  $post = $_SESSION['post'];
 }
 ?>
 
@@ -9,7 +15,7 @@ if (isset($_SESSION['errors']) && isset($_SESSION['post'])) {
 <html lang="en">
 
 <head>
-  <title>LearnIt! - Tambah Pengguna</title>
+  <title>LearnIt! - Ubah Pengguna</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -32,11 +38,11 @@ if (isset($_SESSION['errors']) && isset($_SESSION['post'])) {
       </header>
 
       <div class="main-flex-container">
-        <form class="form-container" action="/admin/adduser" method="POST" enctype="multipart/form-data">
+        <form class="form-container" action="/admin/edituser/<?= $user['id'] ?>" method="POST" enctype="multipart/form-data">
           <section class="profile-picture-section">
             <div class="profile-picture-box">
               <input type="file" id="profile-picture-input" name="image" accept="image/*">
-              <img id="profile-picture" class="profile-picture edit" src="/assets/images/Portrait_Placeholder.png" alt="profile picture" />
+              <img id="profile-picture" class="profile-picture edit" src="<?= $profpic_src ?>" alt="profile picture" />
               <?php if (isset($errors) && isset($errors['file'])) : ?>
                 <p class="input-error image"> <?= $errors['file'] ?> </p>;
               <?php endif ?>
@@ -46,41 +52,42 @@ if (isset($_SESSION['errors']) && isset($_SESSION['post'])) {
             <div class="profile-detail-wrapper">
               <div class="profile-detail-container">
                 <label for="name" class="profile-label">Nama</label>
-                <?php if (isset($errors)) : ?>
-                  <input type="text" value="<?= $post['name'] ?>" name="name" id="name" class="form-input" placeholder="Masukkan Nama Lengkap" required>
-                <?php else : ?>
-                  <input type="text" name="name" id="name" class="form-input" placeholder="Masukkan Nama Lengkap" required>
-                <?php endif ?>
+                <input type="text" value="<?= $user['nama'] ?>" name="name" id="name" class="form-input" placeholder="Masukkan Nama Lengkap" required>
               </div>
 
               <div class="profile-detail-container">
                 <label for="username" class="profile-label">Username</label>
                 <?php if (isset($errors) && isset($errors['username'])) : ?>
-                  <input type="text" value="<?= $post['username'] ?>" name="username" id="username" class="form-input error" placeholder="Masukkan Username" required>
+                  <input type="text" value="<?= $user['username'] ?>" name="username" id="username" class="form-input error" placeholder="Masukkan Username" required>
                   <p class="input-error"><?= $errors['username'] ?></p>
                 <?php else : ?>
-                  <input type="text" name="username" id="username" class="form-input" placeholder="Masukkan Username" required>
+                  <input type="text" value="<?= $user['username'] ?>" name="username" id="username" class="form-input" placeholder="Masukkan Username" required>
                 <?php endif ?>
               </div>
 
               <div class="profile-detail-container">
                 <label for="email" class="profile-label">Email</label>
                 <?php if (isset($errors) && isset($errors['email'])) : ?>
-                  <input type="email" value="<?= $post['email'] ?>" name="email" id="email" class="form-input error" placeholder="Masukkan Email" required>
+                  <input type="email" value="<?= $user['email'] ?>" name="email" id="email" class="form-input error" placeholder="Masukkan Email" required>
                   <p class="input-error"><?= $errors['email'] ?></p>
                 <?php else : ?>
-                  <input type="email" name="email" id="email" class="form-input" placeholder="Masukkan Email" required>
+                  <input type="email" value="<?= $user['email'] ?>" name="email" id="email" class="form-input" placeholder="Masukkan Email" required>
                 <?php endif ?>
               </div>
 
               <div class="profile-detail-container">
-                <label for="password" class="profile-label">Password</label>
+                <label for="old-password" class="profile-label">Password</label>
                 <?php if (isset($errors) && isset($errors['password'])) : ?>
-                  <input type="password" name="password" id="password" class="form-input error" placeholder="Masukkan Password" required>
+                  <input type="password" name="old-password" id="old-password" class="form-input error" placeholder="Masukkan Password Lama" required>
                   <p class="input-error"><?= $errors['password'] ?></p>
                 <?php else : ?>
-                  <input type="password" name="password" id="password" class="form-input" placeholder="Masukkan Password">
+                  <input type="password" name="old-password" id="old-password" class="form-input" placeholder="Masukkan Password Lama">
                 <?php endif ?>
+              </div>
+
+              <div class="profile-detail-container">
+                <label for="new-password" class="profile-label">Password Baru</label>
+                <input type="password" name="new-password" id="new-password" class="form-input" placeholder="Masukkan Password Baru">
               </div>
 
               <div class="profile-detail-container">
