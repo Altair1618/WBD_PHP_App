@@ -134,27 +134,7 @@ Aplikasi LearnIt! adalah sebuah aplikasi LMS yang sisusun untuk memenuhi Tugas M
       <td>13521083</td>
     </tr>
     <tr>
-      <td>Halaman Admin Prodi</td>
-      <td>13521083</td>
-    </tr>
-    <tr>
-      <td>Halaman Admin Mata Kuliah</td>
-      <td>13521083</td>
-    </tr>
-    <tr>
-      <td>Halaman Admin Modul</td>
-      <td>13521083</td>
-    </tr>
-    <tr>
-      <td>Halaman Admin Materi</td>
-      <td>13521083</td>
-    </tr>
-    <tr>
       <td>Halaman Admin Pengguna</td>
-      <td>13521083</td>
-    </tr>
-    <tr>
-      <td>Halaman Admin Pendaftaran</td>
       <td>13521083</td>
     </tr>
     <tr>
