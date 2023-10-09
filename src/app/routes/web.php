@@ -125,6 +125,36 @@ $routes = [
         ]],
     ],
 
+    '/admin/fakultas' => [
+        'GET' => ['route' => 'AdminFakultasController@showFakultas', 'middlewares' => [
+            'AdminAuthentication',
+        ]],
+    ],
+
+    '/admin/addfakultas/' => [
+        'GET' => ['route' => 'AdminFakultasController@showAddFakultasPage', 'middlewares' => [
+            'AdminAuthentication',
+        ]],
+        'POST' => ['route' => 'AdminFakultasController@addFakultas', 'middlewares' => [
+            'AdminAuthentication',
+        ]],
+    ],
+
+    '/admin/editfakultas/:kode' => [
+        'GET' => ['route' => 'AdminFakultasController@showEditFakultasPage', 'middlewares' => [
+            'AdminAuthentication',
+        ]],
+        'POST' => ['route' => 'AdminFakultasController@editFakultas', 'middlewares' => [
+            'AdminAuthentication',
+        ]],
+    ],
+
+    '/admin/deletefakultas/:kode' => [
+        'POST' => ['route' => 'AdminFakultasController@deleteFakultas', 'middlewares' => [
+            'AdminAuthentication',
+        ]],
+    ],
+
     '/seed/keep' => [
         'POST' => ['route' => 'SeederController@seed', 'middlewares' => []],
     ],
@@ -197,5 +227,9 @@ $routes = [
 
     '/api/admin/users' => [
         'GET' => ['route' => 'AdminUserController@getUsersHTML', 'middlewares' => []],
-    ]
+    ],
+
+    '/api/admin/fakultas' => [
+        'GET' => ['route' => 'AdminFakultasController@getFakultasHTML', 'middlewares' => []],
+    ],
 ];

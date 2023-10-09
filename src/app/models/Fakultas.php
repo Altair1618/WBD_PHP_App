@@ -54,4 +54,34 @@ class FakultasRepository extends Model
       throw $e;
     }
   }
+
+  public function getFakultasFiltered(string $search = null, string $sort_param, string $sort_order, int $page, int $limit)
+  {
+    try {
+      $offset = ($page - 1) * $limit;
+
+      $query = <<<SQL
+      SELECT * FROM fakultas
+      WHERE (kode ILIKE $1 OR nama ILIKE $1)
+      ORDER BY $sort_param $sort_order
+      LIMIT $2 OFFSET $3
+      SQL;
+
+      return $this->db->fetchAll($query, ["%$search%", $limit, $offset]);
+    } catch (Exception $e) {
+      Logger::error(__FILE__, __LINE__, "Failed to fetch `fakultas`: " . $e->getMessage());
+      throw $e;
+    }
+  }
+
+  function getFakultasFilteredCount(string $search = null): int
+  {
+    try {
+      $query = "SELECT 1 FROM fakultas WHERE (kode ILIKE $1 OR nama ILIKE $1)";
+      return $this->db->rowCount($query, ["%$search%"]);
+    } catch (Exception $e) {
+      Logger::error(__FILE__, __LINE__, "Failed to fetch `fakultas`: " . $e->getMessage());
+      throw $e;
+    }
+  }
 }

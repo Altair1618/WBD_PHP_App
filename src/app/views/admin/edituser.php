@@ -34,7 +34,7 @@ if (isset($_SESSION['errors'])) {
   <div class="body-container">
     <main id="body-main-container" class="body-main-container">
       <header class="body-header">
-        <p class="page-title"> Tambah Pengguna </p>
+        <p class="page-title"> Ubah Pengguna </p>
       </header>
 
       <div class="main-flex-container">
