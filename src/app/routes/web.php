@@ -164,6 +164,12 @@ $routes = [
 
     ],
 
+    '/admin/deleteuser/:id' => [
+        'POST' => ['route' => 'AdminUserController@deleteUser', 'middlewares' => [
+            'AdminAuthentication',
+        ]],
+    ],
+
     // API Routes
     '/api/fakultas' => [
         'GET' => ['route' => 'FakultasController@getFakultas', 'middlewares' => []],
