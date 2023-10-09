@@ -8,7 +8,7 @@ if ($_SESSION['user']['tipe'] == PENGGUNA_TIPE_ADMIN) {
     '/admin/fakulties' => 'Fakultas',
     '/admin/departments' => 'Program Studi',
   ];
-} elseif($_SESSION['user'['tipe'] == PENGGUNA_TIPE_DOSEN) {
+} elseif ($_SESSION['user']['tipe'] == PENGGUNA_TIPE_PENGAJAR) {
   $menus = [
     '/courses' => 'Mata Kuliah Saya',
     '/catalog' => 'Katalog Mata Kuliah',
@@ -20,8 +20,6 @@ if ($_SESSION['user']['tipe'] == PENGGUNA_TIPE_ADMIN) {
     '/profile' => 'Profil',
   ];
 }
-// NOTE: buat sekarang menu mahasiswa == dosen
-// mungkin nanti bisa dibikin beda
 ?>
 
 <nav class="navbar">

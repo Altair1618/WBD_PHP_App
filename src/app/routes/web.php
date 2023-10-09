@@ -123,6 +123,7 @@ $routes = [
         'POST' => ['route' => 'AdminUserController@editUser', 'middlewares' => [
             'AdminAuthentication',
         ]],
+    ],
 
     '/seed/keep' => [
         'POST' => ['route' => 'SeederController@seed', 'middlewares' => []],
