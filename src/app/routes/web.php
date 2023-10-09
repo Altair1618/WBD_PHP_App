@@ -32,8 +32,50 @@ $routes = [
         ]],
     ],
 
+    '/courses/create' => [
+        'GET' => ['route' => 'PageController@coursesCreate', 'middlewares' => [
+            'Authentication',
+        ]],
+    ],
+
     '/courses/:id' => [
         'GET' => ['route' => 'PageController@coursesId', 'middlewares' => [
+            'Authentication',
+        ]],
+    ],
+
+    '/courses/:id/edit' => [
+        'GET' => ['route' => 'PageController@coursesIdEdit', 'middlewares' => [
+            'Authentication',
+        ]],
+    ],
+
+    '/courses/:course-id/modules/create' => [
+        'GET' => ['route' => 'PageController@coursesIdModulesCreate', 'middlewares' => [
+            'Authentication',
+        ]],
+    ],
+
+    '/courses/:course-id/modules/:modul-id' => [
+        'GET' => ['route' => 'PageController@coursesIdModulesId', 'middlewares' => [
+            'Authentication',
+        ]],
+    ],
+
+    '/courses/:course-id/modules/:modul-id/edit' => [
+        'GET' => ['route' => 'PageController@coursesIdModulesIdEdit', 'middlewares' => [
+            'Authentication',
+        ]],
+    ],
+
+    '/courses/:course-id/modules/:modul-id/create' => [
+        'GET' => ['route' => 'PageController@coursesIdModulesIdMateriCreate', 'middlewares' => [
+            'Authentication',
+        ]],
+    ],
+
+    '/courses/:course-id/modules/:modul-id/:materi-id/edit' => [
+        'GET' => ['route' => 'PageController@coursesIdModulesIdMateriIdEdit', 'middlewares' => [
             'Authentication',
         ]],
     ],
@@ -81,6 +123,14 @@ $routes = [
         'POST' => ['route' => 'AdminUserController@editUser', 'middlewares' => [
             'AdminAuthentication',
         ]],
+
+    '/seed/keep' => [
+        'POST' => ['route' => 'SeederController@seed', 'middlewares' => []],
+    ],
+
+    '/seed/rebuild' => [
+        'POST' => ['route' => 'SeederController@seedRebuild', 'middlewares' => []],
+
     ],
 
     // API Routes
@@ -92,8 +142,48 @@ $routes = [
         'GET' => ['route' => 'ProgramStudiController@getProgramStudi', 'middlewares' => []],
     ],
 
-    '/api/courses' => [
+    '/api/courses/student' => [
         'GET' => ['route' => 'CourseController@getCoursesHTML', 'middlewares' => []],
+    ],
+
+    '/api/courses/teacher' => [
+        'GET' => ['route' => 'CourseController@getCoursesTaughtHTML', 'middlewares' => []],
+    ],
+
+    '/api/courses/create' => [
+        'POST' => ['route' => 'CourseController@createCourse', 'middlewares' => []],
+    ],
+
+    '/api/courses/:id/edit' => [
+        'POST' => ['route' => 'CourseController@editCourse', 'middlewares' => []],
+    ],
+
+    '/api/courses/:id/delete' => [
+        'POST' => ['route' => 'CourseController@deleteCourse', 'middlewares' => []],
+    ],
+
+    '/api/modules/create' => [
+        'POST' => ['route' => 'ModulController@createModul', 'middlewares' => []],
+    ],
+
+    '/api/modules/:modul-id/edit' => [
+        'POST' => ['route' => 'ModulController@editModul', 'middlewares' => []],
+    ],
+
+    '/api/modules/:modul-id/delete' => [
+        'POST' => ['route' => 'ModulController@deleteModul', 'middlewares' => []],
+    ],
+
+    '/api/materi/create' => [
+        'POST' => ['route' => 'MateriController@createMateri', 'middlewares' => []],
+    ],
+
+    '/api/materi/:materi-id/edit' => [
+        'POST' => ['route' => 'MateriController@editMateri', 'middlewares' => []],
+    ],
+
+    '/api/materi/:materi-id/delete' => [
+        'POST' => ['route' => 'MateriController@deleteMateri', 'middlewares' => []],
     ],
 
     '/api/catalog' => [

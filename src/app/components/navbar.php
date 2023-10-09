@@ -8,10 +8,15 @@ if ($_SESSION['user']['tipe'] == PENGGUNA_TIPE_ADMIN) {
     '/admin/fakulties' => 'Fakultas',
     '/admin/departments' => 'Program Studi',
   ];
-} else {
+} elseif($_SESSION['user'['tipe'] == PENGGUNA_TIPE_DOSEN) {
   $menus = [
     '/courses' => 'Mata Kuliah Saya',
     '/catalog' => 'Katalog Mata Kuliah',
+    '/profile' => 'Profil',
+  ];
+} else {
+  $menus = [
+    '/courses' => 'Mata Kuliah Saya',
     '/profile' => 'Profil',
   ];
 }

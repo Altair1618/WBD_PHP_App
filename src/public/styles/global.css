@@ -25,6 +25,7 @@ div.body-container {
   align-self: stretch;
 
   background: #F2F2F2;
+  width: 100%;
 }
 
 li {
@@ -33,6 +34,7 @@ li {
 
 a {
   text-decoration: none;
+  cursor: pointer;
 }
 
 input {
@@ -44,3 +46,7 @@ button:hover {
   cursor: pointer;
 }
 
+button {
+  background-color: transparent;
+  cursor: pointer;
+}

@@ -161,7 +161,22 @@ class MataKuliahRepository extends Model
     }
   }
 
-  function insertMataKuliah(string $kode, string $nama, ?string $deskripsi, ?string $kode_program_studi)
+  function getEnrolledStudentCount(string $kode) {
+    try {
+      $query = "
+        SELECT 1
+        FROM pendaftaran_mata_kuliah
+        WHERE kode_mata_kuliah = $1
+      ";
+
+      return $this->db->rowCount($query, [$kode]) - 1;  // Note: -1 is because of the lecturer
+    } catch (Exception $e) {
+      Logger::error(__FILE__, __LINE__, "Failed to fetch `pendaftaran_mata_kuliah`: " . $e->getMessage());
+      throw $e;
+    }
+  }
+
+  function insertMataKuliah(string $kode, string $nama, ?string $deskripsi, string $kode_program_studi)
   {
     try {
       $query = "INSERT INTO mata_kuliah (kode, nama, deskripsi, kode_program_studi) VALUES ($1, $2, $3, $4)";
@@ -172,7 +187,7 @@ class MataKuliahRepository extends Model
     }
   }
 
-  function updateMataKuliah(string $kode, string $nama, string $deskripsi, ?string $kode_program_studi)
+  function updateMataKuliah(string $kode, string $nama, string $deskripsi, string $kode_program_studi)
   {
     try {
       $query = "UPDATE mata_kuliah SET nama=$1, deskripsi=$2, kode_program_studi=$3 WHERE kode=$4";
