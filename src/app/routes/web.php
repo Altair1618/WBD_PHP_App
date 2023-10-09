@@ -131,6 +131,30 @@ $routes = [
         ]],
     ],
 
+    '/admin/addfakultas/' => [
+        'GET' => ['route' => 'AdminFakultasController@showAddFakultasPage', 'middlewares' => [
+            'AdminAuthentication',
+        ]],
+        'POST' => ['route' => 'AdminFakultasController@addFakultas', 'middlewares' => [
+            'AdminAuthentication',
+        ]],
+    ],
+
+    '/admin/editfakultas/:kode' => [
+        'GET' => ['route' => 'AdminFakultasController@showEditFakultasPage', 'middlewares' => [
+            'AdminAuthentication',
+        ]],
+        'POST' => ['route' => 'AdminFakultasController@editFakultas', 'middlewares' => [
+            'AdminAuthentication',
+        ]],
+    ],
+
+    '/admin/deletefakultas/:kode' => [
+        'POST' => ['route' => 'AdminFakultasController@deleteFakultas', 'middlewares' => [
+            'AdminAuthentication',
+        ]],
+    ],
+
     '/seed/keep' => [
         'POST' => ['route' => 'SeederController@seed', 'middlewares' => []],
     ],

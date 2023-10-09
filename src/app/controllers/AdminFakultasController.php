@@ -48,6 +48,7 @@ class AdminFakultasController
         <?php $n = 1 ?>
         <?php foreach ($fakultas as $fakul) : ?>
           <p class="cell cell-value"><?= $n ?></p>
+          <?php $n++ ?>
         <?php endforeach ?>
       </div>
 
@@ -159,6 +160,16 @@ class AdminFakultasController
 
     $repo->updateFakultas($fakul['kode'], $new_name);
     Logger::info(__FILE__, __LINE__, "Fakultas `{$fakul['kode']}` updated");
+    Router::getInstance()->redirect('/admin/fakultas');
+  }
+
+  public function deleteFakultas($params)
+  {
+    $repo = new FakultasRepository();
+    $fakul = $repo->getFakultas($params['kode']);
+
+    $repo->deleteFakultas($fakul['kode']);
+    Logger::info(__FILE__, __LINE__, "Fakultas `{$fakul['kode']}` deleted");
     Router::getInstance()->redirect('/admin/fakultas');
   }
 }
