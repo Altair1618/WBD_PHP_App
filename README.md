@@ -23,6 +23,23 @@ Aplikasi LearnIt! adalah sebuah aplikasi LMS yang sisusun untuk memenuhi Tugas M
 4. Hentikan aplikasi dengan perintah `docker compose down` pada folder repository.
 
 ## Tangkapan Layar Aplikasi
+![SignIn Screenshot](screenshots/SignIn.png)
+![SignUp Screenshot](screenshots/SignUp.png)
+![Profil Screenshot](screenshots/UserProfil.png)
+![UbahProfil Screenshot](screenshots/UserUbahProfil.png)
+![UserKatalog Screenshot](screenshots/UserKatalog.png)
+![UserMyCourses Screenshot](screenshots/UserMyCourses.png)
+![UserDetailMatKul Screenshot](screenshots/UserDetailMatKul.png)
+![UserDetailModul Screenshot](screenshots/UserDetailModul.png)
+![DosenMyCourses Screenshot](screenshots/DosenMyCourses.png)
+![DosenDetailMatkul Screenshot](screenshots/DosenDetailMatkul.png)
+![DosenAddMatkul Screenshot](screenshots/DosenAddMatkul.png)
+![DosenEditMatkul Screenshot](screenshots/DosenEditMatkul.png)
+![DosenDetailModul Screenshot](screenshots/DosenDetailModul.png)
+![DosenAddModul Screenshot](screenshots/DosenAddModul.png)
+![DosenEditModul Screenshot](screenshots/DosenEditModul.png)
+![DosenAddMateri Screenshot](screenshots/DosenAddMateri.png)
+![DosenEditMateri Screenshot](screenshots/DosenEditMateri.png)
 
 ## Pembagian Tugas
 ### Setup
