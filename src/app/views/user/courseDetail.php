@@ -37,7 +37,7 @@
           </p>
 
           <p class="main-body-subtitle">
-            <?="Pengajar: " . $params['pengajar']; ?>
+            <?="Pengajar: " . $params['pengajar']['nama']; ?>
             <br>
 
             <?php if (isset($params['course']['deskripsi']) && $params['course']['deskripsi'] != null): ?>

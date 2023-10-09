@@ -27,7 +27,7 @@
   <div class="body-container">
     <main id="body-main-container" class="body-main-container">
       <header class="body-header">
-        <p class="page-title"> Tambah Modul </p>
+        <p class="page-title"> Ubah Modul </p>
       </header>
 
       <div class="main-flex-container">

@@ -48,7 +48,7 @@ class ModulController {
         require_once MODELS_DIR . 'MataKuliah.php';
         $mata_kuliah = new MataKuliahRepository();
         $params['course'] = $mata_kuliah->getMataKuliah($params['course-id']);
-        $params['pengajar'] = 'Yudhistira Dwi Wardhana Asnar';
+        $params['pengajar'] = $mata_kuliah->getPengajar($params['course-id']);
         
         require_once MODELS_DIR . 'Modul.php';
         $modul = new ModulRepository();

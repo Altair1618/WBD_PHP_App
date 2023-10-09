@@ -79,7 +79,7 @@ class CourseController {
         $params['courses'] = $mata_kuliah->getMataKuliahFiltered($params['q-search'], $params['q-fakultas'], $params['q-kode_prodi'], $params['q-sort_param'], $params['q-sort_order'], $params['page'], ITEMS_PER_PAGE);
 
         for ($i = 0; $i < count($params['courses']); $i++) {
-            $params['courses'][$i]['pengajar'] = 'Yudhistira Dwi Wardhana Asnar';
+            $params['courses'][$i]['pengajar'] = $mata_kuliah->getPengajar($params['courses'][$i]['kode']);
         }
 
         $item_count = $mata_kuliah->getMataKuliahFilteredCount($params['q-search'], $params['q-fakultas'], $params['q-kode_prodi']);
@@ -100,7 +100,7 @@ class CourseController {
         $params['courses'] = $mata_kuliah->getCatalog($params['q-search'], $params['q-fakultas'], $params['q-kode_prodi'], $params['q-sort_param'], $params['q-sort_order'], $params['page'], ITEMS_PER_PAGE);
 
         for ($i = 0; $i < count($params['courses']); $i++) {
-            $params['courses'][$i]['pengajar'] = 'Yudhistira Dwi Wardhana Asnar';
+            $params['courses'][$i]['pengajar'] = $mata_kuliah->getPengajar($params['courses'][$i]['kode']);
         }
 
         $item_count = $mata_kuliah->getCatalogCount($params['q-search'], $params['q-fakultas'], $params['q-kode_prodi']);
@@ -121,7 +121,7 @@ class CourseController {
         $params['courses'] = $mata_kuliah->getMataKuliahFilteredWithUser($params['q-search'], $params['q-fakultas'], $params['q-kode_prodi'], $params['q-sort_param'], $params['q-sort_order'], $params['page'], ITEMS_PER_PAGE);
 
         for ($i = 0; $i < count($params['courses']); $i++) {
-            $params['courses'][$i]['pengajar'] = 'Yudhistira Dwi Wardhana Asnar';
+            $params['courses'][$i]['pengajar'] = $mata_kuliah->getPengajar($params['courses'][$i]['kode']);
         }
 
         $item_count = $mata_kuliah->getMataKuliahFilteredWithUserCount($params['q-search'], $params['q-fakultas'], $params['q-kode_prodi']);
@@ -172,7 +172,7 @@ class CourseController {
                     <div class='course-info'>
                         <p class='course-code'> {$course['kode']} </p>
                         <p class='course-name'> {$course['nama']} </p>
-                        <p class='course-lecturer'> {$course['pengajar']} </p>
+                        <p class='course-lecturer'> {$course['pengajar']['nama']} </p>
 
                         <div class='course-button-container'>
                             <a class='course-detail-button' href='/courses/{$course['kode']}'>LIHAT</a>
@@ -274,7 +274,7 @@ class CourseController {
                     <div class='course-info'>
                         <p class='course-code'> {$course['kode']} </p>
                         <p class='course-name'> {$course['nama']} </p>
-                        <p class='course-lecturer'> {$course['pengajar']} </p>
+                        <p class='course-lecturer'> {$course['pengajar']['nama']} </p>
 
                         <div class='course-button-container'>
                             <form action='/api/enroll?kode=" . $course['kode'] . "&user=" . $_SESSION['user']['id'] . "' method='POST' class='course-button-container'>
@@ -340,7 +340,7 @@ class CourseController {
         require_once MODELS_DIR . 'MataKuliah.php';
         $mata_kuliah = new MataKuliahRepository();
         $params['course'] = $mata_kuliah->getMataKuliah($params['id']);
-        $params['pengajar'] = 'Yudhistira Dwi Wardhana Asnar';
+        $params['pengajar'] = $mata_kuliah->getPengajar($params['course']['kode']);
         
         require_once MODELS_DIR . 'Modul.php';
         $modul = new ModulRepository();

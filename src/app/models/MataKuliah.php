@@ -166,10 +166,29 @@ class MataKuliahRepository extends Model
       $query = "
         SELECT 1
         FROM pendaftaran_mata_kuliah
+        JOIN pengguna ON pendaftaran_mata_kuliah.id_pengguna = pengguna.id
         WHERE kode_mata_kuliah = $1
+        AND pengguna.tipe = " . PENGGUNA_TIPE_MAHASISWA . "
       ";
 
-      return $this->db->rowCount($query, [$kode]) - 1;  // Note: -1 is because of the lecturer
+      return $this->db->rowCount($query, [$kode]);
+    } catch (Exception $e) {
+      Logger::error(__FILE__, __LINE__, "Failed to fetch `pendaftaran_mata_kuliah`: " . $e->getMessage());
+      throw $e;
+    }
+  }
+
+  function getPengajar(string $kode) {
+    try {
+      $query = "
+        SELECT pengguna.id, pengguna.nama
+        FROM pendaftaran_mata_kuliah
+        JOIN pengguna ON pendaftaran_mata_kuliah.id_pengguna = pengguna.id
+        WHERE kode_mata_kuliah = $1
+        AND pengguna.tipe = " . PENGGUNA_TIPE_PENGAJAR . "
+      ";
+
+      return $this->db->fetch($query, [$kode]);
     } catch (Exception $e) {
       Logger::error(__FILE__, __LINE__, "Failed to fetch `pendaftaran_mata_kuliah`: " . $e->getMessage());
       throw $e;
