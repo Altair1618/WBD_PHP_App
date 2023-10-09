@@ -40,6 +40,12 @@ Aplikasi LearnIt! adalah sebuah aplikasi LMS yang sisusun untuk memenuhi Tugas M
 ![DosenEditModul Screenshot](screenshots/DosenEditModul.png)
 ![DosenAddMateri Screenshot](screenshots/DosenAddMateri.png)
 ![DosenEditMateri Screenshot](screenshots/DosenEditMateri.png)
+![AdminUserManager Screenshot](screenshots/AdminUserManager.png)
+![AdminAddUser Screenshot](screenshots/AdminAddUser.png)
+![AdminEditUser Screenshot](screenshots/AdminEditUser.png)
+![AdminFakultasManager Screenshot](screenshots/AdminFakultasManager.png)
+![AdminAddFakultas Screenshot](screenshots/AdminAddFakultas.png)
+![AdminEditFakultas Screenshot](screenshots/AdminEditFakultas.png)
 
 ## Pembagian Tugas
 ### Setup
@@ -222,27 +228,7 @@ Aplikasi LearnIt! adalah sebuah aplikasi LMS yang sisusun untuk memenuhi Tugas M
       <td>13521083</td>
     </tr>
     <tr>
-      <td>Halaman Admin Prodi</td>
-      <td>13521083</td>
-    </tr>
-    <tr>
-      <td>Halaman Admin Mata Kuliah</td>
-      <td>13521083</td>
-    </tr>
-    <tr>
-      <td>Halaman Admin Modul</td>
-      <td>13521083</td>
-    </tr>
-    <tr>
-      <td>Halaman Admin Materi</td>
-      <td>13521083</td>
-    </tr>
-    <tr>
       <td>Halaman Admin Pengguna</td>
-      <td>13521083</td>
-    </tr>
-    <tr>
-      <td>Halaman Admin Pendaftaran</td>
       <td>13521083</td>
     </tr>
     <tr>
