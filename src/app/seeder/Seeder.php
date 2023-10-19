@@ -25,14 +25,23 @@ class Seeder {
     }
 
     public function seed() {
+        // pg_query($this->handle, file_get_contents(__DIR__ . "/../../migration/tabel.sql"));
+        // pg_query($this->handle, file_get_contents(__DIR__ . "/../../migration/fakultas.sql"));
+        // pg_query($this->handle, file_get_contents(__DIR__ . "/../../migration/prodi.sql"));
+        // pg_query($this->handle, file_get_contents(__DIR__ . "/../../migration/mata_kuliah.sql"));
+        // pg_query($this->handle, file_get_contents(__DIR__ . "/../../migration/pengguna.sql"));
+        // pg_query($this->handle, file_get_contents(__DIR__ . "/../../migration/pendaftaran.sql"));
+        // pg_query($this->handle, file_get_contents(__DIR__ . "/../../migration/modul.sql"));
+        // pg_query($this->handle, file_get_contents(__DIR__ . "/../../migration/materi_kelas.sql"));
+
         pg_query($this->handle, file_get_contents(__DIR__ . "/../../migration/tabel.sql"));
-        pg_query($this->handle, file_get_contents(__DIR__ . "/../../migration/fakultas.sql"));
-        pg_query($this->handle, file_get_contents(__DIR__ . "/../../migration/prodi.sql"));
-        pg_query($this->handle, file_get_contents(__DIR__ . "/../../migration/mata_kuliah.sql"));
-        pg_query($this->handle, file_get_contents(__DIR__ . "/../../migration/pengguna.sql"));
-        pg_query($this->handle, file_get_contents(__DIR__ . "/../../migration/pendaftaran.sql"));
-        pg_query($this->handle, file_get_contents(__DIR__ . "/../../migration/modul.sql"));
-        pg_query($this->handle, file_get_contents(__DIR__ . "/../../migration/materi_kelas.sql"));
+        pg_query($this->handle, file_get_contents(__DIR__ . "/../../migration/fakultas2.sql"));
+        pg_query($this->handle, file_get_contents(__DIR__ . "/../../migration/prodi2.sql"));
+        pg_query($this->handle, file_get_contents(__DIR__ . "/../../migration/mata_kuliah2.sql"));
+        pg_query($this->handle, file_get_contents(__DIR__ . "/../../migration/pengguna2.sql"));
+        pg_query($this->handle, file_get_contents(__DIR__ . "/../../migration/pendaftaran2.sql"));
+        pg_query($this->handle, file_get_contents(__DIR__ . "/../../migration/modul2.sql"));
+        pg_query($this->handle, file_get_contents(__DIR__ . "/../../migration/materi_kelas2.sql"));
     }
 }
 
