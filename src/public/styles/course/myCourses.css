@@ -29,6 +29,7 @@ div.search-bar {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  align-self: stretch;
   flex-grow: 1;
 
   border-radius: 17px;
