@@ -11,12 +11,12 @@ if ($_SESSION['user']['tipe'] == PENGGUNA_TIPE_ADMIN) {
 } elseif ($_SESSION['user']['tipe'] == PENGGUNA_TIPE_PENGAJAR) {
   $menus = [
     '/courses' => 'Mata Kuliah Saya',
-    '/catalog' => 'Katalog Mata Kuliah',
     '/profile' => 'Profil',
   ];
 } else {
   $menus = [
     '/courses' => 'Mata Kuliah Saya',
+    '/catalog' => 'Katalog Mata Kuliah',
     '/profile' => 'Profil',
   ];
 }

@@ -1,0 +1,17 @@
+INSERT INTO fakultas (kode, nama) VALUES
+('F01', 'Fakultas 01'),
+('F02', 'Fakultas 02'),
+('F03', 'Fakultas 03'),
+('F04', 'Fakultas 04'),
+('F05', 'Fakultas 05'),
+('F06', 'Fakultas 06'),
+('F07', 'Fakultas 07'),
+('F08', 'Fakultas 08'),
+('F09', 'Fakultas 09'),
+('F10', 'Fakultas 10'),
+('F11', 'Fakultas 11'),
+('F12', 'Fakultas 12'),
+('F13', 'Fakultas 13'),
+('F14', 'Fakultas 14'),
+('F15', 'Fakultas 15'),
+('F16', 'Fakultas 16');

@@ -1,0 +1,16 @@
+INSERT INTO pengguna (username, email, nama, tipe, password_hash) VALUES
+('admin1', 'admin1@example.com', 'Admin 1', 0, '$2y$10$zrOJ9oOKYBRUstb3l.29S.NPeEYHIXDQUY79Lt5AoxLdbwSaibkmu'), -- Password: admin
+('admin2', 'admin2@example.com', 'Admin 2', 0, '$2y$10$zrOJ9oOKYBRUstb3l.29S.NPeEYHIXDQUY79Lt5AoxLdbwSaibkmu'), -- Password: admin
+('admin3', 'admin3@example.com', 'Admin 3', 0, '$2y$10$zrOJ9oOKYBRUstb3l.29S.NPeEYHIXDQUY79Lt5AoxLdbwSaibkmu'), -- Password: admin
+('admin4', 'admin4@example.com', 'Admin 4', 0, '$2y$10$zrOJ9oOKYBRUstb3l.29S.NPeEYHIXDQUY79Lt5AoxLdbwSaibkmu'), -- Password: admin
+('admin5', 'admin5@example.com', 'Admin 5', 0, '$2y$10$zrOJ9oOKYBRUstb3l.29S.NPeEYHIXDQUY79Lt5AoxLdbwSaibkmu'), -- Password: admin
+('dosen1', 'dosen1@example.com', 'Dosen 1', 1, '$2y$10$sy/Bq5T.RT5mvCIOLjBCGuIHjRSBAeaSMKX02pCR7flTZDeOrAW5G'),  -- Password: dosen
+('dosen2', 'dosen2@example.com', 'Dosen 2', 1, '$2y$10$sy/Bq5T.RT5mvCIOLjBCGuIHjRSBAeaSMKX02pCR7flTZDeOrAW5G'),  -- Password: dosen
+('dosen3', 'dosen3@example.com', 'Dosen 3', 1, '$2y$10$sy/Bq5T.RT5mvCIOLjBCGuIHjRSBAeaSMKX02pCR7flTZDeOrAW5G'),  -- Password: dosen
+('dosen4', 'dosen4@example.com', 'Dosen 4', 1, '$2y$10$sy/Bq5T.RT5mvCIOLjBCGuIHjRSBAeaSMKX02pCR7flTZDeOrAW5G'),  -- Password: dosen
+('dosen5', 'dosen5@example.com', 'Dosen 5', 1, '$2y$10$sy/Bq5T.RT5mvCIOLjBCGuIHjRSBAeaSMKX02pCR7flTZDeOrAW5G'),  -- Password: dosen
+('mhs1', 'mhs1@example.com', 'Mahasiswa 1', 2, '$2y$10$VcQvKuqOVV2hEc/6POTQpeQjy/GljyWG/9MnOQ/4Rsi9sA8Vqoqmi'), -- Password: mhs
+('mhs2', 'mhs2@example.com', 'Mahasiswa 2', 2, '$2y$10$VcQvKuqOVV2hEc/6POTQpeQjy/GljyWG/9MnOQ/4Rsi9sA8Vqoqmi'), -- Password: mhs
+('mhs3', 'mhs3@example.com', 'Mahasiswa 3', 2, '$2y$10$VcQvKuqOVV2hEc/6POTQpeQjy/GljyWG/9MnOQ/4Rsi9sA8Vqoqmi'), -- Password: mhs
+('mhs4', 'mhs4@example.com', 'Mahasiswa 4', 2, '$2y$10$VcQvKuqOVV2hEc/6POTQpeQjy/GljyWG/9MnOQ/4Rsi9sA8Vqoqmi'), -- Password: mhs
+('mhs5', 'mhs5@example.com', 'Mahasiswa 5', 2, '$2y$10$VcQvKuqOVV2hEc/6POTQpeQjy/GljyWG/9MnOQ/4Rsi9sA8Vqoqmi'); -- Password: mhs
