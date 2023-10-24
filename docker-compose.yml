@@ -1,13 +1,13 @@
-version: '3.3'
+version: '3.9'
+
 services:
-  web:
-    user: "1000:1000"
-    image: tubes-1:latest
-    build: 
+  wbd-php-app:
+    user: 1000:1000
+    container_name: wbd-php-app
+    build:
       dockerfile: Dockerfile
     ports:
       - 8008:80
-    hostname: tubes-1-web
     env_file:
       - .env
     volumes:
@@ -15,25 +15,21 @@ services:
       - ./src/public:/var/www/html
       - ./src/migration:/var/www/migration
     depends_on:
-      - db
-  db:
+      wbd-php-db:
+        condition: service_healthy
+
+  wbd-php-db:
+    container_name: wbd-php-db
     image: postgres:latest
     restart: unless-stopped
-    hostname: tubes-1-db
     ports:
       - 5432:5432
     env_file:
       - .env
     volumes:
       - ./data:/var/lib/postgresql/data
-  adminer:
-    image: adminer:latest
-    restart: unless-stopped
-    hostname: tubes-1-adminer
-    ports:
-      - 8080:8080
-    depends_on:
-      - db
-networks:
-  tubes-1-network:
-    driver: bridge
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
