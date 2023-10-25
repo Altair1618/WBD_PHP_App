@@ -8,7 +8,7 @@ class MataKuliahRepository extends Model
       return $this->db->fetchAll("SELECT * FROM mata_kuliah");
     } catch (Exception $e) {
       Logger::error(__FILE__, __LINE__, "Failed to fetch `mata_kuliah`: " . $e->getMessage());
-      throw $e;
+      Router::getInstance()->error(500);;
     }
   }
 
@@ -42,7 +42,7 @@ class MataKuliahRepository extends Model
       return $this->db->fetchAll($query, ["%$search%", "$kode_prodi", "$fakultas", $limit, $offset]);
     } catch (Exception $e) {
       Logger::error(__FILE__, __LINE__, "Failed to fetch `mata_kuliah`: " . $e->getMessage());
-      throw $e;
+      Router::getInstance()->error(500);;
     }
   }
 
@@ -68,7 +68,7 @@ class MataKuliahRepository extends Model
       return $this->db->fetchAll($query, ["%$search%", "$kode_prodi", "$fakultas", $limit, $offset]);
     } catch (Exception $e) {
       Logger::error(__FILE__, __LINE__, "Failed to fetch `mata_kuliah`: " . $e->getMessage());
-      throw $e;
+      Router::getInstance()->error(500);;
     }
   }
 
@@ -95,7 +95,7 @@ class MataKuliahRepository extends Model
       return $this->db->fetchAll($query, ["%$search%", "$kode_prodi", "$fakultas", $limit, $offset]);
     } catch (Exception $e) {
       Logger::error(__FILE__, __LINE__, "Failed to fetch `mata_kuliah`: " . $e->getMessage());
-      throw $e;
+      Router::getInstance()->error(500);;
     }
   }
 
@@ -114,7 +114,7 @@ class MataKuliahRepository extends Model
       return $this->db->rowCount($query, ["%$search%", "$kode_prodi", "$fakultas"]);
     } catch (Exception $e) {
       Logger::error(__FILE__, __LINE__, "Failed to fetch `mata_kuliah`: " . $e->getMessage());
-      throw $e;
+      Router::getInstance()->error(500);;
     }
   }
 
@@ -135,7 +135,7 @@ class MataKuliahRepository extends Model
       return $this->db->rowCount($query, ["%$search%", "$kode_prodi", "$fakultas"]);
     } catch (Exception $e) {
       Logger::error(__FILE__, __LINE__, "Failed to fetch `mata_kuliah`: " . $e->getMessage());
-      throw $e;
+      Router::getInstance()->error(500);;
     }
   }
 
@@ -157,7 +157,7 @@ class MataKuliahRepository extends Model
       return $this->db->rowCount($query, ["%$search%", "$kode_prodi", "$fakultas"]);
     } catch (Exception $e) {
       Logger::error(__FILE__, __LINE__, "Failed to fetch `mata_kuliah`: " . $e->getMessage());
-      throw $e;
+      Router::getInstance()->error(500);;
     }
   }
 
@@ -174,7 +174,7 @@ class MataKuliahRepository extends Model
       return $this->db->rowCount($query, [$kode]);
     } catch (Exception $e) {
       Logger::error(__FILE__, __LINE__, "Failed to fetch `pendaftaran_mata_kuliah`: " . $e->getMessage());
-      throw $e;
+      Router::getInstance()->error(500);;
     }
   }
 
@@ -191,7 +191,7 @@ class MataKuliahRepository extends Model
       return $this->db->fetch($query, [$kode]);
     } catch (Exception $e) {
       Logger::error(__FILE__, __LINE__, "Failed to fetch `pendaftaran_mata_kuliah`: " . $e->getMessage());
-      throw $e;
+      Router::getInstance()->error(500);;
     }
   }
 
@@ -202,7 +202,7 @@ class MataKuliahRepository extends Model
       $this->db->execute($query, [$kode, $nama, $deskripsi, $kode_program_studi]);
     } catch (Exception $e) {
       Logger::error(__FILE__, __LINE__, "Failed to insert into `mata_kuliah`: " . $e->getMessage());
-      throw $e;
+      Router::getInstance()->error(500);;
     }
   }
 
@@ -213,7 +213,7 @@ class MataKuliahRepository extends Model
       $this->db->execute($query, [$nama, $deskripsi, $kode_program_studi, $kode]);
     } catch (Exception $e) {
       Logger::error(__FILE__, __LINE__, "Failed to update `mata_kuliah`: " . $e->getMessage());
-      throw $e;
+      Router::getInstance()->error(500);;
     }
   }
 
@@ -224,7 +224,7 @@ class MataKuliahRepository extends Model
       $this->db->execute($query, [$kode]);
     } catch (Exception $e) {
       Logger::error(__FILE__, __LINE__, "Failed to delete from `mata_kuliah`: " . $e->getMessage());
-      throw $e;
+      Router::getInstance()->error(500);;
     }
   }
 }

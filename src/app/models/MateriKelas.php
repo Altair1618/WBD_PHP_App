@@ -8,7 +8,7 @@ class MateriKelasRepository extends Model
       return $this->db->fetchAll("SELECT * FROM materi_kelas");
     } catch (Exception $e) {
       Logger::error(__FILE__, __LINE__, "Failed to fetch `materi_kelas`: " . $e->getMessage());
-      throw $e;
+      Router::getInstance()->error(500);;
     }
   }
 
@@ -18,7 +18,7 @@ class MateriKelasRepository extends Model
       return $this->db->fetch("SELECT * FROM materi_kelas WHERE id=$1 LIMIT 1", [$id]);
     } catch (Exception $e) {
       Logger::error(__FILE__, __LINE__, "Failed to fetch `materi_kelas`: " . $e->getMessage());
-      throw $e;
+      Router::getInstance()->error(500);;
     }
   }
 
@@ -28,7 +28,7 @@ class MateriKelasRepository extends Model
       return $this->db->fetchAll("SELECT * FROM materi_kelas WHERE id_modul=$1", [$id_modul]);
     } catch (Exception $e) {
       Logger::error(__FILE__, __LINE__, "Failed to fetch `materi_kelas`: " . $e->getMessage());
-      throw $e;
+      Router::getInstance()->error(500);;
     }
   }
 
@@ -39,7 +39,7 @@ class MateriKelasRepository extends Model
       $this->db->execute($query, [$id_modul, $judul_topik, $tipe, $nama_file]);
     } catch (Exception $e) {
       Logger::error(__FILE__, __LINE__, "Failed to insert into `materi_kelas`: " . $e->getMessage());
-      throw $e;
+      Router::getInstance()->error(500);;
     }
   }
 
@@ -50,7 +50,7 @@ class MateriKelasRepository extends Model
       $this->db->execute($query, [$id_modul, $judul_topik, $tipe, $nama_file, $id]);
     } catch (Exception $e) {
       Logger::error(__FILE__, __LINE__, "Failed to update `materi_kelas`: " . $e->getMessage());
-      throw $e;
+      Router::getInstance()->error(500);;
     }
   }
 
@@ -61,7 +61,7 @@ class MateriKelasRepository extends Model
       $this->db->execute($query, [$id]);
     } catch (Exception $e) {
       Logger::error(__FILE__, __LINE__, "Failed to delete from `materi_kelas`: " . $e->getMessage());
-      throw $e;
+      Router::getInstance()->error(500);;
     }
   }
 }

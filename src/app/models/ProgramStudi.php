@@ -8,7 +8,7 @@ class ProgramStudiRepository extends Model
       return $this->db->fetchAll("SELECT * FROM program_studi ORDER BY kode ASC");
     } catch (Exception $e) {
       Logger::error(__FILE__, __LINE__, "Failed to fetch `program_studi`: " . $e->getMessage());
-      throw $e;
+      Router::getInstance()->error(500);;
     }
   }
 
@@ -18,7 +18,7 @@ class ProgramStudiRepository extends Model
       return $this->db->fetch("SELECT * FROM program_studi WHERE kode=$1 LIMIT 1", [$kode]);
     } catch (Exception $e) {
       Logger::error(__FILE__, __LINE__, "Failed to fetch `program_studi`: " . $e->getMessage());
-      throw $e;
+      Router::getInstance()->error(500);;
     }
   }
 
@@ -28,7 +28,7 @@ class ProgramStudiRepository extends Model
       return $this->db->fetchAll("SELECT * FROM program_studi WHERE kode_fakultas = $1 ORDER BY kode ASC", [$kode_fakultas]);
     } catch (Exception $e) {
       Logger::error(__FILE__, __LINE__, "Failed to fetch `program_studi`: " . $e->getMessage());
-      throw $e;
+      Router::getInstance()->error(500);;
     }
   }
 
@@ -39,7 +39,7 @@ class ProgramStudiRepository extends Model
       $this->db->execute($query, [$kode, $nama]);
     } catch (Exception $e) {
       Logger::error(__FILE__, __LINE__, "Failed to insert into `program_studi`: " . $e->getMessage());
-      throw $e;
+      Router::getInstance()->error(500);;
     }
   }
 
@@ -50,7 +50,7 @@ class ProgramStudiRepository extends Model
       $this->db->execute($query, [$nama, $kode_fakultas, $kode]);
     } catch (Exception $e) {
       Logger::error(__FILE__, __LINE__, "Failed to update `program_studi`: " . $e->getMessage());
-      throw $e;
+      Router::getInstance()->error(500);;
     }
   }
 
@@ -61,7 +61,7 @@ class ProgramStudiRepository extends Model
       $this->db->execute($query, [$kode]);
     } catch (Exception $e) {
       Logger::error(__FILE__, __LINE__, "Failed to delete from `program_studi`: " . $e->getMessage());
-      throw $e;
+      Router::getInstance()->error(500);;
     }
   }
 }

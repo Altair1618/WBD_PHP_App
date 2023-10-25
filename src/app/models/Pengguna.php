@@ -8,7 +8,7 @@ class PenggunaRepository extends Model
             return $this->db->fetchAll("SELECT * FROM pengguna");
         } catch (Exception $e) {
             Logger::error(__FILE__, __LINE__, "Failed to fetch `pengguna`: " . $e->getMessage());
-            throw $e;
+            Router::getInstance()->error(500);;
         }
     }
 
@@ -29,7 +29,7 @@ class PenggunaRepository extends Model
             }
         } catch (Exception $e) {
             Logger::error(__FILE__, __LINE__, "Failed to fetch `pengguna`: " . $e->getMessage());
-            throw $e;
+            Router::getInstance()->error(500);;
         }
     }
 
@@ -40,7 +40,7 @@ class PenggunaRepository extends Model
             $this->db->execute($query, [$username, $email, $password_hash, $nama, $tipe, $gambar_profil]);
         } catch (Exception $e) {
             Logger::error(__FILE__, __LINE__, "Failed to insert into `pengguna`: " . $e->getMessage());
-            throw $e;
+            Router::getInstance()->error(500);;
         }
     }
 
@@ -51,7 +51,7 @@ class PenggunaRepository extends Model
             $this->db->execute($query, [$username, $email, $password_hash, $nama, $tipe, $gambar_profil, $id]);
         } catch (Exception $e) {
             Logger::error(__FILE__, __LINE__, "Failed to update `pengguna`: " . $e->getMessage());
-            throw $e;
+            Router::getInstance()->error(500);;
         }
     }
 
@@ -70,7 +70,7 @@ class PenggunaRepository extends Model
             }
         } catch (Exception $e) {
             Logger::error(__FILE__, __LINE__, "Failed to delete from `pengguna`: " . $e->getMessage());
-            throw $e;
+            Router::getInstance()->error(500);;
         }
     }
 
@@ -99,7 +99,7 @@ class PenggunaRepository extends Model
             return $this->db->fetchAll($query, $args);
         } catch (Exception $e) {
             Logger::error(__FILE__, __LINE__, "Failed to fetch `pengguna`: " . $e->getMessage());
-            throw $e;
+            Router::getInstance()->error(500);;
         }
     }
 
@@ -110,7 +110,7 @@ class PenggunaRepository extends Model
             return $this->db->rowCount($query, ["%$search%"]);
         } catch (Exception $e) {
             Logger::error(__FILE__, __LINE__, "Failed to fetch `pengguna`: " . $e->getMessage());
-            throw $e;
+            Router::getInstance()->error(500);;
         }
     }
 }
