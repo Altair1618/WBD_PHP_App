@@ -134,12 +134,12 @@ class AdminUserController
         <?php endforeach ?>
       </div>
       <div class="table-column" id="column-button">
-        <button id="button-tambah" onclick="window.location='/admin/adduser'">Tambah pengguna</button>
+        <button id="button-tambah" onclick="window.location='/admin/users/create'">Tambah pengguna</button>
         <?php foreach ($users as $user) : ?>
           <?php if (!is_admin($user)) : ?>
             <div class="button-group">
-              <button class="button-action button-ubah" onclick="window.location='/admin/edituser/<?= $user['id'] ?>'">Ubah</button>
-              <form action="/admin/deleteuser/<?= $user['id'] ?>" method="POST">
+              <button class="button-action button-ubah" onclick="window.location='/admin/users/<?= $user['id'] ?>/edit'">Ubah</button>
+              <form action="/api/users/<?= $user['id'] ?>/delete" method="POST">
                 <button class="button-action button-hapus">Hapus</button>
               </form>
             </div>
@@ -226,7 +226,7 @@ class AdminUserController
     }
 
     if (!empty($_SESSION['errors'])) {
-      Router::getInstance()->redirect('/admin/adduser');
+      Router::getInstance()->redirect('/admin/users/create');
     } else {
       unset($_SESSION['errors']);
       $user_repo->insertPengguna($new_username, $new_email, $new_password, $new_name, $new_tipe, $image_name);
@@ -235,7 +235,7 @@ class AdminUserController
         move_uploaded_file($tmp_name, UPLOADS_DIR . "{$user['id']}-{$image_name}");
       }
       Logger::info(__FILE__, __LINE__, "User `{$user['username']}` added");
-      Router::getInstance()->redirect('/admin/users');
+      Router::getInstance()->redirect('admin/users');
     }
   }
 
@@ -291,7 +291,7 @@ class AdminUserController
     }
 
     if (!empty($_SESSION['errors'])) {
-      Router::getInstance()->redirect('/admin/edituser/' . $user['id']);
+      Router::getInstance()->redirect("/admin/users/{$user['id']}/edit");
     } else {
       unset($_SESSION['errors']);
       $user_repo->updatePengguna((int) $user['id'], $new_username, $new_email, $new_password, $new_name, $new_tipe, $image_name);

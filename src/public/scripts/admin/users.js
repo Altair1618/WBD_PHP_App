@@ -10,7 +10,7 @@ let footer = document.getElementById("body-footer");
 
 // URI Builder
 function buildAdminUsersFetchURI(caller, value) {
-    let uri = "/api/admin/users?";
+    let uri = "/api/users?";
 
     var search, userType, sort, order, page;
 

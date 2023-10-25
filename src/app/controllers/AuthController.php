@@ -33,14 +33,7 @@ class AuthController
         $redirect = $_SESSION['referer'];
       }
       unset($_SESSION['errors']);
-      if ($_SESSION['user']['tipe'] == PENGGUNA_TIPE_ADMIN) {
-        if (isset($redirect) && $redirect == '/') {
-          $redirect = '/admin/users';
-        }
-        Router::getInstance()->redirect($redirect ?? '/admin/users');
-      } else {
-        Router::getInstance()->redirect($redirect ?? '/');
-      }
+      Router::getInstance()->redirect($redirect ?? '/');
     } else {
       $_SESSION['errors']['auth'] = 'Username, email, atau password salah';
       Router::getInstance()->redirect('/signin');

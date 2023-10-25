@@ -2,10 +2,6 @@
 $user = $_SESSION['user'];
 if (isset($user['gambar_profil'])) {
   $profpic_src = "/assets/uploads/{$user['id']}-{$user['gambar_profil']}";
-  // asumsi: file ada
-  // if (!file_exists("/var/www/html" . $profpic_src)) {
-  //   $profpic_src = "/assets/images/Portrait_Placeholder.png";
-  // }
 } else {
   $profpic_src = "/assets/images/Portrait_Placeholder.png";
 }
@@ -84,3 +80,5 @@ if (isset($user['gambar_profil'])) {
 </body>
 
 </html>
+
+<?php unset($_SESSION['errors']); ?>

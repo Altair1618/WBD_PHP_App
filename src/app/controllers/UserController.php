@@ -4,7 +4,6 @@ class UserController
 {
     public function showProfilePage()
     {
-        unset($_SESSION['errors']);
         require_once VIEWS_DIR . 'user/profile.php';
     }
 
@@ -82,7 +81,7 @@ class UserController
             $user_repo->updatePengguna((int) $user['id'], $new_username, $new_email, $new_password, $new_name, $user['tipe'], $image_name);
             $_SESSION['user'] = $user_repo->getPengguna(username: $new_username);
             Logger::info(__FILE__, __LINE__, "User `{$user['username']}` profile updated");
-            Router::getInstance()->redirect('/profile');
+            Router::getInstance()->redirect('/profile/' . $user['id']);
         }
     }
 }

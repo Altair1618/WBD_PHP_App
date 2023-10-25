@@ -3,7 +3,7 @@
 class PageController {
     public function home($params) {
         if (isset($_SESSION['user']) && $_SESSION['user']['tipe'] == PENGGUNA_TIPE_ADMIN) {
-            header('Location: /admin/users');
+            header('Location: /users');
         } else {
             header('Location: /courses');
         }

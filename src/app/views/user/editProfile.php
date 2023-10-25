@@ -91,7 +91,7 @@ if (isset($_SESSION['errors'])) {
             </div>
 
             <div class="button-form-wrapper">
-              <button form="" id="button-batal" onclick="window.location='/profile'">BATAL</button>
+              <button form="" id="button-batal" onclick="window.location='/profile/<?= $user['id'] ?>'">BATAL</button>
               <button type="submit" id="button-simpan">SIMPAN</button>
             </div>
           </section>

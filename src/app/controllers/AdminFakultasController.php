@@ -80,11 +80,11 @@ class AdminFakultasController
         <?php endforeach ?>
       </div>
       <div class="table-column" id="column-button">
-        <button id="button-tambah" onclick="window.location='/admin/addfakultas'">Tambah Fakultas</button>
+        <button id="button-tambah" onclick="window.location='/admin/fakultas/create'">Tambah Fakultas</button>
         <?php foreach ($fakultas as $fakul) : ?>
           <div class="button-group">
-            <button class="button-action button-ubah" onclick="window.location='/admin/editfakultas/<?= $fakul['kode'] ?>'">Ubah</button>
-            <form action="/admin/deletefakultas/<?= $fakul['kode'] ?>" method="POST">
+            <button class="button-action button-ubah" onclick="window.location='/admin/fakultas/<?= $fakul['kode'] ?>/edit'">Ubah</button>
+            <form action="/api/fakultas/<?= $fakul['kode'] ?>/delete" method="POST">
               <button class="button-action button-hapus">Hapus</button>
             </form>
           </div>
@@ -142,7 +142,7 @@ class AdminFakultasController
     }
 
     if (!empty($_SESSION['errors'])) {
-      Router::getInstance()->redirect('/admin/addfakultas');
+      Router::getInstance()->redirect('/admin/fakultas/create');
     } else {
       unset($_SESSION['errors']);
       $repo->insertFakultas($new_kode, $new_name);

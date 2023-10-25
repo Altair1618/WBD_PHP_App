@@ -30,7 +30,7 @@ $fakul = $repo->getFakultas($params['kode']);
       </header>
 
       <div class="main-flex-container">
-        <form class="form-container" action="/admin/editfakultas/<?= $fakul['kode'] ?>" method="POST" enctype="multipart/form-data">
+        <form class="form-container" action="/api/fakultas/<?= $fakul['kode'] ?>/edit" method="POST" enctype="multipart/form-data">
 
           <section class="profile-detail-section">
             <div class="profile-detail-wrapper">

@@ -107,20 +107,14 @@ $routes = [
         ]],
     ],
 
-    '/admin/adduser' => [
+    '/admin/users/create' => [
         'GET' => ['route' => 'AdminUserController@showAddUserPage', 'middlewares' => [
-            'AdminAuthentication',
-        ]],
-        'POST' => ['route' => 'AdminUserController@addUser', 'middlewares' => [
             'AdminAuthentication',
         ]],
     ],
 
-    '/admin/edituser/:id' => [
+    '/admin/users/:id/edit' => [
         'GET' => ['route' => 'AdminUserController@showEditUserPage', 'middlewares' => [
-            'AdminAuthentication',
-        ]],
-        'POST' => ['route' => 'AdminUserController@editUser', 'middlewares' => [
             'AdminAuthentication',
         ]],
     ],
@@ -131,26 +125,14 @@ $routes = [
         ]],
     ],
 
-    '/admin/addfakultas/' => [
+    '/admin/fakultas/create' => [
         'GET' => ['route' => 'AdminFakultasController@showAddFakultasPage', 'middlewares' => [
             'AdminAuthentication',
         ]],
-        'POST' => ['route' => 'AdminFakultasController@addFakultas', 'middlewares' => [
-            'AdminAuthentication',
-        ]],
     ],
 
-    '/admin/editfakultas/:kode' => [
+    '/admin/fakultas/:kode/edit' => [
         'GET' => ['route' => 'AdminFakultasController@showEditFakultasPage', 'middlewares' => [
-            'AdminAuthentication',
-        ]],
-        'POST' => ['route' => 'AdminFakultasController@editFakultas', 'middlewares' => [
-            'AdminAuthentication',
-        ]],
-    ],
-
-    '/admin/deletefakultas/:kode' => [
-        'POST' => ['route' => 'AdminFakultasController@deleteFakultas', 'middlewares' => [
             'AdminAuthentication',
         ]],
     ],
@@ -162,12 +144,6 @@ $routes = [
     '/seed/rebuild' => [
         'POST' => ['route' => 'SeederController@seedRebuild', 'middlewares' => []],
 
-    ],
-
-    '/admin/deleteuser/:id' => [
-        'POST' => ['route' => 'AdminUserController@deleteUser', 'middlewares' => [
-            'AdminAuthentication',
-        ]],
     ],
 
     // API Routes
@@ -231,11 +207,35 @@ $routes = [
         'POST' => ['route' => 'EnrollController@createEnroll', 'middlewares' => []],
     ],
 
-    '/api/admin/users' => [
+    '/api/users' => [
         'GET' => ['route' => 'AdminUserController@getUsersHTML', 'middlewares' => []],
     ],
 
-    '/api/admin/fakultas' => [
+    '/api/fakultas' => [
         'GET' => ['route' => 'AdminFakultasController@getFakultasHTML', 'middlewares' => []],
+    ],
+
+    '/api/users/create' => [
+        'POST' => ['route' => 'AdminUserController@addUser', 'middlewares' => []],
+    ],
+
+    '/api/users/:id/edit' => [
+        'POST' => ['route' => 'AdminUserController@editUser', 'middlewares' => []],
+    ],
+
+    '/api/users/:id/delete' => [
+        'POST' => ['route' => 'AdminUserController@deleteUser', 'middlewares' => []],
+    ],
+
+    '/api/fakultas/create' => [
+        'POST' => ['route' => 'AdminFakultasController@addFakultas', 'middlewares' => []],
+    ],
+
+    '/api/fakultas/:kode/edit' => [
+        'POST' => ['route' => 'AdminFakultasController@editFakultas', 'middlewares' => []],
+    ],
+
+    '/api/fakultas/:kode/delete' => [
+        'POST' => ['route' => 'AdminFakultasController@deleteFakultas', 'middlewares' => []],
     ],
 ];
