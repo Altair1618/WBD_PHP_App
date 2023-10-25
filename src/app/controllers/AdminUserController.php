@@ -62,7 +62,7 @@ class AdminUserController
           </a>
         </th>
       </tr>
-      <?php $n = 1 ?>
+      <?php $n = ($params['page'] - 1) * ITEMS_PER_PAGE + 1 ?>
       <?php foreach ($users as $user) : ?>
         <?php if (!is_admin($user)) : ?>
           <tr onclick="window.location='/users/<?= $user['id'] ?>'">
@@ -155,6 +155,7 @@ class AdminUserController
       $_SESSION['errors']['email'] = "Email tidak valid";
     }
 
+    $image_name = null;
     if (isset($_FILES['image']) && !empty($_FILES['image']['name'])) {
       if ($_FILES['image']['error'] === UPLOAD_ERR_OK) {
         if (in_array($_FILES['image']['type'], ALLOWED_FILE_TYPES)) {

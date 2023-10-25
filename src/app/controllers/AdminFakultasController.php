@@ -55,7 +55,7 @@ class AdminFakultasController
           </a>
         </th>
       </tr>
-      <?php $n = 1 ?>
+      <?php $n = ($params['page'] - 1) * ITEMS_PER_PAGE + 1 ?>
       <?php foreach ($fakultas as $fakul) : ?>
         <tr onclick="window.location='/fakultas/<?= $fakul['kode'] ?>'">
           <td class="column-number"><?= $n ?></td>
