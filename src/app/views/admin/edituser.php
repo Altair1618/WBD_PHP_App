@@ -99,7 +99,7 @@ if (isset($_SESSION['errors'])) {
               </div>
 
               <div class="button-form-wrapper">
-                <a href="/admin/users" class="button-link-wrapper">
+                <a href="/users" class="button-link-wrapper">
                   <button form="" id="button-batal">BATAL</button>
                 </a>
                 <button type="submit" id="button-simpan">SIMPAN</button>

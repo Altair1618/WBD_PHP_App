@@ -101,37 +101,37 @@ $routes = [
         ]],
     ],
 
-    '/admin/users' => [
+    '/users' => [
         'GET' => ['route' => 'AdminUserController@showUsers', 'middlewares' => [
             'AdminAuthentication',
         ]],
     ],
 
-    '/admin/users/create' => [
+    '/users/create' => [
         'GET' => ['route' => 'AdminUserController@showAddUserPage', 'middlewares' => [
             'AdminAuthentication',
         ]],
     ],
 
-    '/admin/users/:id/edit' => [
+    '/users/:id/edit' => [
         'GET' => ['route' => 'AdminUserController@showEditUserPage', 'middlewares' => [
             'AdminAuthentication',
         ]],
     ],
 
-    '/admin/fakultas' => [
+    '/fakultas' => [
         'GET' => ['route' => 'AdminFakultasController@showFakultas', 'middlewares' => [
             'AdminAuthentication',
         ]],
     ],
 
-    '/admin/fakultas/create' => [
+    '/fakultas/create' => [
         'GET' => ['route' => 'AdminFakultasController@showAddFakultasPage', 'middlewares' => [
             'AdminAuthentication',
         ]],
     ],
 
-    '/admin/fakultas/:kode/edit' => [
+    '/fakultas/:kode/edit' => [
         'GET' => ['route' => 'AdminFakultasController@showEditFakultasPage', 'middlewares' => [
             'AdminAuthentication',
         ]],

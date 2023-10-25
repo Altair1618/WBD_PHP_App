@@ -219,9 +219,10 @@ Aplikasi LearnIt! adalah sebuah aplikasi LMS yang sisusun untuk memenuhi Tugas M
 </table>
 
 ## Perubahan
+- Menghapus prefix `/admin`
 - Bug fixes
     - Admin add user
-    - Homepage admin menjadi `/admin/users`, bukan `/courses`
+    - Homepage admin menjadi `/users`, bukan `/courses`
 - Merapikan routing table, misalkan url API disimpan di `/api/...`
 - Button yang berupa hyperlink menjadi benar-benar hyperlink, bukan mengubah `window.location` saat diklik
 - Mengubah font size menjadi sesuai dengan desain di Figma

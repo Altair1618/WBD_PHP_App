@@ -80,12 +80,12 @@ class AdminFakultasController
         <?php endforeach ?>
       </div>
       <div class="table-column" id="column-button">
-        <a class="button-action-wrapper" href="/admin/fakultas/create">
+        <a class="button-action-wrapper" href="/fakultas/create">
           <button id="button-tambah" class="button-action">Tambah Fakultas</button>
         </a>
         <?php foreach ($fakultas as $fakul) : ?>
           <div class="button-group">
-            <a class="button-action-wrapper" href="/admin/fakultas/<?= $fakul['kode'] ?>/edit">
+            <a class="button-action-wrapper" href="/fakultas/<?= $fakul['kode'] ?>/edit">
               <button class="button-action" id="button-ubah">Ubah</button>
             </a>
             <form class="button-action-wrapper" action="/api/fakultas/<?= $fakul['kode'] ?>/delete" method="POST">
@@ -146,12 +146,12 @@ class AdminFakultasController
     }
 
     if (!empty($_SESSION['errors'])) {
-      Router::getInstance()->redirect('/admin/fakultas/create');
+      Router::getInstance()->redirect('/fakultas/create');
     } else {
       unset($_SESSION['errors']);
       $repo->insertFakultas($new_kode, $new_name);
       Logger::info(__FILE__, __LINE__, "Fakultas `$new_kode` added");
-      Router::getInstance()->redirect('/admin/fakultas');
+      Router::getInstance()->redirect('/fakultas');
     }
   }
 
@@ -164,7 +164,7 @@ class AdminFakultasController
 
     $repo->updateFakultas($fakul['kode'], $new_name);
     Logger::info(__FILE__, __LINE__, "Fakultas `{$fakul['kode']}` updated");
-    Router::getInstance()->redirect('/admin/fakultas');
+    Router::getInstance()->redirect('/fakultas');
   }
 
   public function deleteFakultas($params)
@@ -174,6 +174,6 @@ class AdminFakultasController
 
     $repo->deleteFakultas($fakul['kode']);
     Logger::info(__FILE__, __LINE__, "Fakultas `{$fakul['kode']}` deleted");
-    Router::getInstance()->redirect('/admin/fakultas');
+    Router::getInstance()->redirect('/fakultas');
   }
 }

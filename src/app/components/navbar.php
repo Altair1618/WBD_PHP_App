@@ -2,11 +2,11 @@
 assert(isset($_SESSION['user']));
 if ($_SESSION['user']['tipe'] == PENGGUNA_TIPE_ADMIN) {
   $menus = [
-    '/admin/users' => 'Pengguna',
-    '/admin/courses' => 'Mata Kuliah',
-    '/admin/modules' => 'Modul',
-    '/admin/fakultas' => 'Fakultas',
-    '/admin/departments' => 'Program Studi',
+    '/users' => 'Pengguna',
+    '/courses' => 'Mata Kuliah',
+    '/modules' => 'Modul',
+    '/fakultas' => 'Fakultas',
+    '/departments' => 'Program Studi',
   ];
 } elseif ($_SESSION['user']['tipe'] == PENGGUNA_TIPE_PENGAJAR) {
   $menus = [

@@ -94,7 +94,7 @@ if (isset($_SESSION['errors']) && isset($_SESSION['post'])) {
               </div>
 
               <div class="button-form-wrapper">
-                <a class="button-link-wrapper" href="/admin/users">
+                <a class="button-link-wrapper" href="/users">
                   <button form="" id="button-batal">BATAL</button>
                 </a>
                 <button type="submit" id="button-simpan">SIMPAN</button>

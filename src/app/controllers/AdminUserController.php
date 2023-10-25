@@ -134,13 +134,13 @@ class AdminUserController
         <?php endforeach ?>
       </div>
       <div class="table-column" id="column-button">
-        <a class="button-action-wrapper" href="/admin/users/create">
+        <a class="button-action-wrapper" href="/users/create">
           <button id="button-tambah" class="button-action">Tambah pengguna</button>
         </a>
         <?php foreach ($users as $user) : ?>
           <?php if (!is_admin($user)) : ?>
             <div class="button-group">
-              <a class="button-action-wrapper" href="/admin/users/<?= $user['id'] ?>/edit">
+              <a class="button-action-wrapper" href="/users/<?= $user['id'] ?>/edit">
                 <button id="button-ubah" class="button-action">Ubah</button>
               </a>
               <form class="button-action-wrapper" action="/api/users/<?= $user['id'] ?>/delete" method="POST">
@@ -230,7 +230,7 @@ class AdminUserController
     }
 
     if (!empty($_SESSION['errors'])) {
-      Router::getInstance()->redirect('/admin/users/create');
+      Router::getInstance()->redirect('/users/create');
     } else {
       unset($_SESSION['errors']);
       $user_repo->insertPengguna($new_username, $new_email, $new_password, $new_name, $new_tipe, $image_name);
@@ -239,7 +239,7 @@ class AdminUserController
         move_uploaded_file($tmp_name, UPLOADS_DIR . "{$user['id']}-{$image_name}");
       }
       Logger::info(__FILE__, __LINE__, "User `{$user['username']}` added");
-      Router::getInstance()->redirect('admin/users');
+      Router::getInstance()->redirect('/users');
     }
   }
 
@@ -295,12 +295,12 @@ class AdminUserController
     }
 
     if (!empty($_SESSION['errors'])) {
-      Router::getInstance()->redirect("/admin/users/{$user['id']}/edit");
+      Router::getInstance()->redirect("/users/{$user['id']}/edit");
     } else {
       unset($_SESSION['errors']);
       $user_repo->updatePengguna((int) $user['id'], $new_username, $new_email, $new_password, $new_name, $new_tipe, $image_name);
       Logger::info(__FILE__, __LINE__, "User `{$user['username']}` profile updated");
-      Router::getInstance()->redirect('/admin/users');
+      Router::getInstance()->redirect('/users');
     }
   }
 
@@ -312,6 +312,6 @@ class AdminUserController
       $user_repo->deletePengguna(id: (int) $user['id']);
     }
     Logger::warn(__FILE__, __LINE__, "User `{$user['username']}` deleted");
-    Router::getInstance()->redirect('/admin/users');
+    Router::getInstance()->redirect('/users');
   }
 }
