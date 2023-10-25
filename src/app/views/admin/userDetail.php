@@ -1,12 +1,3 @@
-<?php
-$user = $_SESSION['user'];
-if (isset($user['gambar_profil'])) {
-  $profpic_src = "/assets/uploads/{$user['id']}-{$user['gambar_profil']}";
-} else {
-  $profpic_src = "/assets/images/Portrait_Placeholder.png";
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,7 +8,7 @@ if (isset($user['gambar_profil'])) {
 
   <link href="/styles/global.css" rel="stylesheet">
   <link href="/styles/navbar/navbar.css" rel="stylesheet">
-  <link href="/styles/user/profile.css" rel="stylesheet">
+  <link href="/styles/admin/userDetail.css" rel="stylesheet">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -37,7 +28,7 @@ if (isset($user['gambar_profil'])) {
         <div class="inner-flex-container">
           <section class="profile-picture-section">
             <div class="profile-picture-box">
-              <img class="profile-picture" src="<?= $profpic_src ?>" alt="profile picture" />
+              <img class="profile-picture" src="<?= get_img_src($user) ?>" alt="profile picture" />
             </div>
           </section>
           <section class="profile-detail-section">
@@ -68,11 +59,23 @@ if (isset($user['gambar_profil'])) {
                   </p>
                 </div>
               </div>
+
+              <div class="profile-detail-container">
+                <p class="profile-label" id="profile-label-name">Tipe</p>
+                <div class="profile-value-container">
+                  <p class="profile-value" id="profile-value-name">
+                    <?= tipe_to_str($user) ?>
+                  </p>
+                </div>
+              </div>
             </div>
             <div class="button-wrapper">
-            <a class="button-link-wrapper" href="/users/<?= $user['id'] ?>/edit">
-              <button id="button-ubah">UBAH</a>
-            </a>
+              <a class="button-link-wrapper" href="/users/<?= $user['id'] ?>/edit">
+                <button id="button-ubah">UBAH</button>
+              </a>
+              <form action="/api/users/<?= $user['id'] ?>/delete" method="POST">
+                <button id="button-hapus">HAPUS</button>
+              </form>
             </div>
           </section>
         </div>

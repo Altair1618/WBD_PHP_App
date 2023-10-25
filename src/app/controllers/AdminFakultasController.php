@@ -42,59 +42,41 @@ class AdminFakultasController
     $params = $this->getManyFakultas($params);
     $fakultas = $params['fakultas'];
 ?>
-    <div class="table-container" id="table-container">
-      <div class="table-column" id="column-no">
-        <p class="cell cell-header" id="header-no">No</p>
-        <?php $n = 1 ?>
-        <?php foreach ($fakultas as $fakul) : ?>
-          <p class="cell cell-value"><?= $n ?></p>
-          <?php $n++ ?>
-        <?php endforeach ?>
-      </div>
-
-      <div class="table-column" id="column-kode">
-        <p class="cell cell-header" id="header-kode">Kode Fakultas</p>
-        <?php foreach ($fakultas as $fakul) : ?>
-          <p class="cell cell-value"><?= htmlspecialchars($fakul['kode']) ?></p>
-        <?php endforeach ?>
-      </div>
-
-      <div class="table-column" id="column-name">
-        <p class="cell cell-header" id="header-name">Nama</p>
-        <?php foreach ($fakultas as $fakul) : ?>
-          <p class="cell cell-value"><?= htmlspecialchars($fakul['nama']) ?></p>
-        <?php endforeach ?>
-      </div>
-
-      <div class="table-column" id="column-created-time">
-        <p class="cell cell-header" id="header-created-time">Waktu Dibuat</p>
-        <?php foreach ($fakultas as $fakul) : ?>
-          <p class="cell cell-value"><?= $fakul['created_at'] ?></p>
-        <?php endforeach ?>
-      </div>
-
-      <div class="table-column" id="column-updated-time">
-        <p class="cell cell-header" id="header-updated-time">Waktu Diubah</p>
-        <?php foreach ($fakultas as $fakul) : ?>
-          <p class="cell cell-value"><?= $fakul['updated_at'] ?></p>
-        <?php endforeach ?>
-      </div>
-      <div class="table-column" id="column-button">
-        <a class="button-action-wrapper" href="/fakultas/create">
-          <button id="button-tambah" class="button-action">Tambah Fakultas</button>
-        </a>
-        <?php foreach ($fakultas as $fakul) : ?>
-          <div class="button-group">
-            <a class="button-action-wrapper" href="/fakultas/<?= $fakul['kode'] ?>/edit">
-              <button class="button-action" id="button-ubah">Ubah</button>
-            </a>
-            <form class="button-action-wrapper" action="/api/fakultas/<?= $fakul['kode'] ?>/delete" method="POST">
-              <button class="button-action" id="button-hapus">Hapus</button>
-            </form>
-          </div>
-        <?php endforeach ?>
-      </div>
-    </div>
+    <table>
+      <tr>
+        <th class="column-number">No</th>
+        <th class="column-code">Kode Fakultas</th>
+        <th class="column-name">Nama</th>
+        <th class="column-created-at">Waktu Dibuat</th>
+        <th class="column-updated-at">Waktu Diubah</th>
+        <th class="column-action">
+          <a class="button-action-wrapper" href="/fakultas/create">
+            <button id="button-tambah" class="button-action">Tambah Fakultas</button>
+          </a>
+        </th>
+      </tr>
+      <?php $n = 1 ?>
+      <?php foreach ($fakultas as $fakul) : ?>
+        <tr onclick="window.location='/fakultas/<?= $fakul['kode'] ?>'">
+          <td class="column-number"><?= $n ?></td>
+          <td class="column-code"><?= htmlspecialchars($fakul['kode']) ?></td>
+          <td class="column-name"><?= htmlspecialchars($fakul['nama']) ?></td>
+          <td class="column-created-at"><?= $fakul['created_at'] ?></td>
+          <td class="column-updated-at"><?= $fakul['updated_at'] ?></td>
+          <td class="column-action">
+            <div class="button-group">
+              <a class="button-action-wrapper" href="/fakultas/<?= $fakul['kode'] ?>/edit">
+                <button id="button-ubah" class="button-action">Ubah</button>
+              </a>
+              <form class="button-action-wrapper" action="/api/fakultas/<?= $fakul['kode'] ?>/delete" method="POST">
+                <button id="button-hapus" class="button-action">Hapus</button>
+              </form>
+            </div>
+          </td>
+        </tr>
+        <?php $n++ ?>
+      <?php endforeach ?>
+    </table>
     <div class="body-footer" id="body-footer">
       <div class="page-number-centered">
         <?php $current_page = max((int) $params['page'], 1) ?>

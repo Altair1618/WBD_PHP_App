@@ -1,4 +1,4 @@
-div.cell.cell-value.img-wrapper {
+.img-wrapper {
   display: flex;
   height: 50px;
   flex-direction: column;

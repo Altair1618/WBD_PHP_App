@@ -86,21 +86,6 @@ $routes = [
         ]],
     ],
 
-    '/profile' => [
-        'GET' => ['route' => 'UserController@showProfilePage', 'middlewares' => [
-            'Authentication',
-        ]],
-    ],
-
-    '/profile/edit' => [
-        'GET' => ['route' => 'UserController@showEditProfilePage', 'middlewares' => [
-            'Authentication',
-        ]],
-        'POST' => ['route' => 'UserController@editProfile', 'middlewares' => [
-            'Authentication',
-        ]],
-    ],
-
     '/users' => [
         'GET' => ['route' => 'AdminUserController@showUsers', 'middlewares' => [
             'AdminAuthentication',
@@ -113,9 +98,15 @@ $routes = [
         ]],
     ],
 
+    '/users/:id' => [
+        'GET' => ['route' => 'PageController@userDetail', 'middlewares' => [
+            'Authentication',
+        ]],
+    ],
+
     '/users/:id/edit' => [
-        'GET' => ['route' => 'AdminUserController@showEditUserPage', 'middlewares' => [
-            'AdminAuthentication',
+        'GET' => ['route' => 'PageController@editUser', 'middlewares' => [
+            'Authentication',
         ]],
     ],
 

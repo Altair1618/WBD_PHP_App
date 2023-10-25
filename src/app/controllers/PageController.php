@@ -226,4 +226,38 @@ class PageController
       $controller->showErrorPage($params);
     }
   }
+
+  public function userDetail($params)
+  {
+    if ($_SESSION['user']['tipe'] == PENGGUNA_TIPE_ADMIN) {
+      require_once CONTROLLERS_DIR . 'AdminUserController.php';
+
+      $controller = new AdminUserController();
+      $controller->showUserDetail($params);
+    } elseif ($_SESSION['user']['id'] === $params['id']) {
+      require_once CONTROLLERS_DIR . 'UserController.php';
+
+      $controller = new UserController();
+      $controller->showProfilePage();
+    } else {
+      Router::getInstance()->error(403);
+    }
+  }
+
+  public function editUser($params)
+  {
+    if ($_SESSION['user']['tipe'] == PENGGUNA_TIPE_ADMIN) {
+      require_once CONTROLLERS_DIR . 'AdminUserController.php';
+
+      $controller = new AdminUserController();
+      $controller->showEditUserPage($params);
+    } elseif ($_SESSION['user']['id'] === $params['id']) {
+      require_once CONTROLLERS_DIR . 'UserController.php';
+
+      $controller = new UserController();
+      $controller->showEditProfilePage();
+    } else {
+      Router::getInstance()->error(403);
+    }
+  }
 }

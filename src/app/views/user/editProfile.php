@@ -37,7 +37,7 @@ if (isset($_SESSION['errors'])) {
       </header>
 
       <div class="main-flex-container">
-        <form class="form-container" action="/profile/edit" method="POST" enctype="multipart/form-data">
+        <form class="form-container" action="/api/users/<?= $user['id'] ?>/edit" method="POST" enctype="multipart/form-data">
           <section class="profile-picture-section">
             <div class="profile-picture-box">
               <input type="file" id="profile-picture-input" name="image" accept="image/*">
@@ -91,7 +91,9 @@ if (isset($_SESSION['errors'])) {
             </div>
 
             <div class="button-form-wrapper">
-              <button form="" id="button-batal" onclick="window.location='/profile/<?= $user['id'] ?>'">BATAL</button>
+              <a class="button-link-wrapper" href="/users/<?= $user['id'] ?>">
+                <button form="" id="button-batal">BATAL</button>
+              </a>
               <button type="submit" id="button-simpan">SIMPAN</button>
             </div>
           </section>
