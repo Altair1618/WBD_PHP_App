@@ -76,16 +76,6 @@ if (isset($_SESSION['errors'])) {
               </div>
 
               <div class="profile-detail-container">
-                <label for="old-password" class="profile-label">Password</label>
-                <?php if (isset($errors) && isset($errors['password'])) : ?>
-                  <input type="password" name="old-password" id="old-password" class="form-input error" placeholder="Masukkan Password Lama" required>
-                  <p class="input-error"><?= $errors['password'] ?></p>
-                <?php else : ?>
-                  <input type="password" name="old-password" id="old-password" class="form-input" placeholder="Masukkan Password Lama">
-                <?php endif ?>
-              </div>
-
-              <div class="profile-detail-container">
                 <label for="new-password" class="profile-label">Password Baru</label>
                 <input type="password" name="new-password" id="new-password" class="form-input" placeholder="Masukkan Password Baru">
               </div>
@@ -93,9 +83,17 @@ if (isset($_SESSION['errors'])) {
               <div class="profile-detail-container">
                 <p class="profile-label">Tipe:</p>
                 <div class="radio-group">
-                  <input type="radio" name="tipe" id="radio-dosen" value="dosen" checked />
+                  <?php if ($user['tipe'] == PENGGUNA_TIPE_PENGAJAR) : ?>
+                    <input type="radio" name="tipe" id="radio-dosen" value="dosen" checked />
+                  <?php else : ?>
+                    <input type="radio" name="tipe" id="radio-dosen" value="dosen" />
+                  <?php endif ?>
                   <label for="radio-dosen" class="radio-label">Dosen</label>
-                  <input type="radio" name="tipe" id="radio-mahasiswa" value="mahasiswa" />
+                  <?php if ($user['tipe'] == PENGGUNA_TIPE_MAHASISWA) : ?>
+                    <input type="radio" name="tipe" id="radio-mahasiswa" value="mahasiswa" checked />
+                  <?php else : ?>
+                    <input type="radio" name="tipe" id="radio-mahasiswa" value="mahasiswa" />
+                  <?php endif ?>
                   <label for="radio-mahasiswa" class="radio-label">Mahasiswa</label>
                 </div>
               </div>

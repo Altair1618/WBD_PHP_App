@@ -193,7 +193,7 @@ class AdminUserController
     $new_name = $_POST['name'];
     $new_username = $_POST['username'];
     $new_email = $_POST['email'];
-    $new_password = $_POST['password'];
+    $new_password = password_hash($_POST['password'], PASSWORD_DEFAULT);
     $new_tipe = ["dosen" => 1, "mahasiswa" => 2][$_POST['tipe']] ?? 2;
 
     if ($user_repo->getPengguna(username: $new_username) !== false) {
@@ -230,7 +230,7 @@ class AdminUserController
     } else {
       unset($_SESSION['errors']);
       $user_repo->insertPengguna($new_username, $new_email, $new_password, $new_name, $new_tipe, $image_name);
-      $user = $user_repo->getPengguna(username: $new_name);
+      $user = $user_repo->getPengguna(username: $new_username);
       if (isset($image_name)) {
         move_uploaded_file($tmp_name, UPLOADS_DIR . "{$user['id']}-{$image_name}");
       }
@@ -249,8 +249,7 @@ class AdminUserController
     $new_name = $_POST['name'];
     $new_username = $_POST['username'];
     $new_email = $_POST['email'];
-    $old_password = $_POST['old-password'];
-    $new_password = $_POST['new-password'];
+    $new_password = password_hash($_POST['new-password'], PASSWORD_DEFAULT);
     $new_tipe = ["dosen" => 1, "mahasiswa" => 2][$_POST['tipe']] ?? 2;
 
     if ($new_username !== $user['username'] && $user_repo->getPengguna(username: $new_username) !== false) {
@@ -264,10 +263,6 @@ class AdminUserController
     if (!filter_var($new_email, FILTER_VALIDATE_EMAIL)) {
       // asumsi semua email yang ada di database sudah valid
       $_SESSION['errors']['email'] = "Email tidak valid";
-    }
-
-    if (!empty($old_password) && !password_verify($old_password, $user['password_hash'])) {
-      $_SESSION['errors']['password'] = "Password salah";
     }
 
     if (isset($_FILES['image']) && !empty($_FILES['image']['name'])) {
