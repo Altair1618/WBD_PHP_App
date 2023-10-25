@@ -73,6 +73,7 @@ class AuthController
     } else {
       $user_repo->insertPengguna($username, $email, $password_hash, $nama, PENGGUNA_TIPE_MAHASISWA);
       $_SESSION["user"] = $user_repo->getPengguna(username: $username);
+      $_SESSION["isAuthenticated"] = true;
       Logger::info(__FILE__, __LINE__, "user `$username` is logged in");
       unset($_SESSION['errors']);
       Router::getInstance()->redirect('/');
