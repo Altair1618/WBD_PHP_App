@@ -33,7 +33,7 @@ class AuthController
         $redirect = $_SESSION['referer'];
       }
       unset($_SESSION['errors']);
-      Router::getInstance()->redirect($redirect ?? '/');
+        Router::getInstance()->redirect($redirect ?? '/');
     } else {
       $_SESSION['errors']['auth'] = 'Username, email, atau password salah';
       Router::getInstance()->redirect('/signin');

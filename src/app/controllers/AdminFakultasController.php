@@ -80,12 +80,16 @@ class AdminFakultasController
         <?php endforeach ?>
       </div>
       <div class="table-column" id="column-button">
-        <button id="button-tambah" onclick="window.location='/admin/fakultas/create'">Tambah Fakultas</button>
+        <a class="button-action-wrapper" href="/admin/fakultas/create">
+          <button id="button-tambah" class="button-action">Tambah Fakultas</button>
+        </a>
         <?php foreach ($fakultas as $fakul) : ?>
           <div class="button-group">
-            <button class="button-action button-ubah" onclick="window.location='/admin/fakultas/<?= $fakul['kode'] ?>/edit'">Ubah</button>
-            <form action="/api/fakultas/<?= $fakul['kode'] ?>/delete" method="POST">
-              <button class="button-action button-hapus">Hapus</button>
+            <a class="button-action-wrapper" href="/admin/fakultas/<?= $fakul['kode'] ?>/edit">
+              <button class="button-action" id="button-ubah">Ubah</button>
+            </a>
+            <form class="button-action-wrapper" action="/api/fakultas/<?= $fakul['kode'] ?>/delete" method="POST">
+              <button class="button-action" id="button-hapus">Hapus</button>
             </form>
           </div>
         <?php endforeach ?>

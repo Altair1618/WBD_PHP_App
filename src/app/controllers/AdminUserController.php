@@ -134,13 +134,17 @@ class AdminUserController
         <?php endforeach ?>
       </div>
       <div class="table-column" id="column-button">
-        <button id="button-tambah" onclick="window.location='/admin/users/create'">Tambah pengguna</button>
+        <a class="button-action-wrapper" href="/admin/users/create">
+          <button id="button-tambah" class="button-action">Tambah pengguna</button>
+        </a>
         <?php foreach ($users as $user) : ?>
           <?php if (!is_admin($user)) : ?>
             <div class="button-group">
-              <button class="button-action button-ubah" onclick="window.location='/admin/users/<?= $user['id'] ?>/edit'">Ubah</button>
-              <form action="/api/users/<?= $user['id'] ?>/delete" method="POST">
-                <button class="button-action button-hapus">Hapus</button>
+              <a class="button-action-wrapper" href="/admin/users/<?= $user['id'] ?>/edit">
+                <button id="button-ubah" class="button-action">Ubah</button>
+              </a>
+              <form class="button-action-wrapper" action="/api/users/<?= $user['id'] ?>/delete" method="POST">
+                <button id="button-hapus" class="button-action">Hapus</button>
               </form>
             </div>
           <?php endif ?>

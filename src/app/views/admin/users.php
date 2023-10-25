@@ -8,6 +8,7 @@
 
   <link href="/styles/global.css" rel="stylesheet">
   <link href="/styles/navbar/navbar.css" rel="stylesheet">
+  <link href="/styles/admin/common.css" rel="stylesheet">
   <link href="/styles/admin/users.css" rel="stylesheet">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">

@@ -21,7 +21,7 @@ if (isset($_SESSION['errors'])) {
 
   <link href="/styles/global.css" rel="stylesheet">
   <link href="/styles/navbar/navbar.css" rel="stylesheet">
-  <link href="/styles/admin/add_edit_user.css" rel="stylesheet">
+  <link href="/styles/admin/form.css" rel="stylesheet">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -99,7 +99,9 @@ if (isset($_SESSION['errors'])) {
               </div>
 
               <div class="button-form-wrapper">
-                <button form="" id="button-batal" onclick="window.location='/admin/users'">BATAL</button>
+                <a href="/admin/users" class="button-link-wrapper">
+                  <button form="" id="button-batal">BATAL</button>
+                </a>
                 <button type="submit" id="button-simpan">SIMPAN</button>
               </div>
           </section>
@@ -108,7 +110,7 @@ if (isset($_SESSION['errors'])) {
     </main>
   </div>
 
-  <script src="/scripts/admin/add_edit_user.js"></script>
+  <script src="/scripts/admin/form.js"></script>
 </body>
 
 </html>

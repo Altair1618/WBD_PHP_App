@@ -13,7 +13,7 @@ $fakul = $repo->getFakultas($params['kode']);
 
   <link href="/styles/global.css" rel="stylesheet">
   <link href="/styles/navbar/navbar.css" rel="stylesheet">
-  <link href="/styles/admin/add_edit_fakultas.css" rel="stylesheet">
+  <link href="/styles/admin/form.css" rel="stylesheet">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -46,7 +46,9 @@ $fakul = $repo->getFakultas($params['kode']);
               </div>
 
               <div class="button-form-wrapper">
-                <button form="" id="button-batal" onclick="window.location='/admin/fakultas'">BATAL</button>
+                <a class="button-link-wrapper" href="/admin/fakultas">
+                  <button form="" id="button-batal">BATAL</button>
+                </a>
                 <button type="submit" id="button-simpan">SIMPAN</button>
               </div>
           </section>
