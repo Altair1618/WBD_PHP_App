@@ -2,10 +2,6 @@
 $user = $_SESSION['user'];
 if (isset($user['gambar_profil'])) {
   $profpic_src = "/assets/uploads/{$user['id']}-{$user['gambar_profil']}";
-  // asumsi: file ada
-  // if (!file_exists("/var/www/html" . $profpic_src)) {
-  //   $profpic_src = "/assets/images/Portrait_Placeholder.png";
-  // }
 } else {
   $profpic_src = "/assets/images/Portrait_Placeholder.png";
 }
@@ -55,7 +51,7 @@ if (isset($_SESSION['errors'])) {
             <div class="profile-detail-wrapper">
               <div class="profile-detail-container">
                 <label for="name" class="profile-label">Nama</label>
-                <input type="text" value="<?= $user['nama'] ?>" name="name" id="name" class="form-input" placeholder="Masukkan Nama Lengkap" required>
+                <input value="<?= $user['nama'] ?>" type="text" name="name" id="name" class="form-input" placeholder="Masukkan Nama Lengkap" required>
               </div>
 
               <div class="profile-detail-container">
@@ -64,7 +60,7 @@ if (isset($_SESSION['errors'])) {
                   <input type="text" value="<?= $user['username'] ?>" name="username" id="username" class="form-input error" placeholder="Masukkan Username" required>
                   <p class="input-error"><?= $errors['username'] ?></p>
                 <?php else : ?>
-                  <input type="text" name="username" id="username" class="form-input" placeholder="Masukkan Username" required>
+                  <input value="<?= $user['username'] ?>" type="text" name="username" id="username" class="form-input" placeholder="Masukkan Username" required>
                 <?php endif ?>
               </div>
 
@@ -74,7 +70,7 @@ if (isset($_SESSION['errors'])) {
                   <input type="email" value="<?= $user['email'] ?>" name="email" id="email" class="form-input error" placeholder="Masukkan Email" required>
                   <p class="input-error"><?= $errors['email'] ?></p>
                 <?php else : ?>
-                  <input type="email" name="email" id="email" class="form-input" placeholder="Masukkan Email" required>
+                  <input value="<?= $user['email'] ?>" type="email" name="email" id="email" class="form-input" placeholder="Masukkan Email" required>
                 <?php endif ?>
               </div>
 
