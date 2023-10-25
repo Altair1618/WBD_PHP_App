@@ -85,6 +85,9 @@ class AuthController
     if (isset($_SESSION['user'])) {
       unset($_SESSION['user']);
     }
+    if (isset($_SESSION['isAuthenticated'])) {
+      unset($_SESSION['isAuthenticated']);
+    }
     Router::getInstance()->redirect('/signin');
   }
 }
