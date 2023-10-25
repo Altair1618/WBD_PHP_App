@@ -1,15 +1,3 @@
-<?php
-$user = $_SESSION['user'];
-if (isset($user['gambar_profil'])) {
-  $profpic_src = "/assets/uploads/{$user['id']}-{$user['gambar_profil']}";
-} else {
-  $profpic_src = "/assets/images/Portrait_Placeholder.png";
-}
-if (isset($_SESSION['errors'])) {
-  $errors = $_SESSION['errors'];
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,6 +17,7 @@ if (isset($_SESSION['errors'])) {
 
 <body>
   <?php require_once COMPONENTS_DIR . 'navbar.php'; ?>
+  <?php $user = $_SESSION['user']; ?>
 
   <div class="body-container">
     <main id="body-main-container" class="body-main-container">
@@ -41,7 +30,7 @@ if (isset($_SESSION['errors'])) {
           <section class="profile-picture-section">
             <div class="profile-picture-box">
               <input type="file" id="profile-picture-input" name="image" accept="image/*">
-              <img id="profile-picture" class="profile-picture edit" src="<?= $profpic_src ?>" alt="profile picture" />
+              <img id="profile-picture" class="profile-picture edit" src="<?= get_img_src($user) ?>" alt="profile picture" />
               <?php if (isset($errors) && isset($errors['file'])) : ?>
                 <p class="input-error image"><?= $errors['file'] ?></p>
               <?php endif ?>
@@ -90,6 +79,8 @@ if (isset($_SESSION['errors'])) {
               </div>
             </div>
 
+            <?php unset($_SESSION['errors']); ?>
+
             <div class="button-form-wrapper">
               <a class="button-link-wrapper" href="/users/<?= $user['id'] ?>">
                 <button form="" id="button-batal">BATAL</button>
@@ -106,7 +97,3 @@ if (isset($_SESSION['errors'])) {
 </body>
 
 </html>
-
-<?php
-unset($_SESSION['errors']);
-?>

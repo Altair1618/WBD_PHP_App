@@ -238,12 +238,12 @@ div.button-group {
   align-self: stretch;
 }
 
-button#button-ubah {
+button.button-ubah {
   background: #FFC107;
   color: #000;
 }
 
-button#button-hapus {
+button.button-hapus {
   background: #E71313;
   color: #FFF;
 }

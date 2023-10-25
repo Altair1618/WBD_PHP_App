@@ -47,51 +47,55 @@ class AdminUserController
     $previous = $_SERVER['REQUEST_URI'];
 ?>
     <table>
-      <tr>
-        <th class="column-number">No</th>
-        <th class="column-image"></th>
-        <th class="column-name">Nama</th>
-        <th class="column-username">Username</th>
-        <th class="column-email">Email</th>
-        <th class="column-type">Tipe</th>
-        <th class="column-created-at">Waktu Dibuat</th>
-        <th class="column-updated-at">Waktu Diubah</th>
-        <th class="column-action">
-          <a class="button-action-wrapper" href="/users/create">
-            <button id="button-tambah" class="button-action">Tambah Pengguna</button>
-          </a>
-        </th>
-      </tr>
-      <?php $n = ($params['page'] - 1) * ITEMS_PER_PAGE + 1 ?>
-      <?php foreach ($users as $user) : ?>
-        <?php if (!is_admin($user)) : ?>
-          <tr onclick="window.location='/users/<?= $user['id'] ?>'">
-            <td class="column-number"><?= $n ?></td>
-            <td class="column-image">
-              <div class="img-wrapper">
-                <img src="<?= get_img_src($user) ?>" class="cell-img" alt="profile picture">
-              </div>
-            </td>
-            <td class="column-name"><?= htmlspecialchars($user['nama']) ?></td>
-            <td class="column-username"><?= htmlspecialchars($user['username']) ?></td>
-            <td class="column-email"><?= htmlspecialchars($user['email']) ?></td>
-            <td class="column-type"><?= tipe_to_str($user) ?></td>
-            <td class="column-created-at"><?= $user['created_at'] ?></td>
-            <td class="column-updated-at"><?= $user['updated_at'] ?></td>
-            <td class="column-action">
-              <div class="button-group">
-                <a class="button-action-wrapper" href="/users/<?= $user['id'] ?>/edit">
-                  <button id="button-ubah" class="button-action">Ubah</button>
-                </a>
-                <form class="button-action-wrapper" action="/api/users/<?= $user['id'] ?>/delete" method="POST">
-                  <button id="button-hapus" class="button-action">Hapus</button>
-                </form>
-              </div>
-            </td>
-          </tr>
-          <?php $n++ ?>
-        <?php endif ?>
-      <?php endforeach ?>
+      <thead>
+        <tr>
+          <th class="column-number">No</th>
+          <th class="column-image"></th>
+          <th class="column-name">Nama</th>
+          <th class="column-username">Username</th>
+          <th class="column-email">Email</th>
+          <th class="column-type">Tipe</th>
+          <th class="column-created-at">Waktu Dibuat</th>
+          <th class="column-updated-at">Waktu Diubah</th>
+          <th class="column-action">
+            <a class="button-action-wrapper" href="/users/create">
+              <button id="button-tambah" class="button-action">Tambah Pengguna</button>
+            </a>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php $n = ($params['page'] - 1) * ITEMS_PER_PAGE + 1 ?>
+        <?php foreach ($users as $user) : ?>
+          <?php if (!is_admin($user)) : ?>
+            <tr onclick="window.location='/users/<?= $user['id'] ?>'">
+              <td class="column-number"><?= $n ?></td>
+              <td class="column-image">
+                <div class="img-wrapper">
+                  <img src="<?= get_img_src($user) ?>" class="cell-img" alt="profile picture">
+                </div>
+              </td>
+              <td class="column-name"><?= htmlspecialchars($user['nama']) ?></td>
+              <td class="column-username"><?= htmlspecialchars($user['username']) ?></td>
+              <td class="column-email"><?= htmlspecialchars($user['email']) ?></td>
+              <td class="column-type"><?= tipe_to_str($user) ?></td>
+              <td class="column-created-at"><?= $user['created_at'] ?></td>
+              <td class="column-updated-at"><?= $user['updated_at'] ?></td>
+              <td class="column-action">
+                <div class="button-group">
+                  <a class="button-action-wrapper" href="/users/<?= $user['id'] ?>/edit">
+                    <button class="button-action button-ubah">Ubah</button>
+                  </a>
+                  <form class="button-action-wrapper" action="/api/users/<?= $user['id'] ?>/delete" method="POST">
+                    <button class="button-action button-hapus">Hapus</button>
+                  </form>
+                </div>
+              </td>
+            </tr>
+            <?php $n++ ?>
+          <?php endif ?>
+        <?php endforeach ?>
+      </tbody>
     </table>
     <div class="body-footer" id="body-footer">
       <div class="page-number-centered">

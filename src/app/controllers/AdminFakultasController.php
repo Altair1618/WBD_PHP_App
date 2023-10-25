@@ -43,39 +43,43 @@ class AdminFakultasController
     $fakultas = $params['fakultas'];
 ?>
     <table>
-      <tr>
-        <th class="column-number">No</th>
-        <th class="column-code">Kode Fakultas</th>
-        <th class="column-name">Nama</th>
-        <th class="column-created-at">Waktu Dibuat</th>
-        <th class="column-updated-at">Waktu Diubah</th>
-        <th class="column-action">
-          <a class="button-action-wrapper" href="/fakultas/create">
-            <button id="button-tambah" class="button-action">Tambah Fakultas</button>
-          </a>
-        </th>
-      </tr>
-      <?php $n = ($params['page'] - 1) * ITEMS_PER_PAGE + 1 ?>
-      <?php foreach ($fakultas as $fakul) : ?>
-        <tr onclick="window.location='/fakultas/<?= $fakul['kode'] ?>'">
-          <td class="column-number"><?= $n ?></td>
-          <td class="column-code"><?= htmlspecialchars($fakul['kode']) ?></td>
-          <td class="column-name"><?= htmlspecialchars($fakul['nama']) ?></td>
-          <td class="column-created-at"><?= $fakul['created_at'] ?></td>
-          <td class="column-updated-at"><?= $fakul['updated_at'] ?></td>
-          <td class="column-action">
-            <div class="button-group">
-              <a class="button-action-wrapper" href="/fakultas/<?= $fakul['kode'] ?>/edit">
-                <button id="button-ubah" class="button-action">Ubah</button>
-              </a>
-              <form class="button-action-wrapper" action="/api/fakultas/<?= $fakul['kode'] ?>/delete" method="POST">
-                <button id="button-hapus" class="button-action">Hapus</button>
-              </form>
-            </div>
-          </td>
+      <thead>
+        <tr>
+          <th class="column-number">No</th>
+          <th class="column-code">Kode Fakultas</th>
+          <th class="column-name">Nama</th>
+          <th class="column-created-at">Waktu Dibuat</th>
+          <th class="column-updated-at">Waktu Diubah</th>
+          <th class="column-action">
+            <a class="button-action-wrapper" href="/fakultas/create">
+              <button id="button-tambah" class="button-action">Tambah Fakultas</button>
+            </a>
+          </th>
         </tr>
-        <?php $n++ ?>
-      <?php endforeach ?>
+      </thead>
+      <tbody>
+        <?php $n = ($params['page'] - 1) * ITEMS_PER_PAGE + 1 ?>
+        <?php foreach ($fakultas as $fakul) : ?>
+          <tr onclick="window.location='/fakultas/<?= $fakul['kode'] ?>'">
+            <td class="column-number"><?= $n ?></td>
+            <td class="column-code"><?= htmlspecialchars($fakul['kode']) ?></td>
+            <td class="column-name"><?= htmlspecialchars($fakul['nama']) ?></td>
+            <td class="column-created-at"><?= $fakul['created_at'] ?></td>
+            <td class="column-updated-at"><?= $fakul['updated_at'] ?></td>
+            <td class="column-action">
+              <div class="button-group">
+                <a class="button-action-wrapper" href="/fakultas/<?= $fakul['kode'] ?>/edit">
+                  <button class="button-action button-ubah">Ubah</button>
+                </a>
+                <form class="button-action-wrapper" action="/api/fakultas/<?= $fakul['kode'] ?>/delete" method="POST">
+                  <button class="button-action button-hapus">Hapus</button>
+                </form>
+              </div>
+            </td>
+          </tr>
+          <?php $n++ ?>
+        <?php endforeach ?>
+      </tbody>
     </table>
     <div class="body-footer" id="body-footer">
       <div class="page-number-centered">

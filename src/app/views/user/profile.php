@@ -1,12 +1,3 @@
-<?php
-$user = $_SESSION['user'];
-if (isset($user['gambar_profil'])) {
-  $profpic_src = "/assets/uploads/{$user['id']}-{$user['gambar_profil']}";
-} else {
-  $profpic_src = "/assets/images/Portrait_Placeholder.png";
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,6 +17,7 @@ if (isset($user['gambar_profil'])) {
 
 <body>
   <?php require_once COMPONENTS_DIR . 'navbar.php'; ?>
+  <?php $user = $_SESSION['user']; ?>
 
   <div class="body-container">
     <main id="body-main-container" class="body-main-container">
@@ -37,7 +29,7 @@ if (isset($user['gambar_profil'])) {
         <div class="inner-flex-container">
           <section class="profile-picture-section">
             <div class="profile-picture-box">
-              <img class="profile-picture" src="<?= $profpic_src ?>" alt="profile picture" />
+              <img class="profile-picture" src="<?= get_img_src($user) ?>" alt="profile picture" />
             </div>
           </section>
           <section class="profile-detail-section">
@@ -69,10 +61,13 @@ if (isset($user['gambar_profil'])) {
                 </div>
               </div>
             </div>
+
+            <?php unset($_SESSION['errors']); ?>
+
             <div class="button-wrapper">
-            <a class="button-link-wrapper" href="/users/<?= $user['id'] ?>/edit">
-              <button id="button-ubah">UBAH</a>
-            </a>
+              <a class="button-link-wrapper" href="/users/<?= $user['id'] ?>/edit">
+                <button id="button-ubah">UBAH</button>
+              </a>
             </div>
           </section>
         </div>
@@ -82,5 +77,3 @@ if (isset($user['gambar_profil'])) {
 </body>
 
 </html>
-
-<?php unset($_SESSION['errors']); ?>
