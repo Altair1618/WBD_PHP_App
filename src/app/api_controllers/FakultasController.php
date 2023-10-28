@@ -16,6 +16,10 @@ class FakultasController {
             $fakultas = $this->model->getFakultasList();
         }
 
-        echo json_encode($fakultas);
+        echo json_encode([
+            'status' => 'success',
+            'message' => 'Data Fakultas berhasil didapatkan',
+            'data' => $fakultas
+        ]);
     }
 }

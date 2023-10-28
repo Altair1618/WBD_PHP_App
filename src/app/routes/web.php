@@ -1,7 +1,7 @@
 <?php
 
+// Web Routes
 $routes = [
-    // Web Routes
     '/' => [
         'GET' => ['route' => 'PageController@home', 'middlewares' => [
             'Authentication',
@@ -168,74 +168,5 @@ $routes = [
         'POST' => ['route' => 'AdminUserController@deleteUser', 'middlewares' => [
             'AdminAuthentication',
         ]],
-    ],
-
-    // API Routes
-    '/api/fakultas' => [
-        'GET' => ['route' => 'FakultasController@getFakultas', 'middlewares' => []],
-    ],
-
-    '/api/prodi' => [
-        'GET' => ['route' => 'ProgramStudiController@getProgramStudi', 'middlewares' => []],
-    ],
-
-    '/api/courses/student' => [
-        'GET' => ['route' => 'CourseController@getCoursesHTML', 'middlewares' => []],
-    ],
-
-    '/api/courses/teacher' => [
-        'GET' => ['route' => 'CourseController@getCoursesTaughtHTML', 'middlewares' => []],
-    ],
-
-    '/api/courses/create' => [
-        'POST' => ['route' => 'CourseController@createCourse', 'middlewares' => []],
-    ],
-
-    '/api/courses/:id/edit' => [
-        'POST' => ['route' => 'CourseController@editCourse', 'middlewares' => []],
-    ],
-
-    '/api/courses/:id/delete' => [
-        'POST' => ['route' => 'CourseController@deleteCourse', 'middlewares' => []],
-    ],
-
-    '/api/modules/create' => [
-        'POST' => ['route' => 'ModulController@createModul', 'middlewares' => []],
-    ],
-
-    '/api/modules/:modul-id/edit' => [
-        'POST' => ['route' => 'ModulController@editModul', 'middlewares' => []],
-    ],
-
-    '/api/modules/:modul-id/delete' => [
-        'POST' => ['route' => 'ModulController@deleteModul', 'middlewares' => []],
-    ],
-
-    '/api/materi/create' => [
-        'POST' => ['route' => 'MateriController@createMateri', 'middlewares' => []],
-    ],
-
-    '/api/materi/:materi-id/edit' => [
-        'POST' => ['route' => 'MateriController@editMateri', 'middlewares' => []],
-    ],
-
-    '/api/materi/:materi-id/delete' => [
-        'POST' => ['route' => 'MateriController@deleteMateri', 'middlewares' => []],
-    ],
-
-    '/api/catalog' => [
-        'GET' => ['route' => 'CourseController@getCatalogHTML', 'middlewares' => []],
-    ],
-
-    '/api/enroll' => [
-        'POST' => ['route' => 'EnrollController@createEnroll', 'middlewares' => []],
-    ],
-
-    '/api/admin/users' => [
-        'GET' => ['route' => 'AdminUserController@getUsersHTML', 'middlewares' => []],
-    ],
-
-    '/api/admin/fakultas' => [
-        'GET' => ['route' => 'AdminFakultasController@getFakultasHTML', 'middlewares' => []],
     ],
 ];
