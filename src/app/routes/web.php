@@ -32,10 +32,19 @@ $routes = [
         ]],
     ],
 
+    '/courses/student/html' => [
+        'GET' => ['route' => 'CourseController@getCoursesHTML', 'middlewares' => []],
+    ],
+
+    '/courses/teacher/html' => [
+        'GET' => ['route' => 'CourseController@getCoursesTaughthHTML', 'middlewares' => []],
+    ],
+
     '/courses/create' => [
-        'GET' => ['route' => 'PageController@coursesCreate', 'middlewares' => [
+        'GET' => ['route' => 'PageController@coursesCreateHTML', 'middlewares' => [
             'Authentication',
         ]],
+        'POST' => ['route' => 'CourseController@createCourse', 'middlewares' => []],
     ],
 
     '/courses/:id' => [
@@ -48,12 +57,18 @@ $routes = [
         'GET' => ['route' => 'PageController@coursesIdEdit', 'middlewares' => [
             'Authentication',
         ]],
+        'POST' => ['route' => 'CourseController@editCourse', 'middlewares' => []],
+    ],
+
+    '/courses/:id/delete' => [
+        'POST' => ['route' => 'CourseController@deleteCourse', 'middlewares' => []],
     ],
 
     '/courses/:course-id/modules/create' => [
         'GET' => ['route' => 'PageController@coursesIdModulesCreate', 'middlewares' => [
             'Authentication',
         ]],
+        'POST' => ['route' => 'ModulController@createModul', 'middlewares' => []],
     ],
 
     '/courses/:course-id/modules/:modul-id' => [
@@ -66,24 +81,43 @@ $routes = [
         'GET' => ['route' => 'PageController@coursesIdModulesIdEdit', 'middlewares' => [
             'Authentication',
         ]],
+        'POST' => ['route' => 'ModulController@editModul', 'middlewares' => []],
+    ],
+
+    '/courses/:course-id/modules/:modul-id/delete' => [
+        'POST' => ['route' => 'ModulController@deleteModul', 'middlewares' => []],
     ],
 
     '/courses/:course-id/modules/:modul-id/create' => [
         'GET' => ['route' => 'PageController@coursesIdModulesIdMateriCreate', 'middlewares' => [
             'Authentication',
         ]],
+        'POST' => ['route' => 'MateriController@createMateri', 'middlewares' => []],
     ],
 
     '/courses/:course-id/modules/:modul-id/:materi-id/edit' => [
         'GET' => ['route' => 'PageController@coursesIdModulesIdMateriIdEdit', 'middlewares' => [
             'Authentication',
         ]],
+        'POST' => ['route' => 'MateriController@editMateri', 'middlewares' => []],
+    ],
+
+    '/courses/:course-id/modules/:modul-id/:materi-id/delete' => [
+        'POST' => ['route' => 'MateriController@deleteMateri', 'middlewares' => []],
     ],
 
     '/catalog' => [
         'GET' => ['route' => 'PageController@catalog', 'middlewares' => [
             'Authentication',
         ]],
+    ],
+
+    '/catalog/html' => [
+        'GET' => ['route' => 'CourseController@getCatalog', 'middlewares' => []],
+    ],
+
+    '/enroll' => [
+        'POST' => ['route' => 'EnrollController@createEnroll', 'middlewares' => []],
     ],
 
     '/profile' => [

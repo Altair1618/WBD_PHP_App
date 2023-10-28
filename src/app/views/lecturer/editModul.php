@@ -31,7 +31,7 @@
       </header>
 
       <div class="main-flex-container">
-        <form class="form-container" action="/api/modules/<?=$params['modul-id']?>/edit" method="POST" enctype="multipart/form-data">
+        <form class="form-container" action="/courses/<?=$params['course-id']?>/modules/<?=$params['modul-id']?>/edit" method="POST" enctype="multipart/form-data">
           <section class="modul-detail-section">
             <div class="modul-detail-wrapper">
               <div class="modul-detail-container">
