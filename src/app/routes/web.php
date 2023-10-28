@@ -37,7 +37,7 @@ $routes = [
     ],
 
     '/courses/teacher/html' => [
-        'GET' => ['route' => 'CourseController@getCoursesTaughthHTML', 'middlewares' => []],
+        'GET' => ['route' => 'CourseController@getCoursesTaughtHTML', 'middlewares' => []],
     ],
 
     '/courses/create' => [
