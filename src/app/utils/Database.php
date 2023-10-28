@@ -18,11 +18,18 @@ class Database {
     }
     
     public function execute($query, $params = []) {
-        $result = pg_prepare($this->handle, "", $query);
-        $result = pg_execute($this->handle, "", $params);
-        
-        if ($result) return $result;
-        else throw new Exception(pg_last_error($this->handle));
+        try {
+            $result = pg_prepare($this->handle, "", $query);
+            if (!$result) throw new Exception(pg_last_error($this->handle));
+
+            $result = pg_execute($this->handle, "", $params);
+            if (!$result) throw new Exception(pg_last_error($this->handle));
+
+            return $result;
+        } catch (Exception $e) {
+            Logger::error(__FILE__, __LINE__, "Failed to execute query: " . $e->getMessage());
+            throw $e;
+        }
     }
 
     public function fetch($query, $params = []) {

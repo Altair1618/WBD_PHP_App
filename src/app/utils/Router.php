@@ -84,7 +84,7 @@ class Router {
         $controllerName = $temp[0];
         $controllerMethod = $temp[1];
 
-        if (substr($uri, 0, 4) == "/api") require_once API_CONTROLLERS_DIR . $controllerName . ".php";
+        if (substr($uri, 0, 4) == "/api" && $controllerName !== 'ErrorController') require_once API_CONTROLLERS_DIR . $controllerName . ".php";
         else require_once CONTROLLERS_DIR . $controllerName . ".php";
         
         // require_once CONTROLLERS_DIR . $controllerName . ".php";

@@ -10,8 +10,14 @@ $api_routes = [
         'GET' => ['route' => 'ProgramStudiController@getProgramStudi', 'middlewares' => []],
     ],
 
-    '/api/courses/:id' => [
-        'GET' => ['route' => 'CourseController@getCourseById', 'middlewares' => []],
+    '/api/courses' => [
+        'POST' => ['route' => 'CourseController@createCourse', 'middlewares' => []],
+    ],
+    
+    '/api/courses/:kode' => [
+        'GET' => ['route' => 'CourseController@getCourseByKode', 'middlewares' => []],
+        'PUT' => ['route' => 'CourseController@updateCourse', 'middlewares' => []],
+        'DELETE' => ['route' => 'CourseController@deleteCourse', 'middlewares' => []],
     ],
 
     '/api/admin/users' => [
