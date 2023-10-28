@@ -18,6 +18,10 @@ class ProgramStudiController {
             $program_studi = $this->model->getProgramStudiList();
         }
         
-        echo json_encode($program_studi);
+        echo json_encode([
+            'status' => 'success',
+            'message' => 'Data Program Studi berhasil didapatkan',
+            'data' => $program_studi    
+        ]);
     }
 }

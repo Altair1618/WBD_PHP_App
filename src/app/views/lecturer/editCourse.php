@@ -31,7 +31,7 @@
       </header>
 
       <div class="main-flex-container">
-        <form class="form-container" action="/api/courses/{$course['kode']}/edit" method="POST" enctype="multipart/form-data">
+        <form class="form-container" action="/courses/<?=$params['id']?>/edit" method="POST" enctype="multipart/form-data">
           <section class="course-detail-section">
             <div class="course-detail-wrapper">
               <div class="course-detail-container">

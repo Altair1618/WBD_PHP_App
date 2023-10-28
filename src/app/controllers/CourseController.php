@@ -277,7 +277,7 @@ class CourseController {
                         <p class='course-lecturer'> {$course['pengajar']['nama']} </p>
 
                         <div class='course-button-container'>
-                            <form action='/api/enroll?kode=" . $course['kode'] . "&user=" . $_SESSION['user']['id'] . "' method='POST' class='course-button-container'>
+                            <form action='/enroll?kode=" . $course['kode'] . "&user=" . $_SESSION['user']['id'] . "' method='POST' class='course-button-container'>
                                 <button class='course-enroll-button' type='submit'>DAFTAR</a>
                             </form>
                         </div>
@@ -417,7 +417,7 @@ class CourseController {
                         <div class='course-button-container'>
                             <a class='course-detail-button' href='/courses/{$course['kode']}'>LIHAT</a>
     
-                            <form action='/api/courses/{$course['kode']}/delete' method='POST'>
+                            <form action='/courses/{$course['kode']}/delete' method='POST'>
                                 <button aria-label='course-delete-button' type='submit'>
                                     <svg width='14' height='15' viewBox='0 0 14 15' fill='none' xmlns='http://www.w3.org/2000/svg'>
                                         <g clip-path='url(#clip0_155_780)'>

@@ -8,8 +8,7 @@ services:
       dockerfile: Dockerfile
     ports:
       - 8008:80
-    env_file:
-      - .env
+    env_file: .env
     volumes:
       - ./src/app:/var/www/app
       - ./src/public:/var/www/html
@@ -24,8 +23,7 @@ services:
     restart: unless-stopped
     ports:
       - 5433:5432
-    env_file:
-      - .env
+    env_file: .env
     volumes:
       - ./data:/var/lib/postgresql/data
     healthcheck:

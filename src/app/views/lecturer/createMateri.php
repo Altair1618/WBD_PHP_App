@@ -31,7 +31,7 @@
       </header>
 
       <div class="main-flex-container">
-        <form class="form-container" action="/api/materi/create" method="POST" enctype="multipart/form-data">
+        <form class="form-container" action="/courses/<?=$params['course-id']?>/modules/<?=$params['modul-id']?>/create" method="POST" enctype="multipart/form-data">
           <section class="materi-detail-section">
             <div class="materi-detail-wrapper">
               <div class="materi-detail-container">

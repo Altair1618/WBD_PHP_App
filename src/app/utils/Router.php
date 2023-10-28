@@ -11,7 +11,9 @@ class Router {
     public static function getInstance() {
         if (!isset(self::$instance)) {
             require_once APP_DIR . 'routes/web.php';
-            self::$instance = new Router($routes);
+            require_once APP_DIR . 'routes/api.php';
+
+            self::$instance = new Router($routes + $api_routes);
         }
 
         return self::$instance;
@@ -39,14 +41,6 @@ class Router {
                 return [false, null];
             }
         }
-
-        // if (count($temp) > 1) {
-        //    $queries = explode("&", $temp[1]);
-        //    foreach ($queries as $query) {
-        //        $query = explode("=", $query);
-        //        $params[$query[0]] = urldecode($query[1]);
-        //    }
-        // }
 
         return [true, $params];
     }
@@ -90,7 +84,10 @@ class Router {
         $controllerName = $temp[0];
         $controllerMethod = $temp[1];
 
-        require_once CONTROLLERS_DIR . $controllerName . ".php";
+        if (substr($uri, 0, 4) == "/api" && $controllerName !== 'ErrorController') require_once API_CONTROLLERS_DIR . $controllerName . ".php";
+        else require_once CONTROLLERS_DIR . $controllerName . ".php";
+        
+        // require_once CONTROLLERS_DIR . $controllerName . ".php";
         $controller = new $controllerName();
         $controller->$controllerMethod($params);
     }

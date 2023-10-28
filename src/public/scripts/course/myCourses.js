@@ -12,7 +12,7 @@ var footer = document.getElementById("body-footer");
 
 // URI Builder
 function buildCourseFetchURI(caller, value) {
-    let uri = "/api/courses/student?";
+    let uri = "/courses/student/html?";
 
     var search, fakultas, prodi, sort, order, page;
 
@@ -49,7 +49,6 @@ function messageContainerHandler(event) {
 
     while (messageContainer.className !== "message-container") {
         messageContainer = messageContainer.parentElement;
-        console.log(messageContainer)
     }
 
     messageContainer.style.display = "none";
@@ -115,11 +114,10 @@ fakultasSelector.addEventListener("change", function() {
 
             xhr2.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
-                    console.log(this.responseText);
                     prodiSelector.innerHTML = "<option value='all'></option>";
 
                     const prodiList = JSON.parse(this.responseText);
-                    prodiList.forEach(prodi => {
+                    prodiList['data'].forEach(prodi => {
                         prodiSelector.innerHTML += `<option value="${prodi.kode}">${prodi.kode} - ${prodi.nama}</option>`;
                     });
 

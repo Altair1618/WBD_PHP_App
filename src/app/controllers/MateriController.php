@@ -1,7 +1,7 @@
 <?php
 
 class MateriController {
-    function parse_size($size) {
+    private function parse_size($size) {
         $unit = preg_replace('/[^bkmgtpezy]/i', '', $size);
         $size = preg_replace('/[^0-9\.]/', '', $size);
         
@@ -122,7 +122,7 @@ class MateriController {
             header('Location: /courses/' . $params['kode'] . '/modules/' . $params['modul-id'] . '/' . $params['materi-id'] . '/edit');
         }
     }
-
+    
     public function showCreateMateriPage($params) {
         require_once VIEWS_DIR . 'lecturer/createMateri.php';
     }
