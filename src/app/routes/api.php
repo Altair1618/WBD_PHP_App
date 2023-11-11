@@ -2,6 +2,10 @@
 
 // API Routes
 $api_routes = [
+    '/api/user' => [
+        'GET' => ['route' => 'UserController@getOneUser', 'middlewares' => []],
+    ],
+
     '/api/fakultas' => [
         'GET' => ['route' => 'FakultasController@getFakultas', 'middlewares' => []],
     ],
