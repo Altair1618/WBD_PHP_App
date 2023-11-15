@@ -6,6 +6,11 @@ define('DB_PORT', 5432);
 
 // URL
 define('BASE_URL', 'http://localhost:' . HTTP_PORT . '/');
+define('REST_URL', $_ENV['REST_SERVICE'] . '/');
+define('SOAP_URL', $_ENV['SOAP_SERVICE'] . '/');
+
+// API Key
+define('SOAP_API_KEY', $_ENV['SOAP_SERVICE_API_KEY']);
 
 // Directory
 define('APP_DIR', __DIR__ . '/../');
