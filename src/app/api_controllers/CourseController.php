@@ -33,8 +33,12 @@ class CourseController {
         require_once MODELS_DIR . 'MataKuliah.php';
         $mata_kuliah = new MataKuliahRepository();
 
+        require_once MODELS_DIR . 'Enroll.php';
+        $pendaftaran = new EnrollRepository();
+
         try {
             $mata_kuliah->insertMataKuliah($req_body['kode'], $req_body['nama'], $req_body['deskripsi'], $req_body['kode_program_studi']);
+            $pendaftaran->insertEnroll($req_body['userId'], $req_body['kode']);
 
             $data = $mata_kuliah->getMataKuliah($req_body['kode']);
 
