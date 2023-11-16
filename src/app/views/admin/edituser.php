@@ -21,7 +21,7 @@ if (isset($_SESSION['errors'])) {
 
   <link href="/styles/global.css" rel="stylesheet">
   <link href="/styles/navbar/navbar.css" rel="stylesheet">
-  <link href="/styles/admin/add_edit_user.css" rel="stylesheet">
+  <link href="/styles/admin/form.css" rel="stylesheet">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -38,7 +38,7 @@ if (isset($_SESSION['errors'])) {
       </header>
 
       <div class="main-flex-container">
-        <form class="form-container" action="/admin/edituser/<?= $user['id'] ?>" method="POST" enctype="multipart/form-data">
+        <form class="form-container" action="/users/<?= $user['id'] ?>/edit" method="POST" enctype="multipart/form-data">
           <section class="profile-picture-section">
             <div class="profile-picture-box">
               <input type="file" id="profile-picture-input" name="image" accept="image/*">
@@ -76,16 +76,6 @@ if (isset($_SESSION['errors'])) {
               </div>
 
               <div class="profile-detail-container">
-                <label for="old-password" class="profile-label">Password</label>
-                <?php if (isset($errors) && isset($errors['password'])) : ?>
-                  <input type="password" name="old-password" id="old-password" class="form-input error" placeholder="Masukkan Password Lama" required>
-                  <p class="input-error"><?= $errors['password'] ?></p>
-                <?php else : ?>
-                  <input type="password" name="old-password" id="old-password" class="form-input" placeholder="Masukkan Password Lama">
-                <?php endif ?>
-              </div>
-
-              <div class="profile-detail-container">
                 <label for="new-password" class="profile-label">Password Baru</label>
                 <input type="password" name="new-password" id="new-password" class="form-input" placeholder="Masukkan Password Baru">
               </div>
@@ -93,15 +83,25 @@ if (isset($_SESSION['errors'])) {
               <div class="profile-detail-container">
                 <p class="profile-label">Tipe:</p>
                 <div class="radio-group">
-                  <input type="radio" name="tipe" id="radio-dosen" value="dosen" checked />
+                  <?php if ($user['tipe'] == PENGGUNA_TIPE_PENGAJAR) : ?>
+                    <input type="radio" name="tipe" id="radio-dosen" value="dosen" checked />
+                  <?php else : ?>
+                    <input type="radio" name="tipe" id="radio-dosen" value="dosen" />
+                  <?php endif ?>
                   <label for="radio-dosen" class="radio-label">Dosen</label>
-                  <input type="radio" name="tipe" id="radio-mahasiswa" value="mahasiswa" />
+                  <?php if ($user['tipe'] == PENGGUNA_TIPE_MAHASISWA) : ?>
+                    <input type="radio" name="tipe" id="radio-mahasiswa" value="mahasiswa" checked />
+                  <?php else : ?>
+                    <input type="radio" name="tipe" id="radio-mahasiswa" value="mahasiswa" />
+                  <?php endif ?>
                   <label for="radio-mahasiswa" class="radio-label">Mahasiswa</label>
                 </div>
               </div>
 
               <div class="button-form-wrapper">
-                <button form="" id="button-batal" onclick="window.location='/admin/users'">BATAL</button>
+                <a href="/users" class="button-link-wrapper">
+                  <button form="" id="button-batal">BATAL</button>
+                </a>
                 <button type="submit" id="button-simpan">SIMPAN</button>
               </div>
           </section>
@@ -110,7 +110,7 @@ if (isset($_SESSION['errors'])) {
     </main>
   </div>
 
-  <script src="/scripts/admin/add_edit_user.js"></script>
+  <script src="/scripts/admin/form.js"></script>
 </body>
 
 </html>

@@ -33,14 +33,7 @@ class AuthController
         $redirect = $_SESSION['referer'];
       }
       unset($_SESSION['errors']);
-      if ($_SESSION['user']['tipe'] == PENGGUNA_TIPE_ADMIN) {
-        if (isset($redirect) && $redirect == '/') {
-          $redirect = '/admin/users';
-        }
-        Router::getInstance()->redirect($redirect ?? '/admin/users');
-      } else {
         Router::getInstance()->redirect($redirect ?? '/');
-      }
     } else {
       $_SESSION['errors']['auth'] = 'Username, email, atau password salah';
       Router::getInstance()->redirect('/signin');
@@ -73,6 +66,7 @@ class AuthController
     } else {
       $user_repo->insertPengguna($username, $email, $password_hash, $nama, PENGGUNA_TIPE_MAHASISWA);
       $_SESSION["user"] = $user_repo->getPengguna(username: $username);
+      $_SESSION["isAuthenticated"] = true;
       Logger::info(__FILE__, __LINE__, "user `$username` is logged in");
       unset($_SESSION['errors']);
       Router::getInstance()->redirect('/');
@@ -84,6 +78,9 @@ class AuthController
     Logger::info(__FILE__, __LINE__, "User `{$_SESSION['user']['username']}` is logged out");
     if (isset($_SESSION['user'])) {
       unset($_SESSION['user']);
+    }
+    if (isset($_SESSION['isAuthenticated'])) {
+      unset($_SESSION['isAuthenticated']);
     }
     Router::getInstance()->redirect('/signin');
   }

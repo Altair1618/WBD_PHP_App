@@ -8,7 +8,7 @@ class FakultasRepository extends Model
       return $this->db->fetchAll("SELECT * FROM fakultas");
     } catch (Exception $e) {
       Logger::error(__FILE__, __LINE__, "Failed to fetch `fakultas`: " . $e->getMessage());
-      throw $e;
+      Router::getInstance()->error(500);;
     }
   }
 
@@ -18,7 +18,7 @@ class FakultasRepository extends Model
       return $this->db->fetch("SELECT * FROM fakultas WHERE kode=$1 LIMIT 1", [$kode]);
     } catch (Exception $e) {
       Logger::error(__FILE__, __LINE__, "Failed to fetch `fakultas`: " . $e->getMessage());
-      throw $e;
+      Router::getInstance()->error(500);;
     }
   }
 
@@ -29,7 +29,7 @@ class FakultasRepository extends Model
       $this->db->execute($query, [$kode, $nama]);
     } catch (Exception $e) {
       Logger::error(__FILE__, __LINE__, "Failed to insert into `fakultas`: " . $e->getMessage());
-      throw $e;
+      Router::getInstance()->error(500);;
     }
   }
 
@@ -40,7 +40,7 @@ class FakultasRepository extends Model
       $this->db->execute($query, [$nama, $kode]);
     } catch (Exception $e) {
       Logger::error(__FILE__, __LINE__, "Failed to update `fakultas`: " . $e->getMessage());
-      throw $e;
+      Router::getInstance()->error(500);;
     }
   }
 
@@ -51,7 +51,7 @@ class FakultasRepository extends Model
       $this->db->execute($query, [$kode]);
     } catch (Exception $e) {
       Logger::error(__FILE__, __LINE__, "Failed to delete from `fakultas`: " . $e->getMessage());
-      throw $e;
+      Router::getInstance()->error(500);;
     }
   }
 
@@ -70,7 +70,7 @@ class FakultasRepository extends Model
       return $this->db->fetchAll($query, ["%$search%", $limit, $offset]);
     } catch (Exception $e) {
       Logger::error(__FILE__, __LINE__, "Failed to fetch `fakultas`: " . $e->getMessage());
-      throw $e;
+      Router::getInstance()->error(500);;
     }
   }
 
@@ -81,7 +81,7 @@ class FakultasRepository extends Model
       return $this->db->rowCount($query, ["%$search%"]);
     } catch (Exception $e) {
       Logger::error(__FILE__, __LINE__, "Failed to fetch `fakultas`: " . $e->getMessage());
-      throw $e;
+      Router::getInstance()->error(500);;
     }
   }
 }

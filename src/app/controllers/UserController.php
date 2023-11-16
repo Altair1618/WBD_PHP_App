@@ -4,7 +4,6 @@ class UserController
 {
     public function showProfilePage()
     {
-        unset($_SESSION['errors']);
         require_once VIEWS_DIR . 'user/profile.php';
     }
 
@@ -76,13 +75,13 @@ class UserController
         }
 
         if (!empty($_SESSION['errors'])) {
-            Router::getInstance()->redirect('/profile/edit');
+            Router::getInstance()->redirect("/users/{$user['id']}/edit");
         } else {
             unset($_SESSION['errors']);
             $user_repo->updatePengguna((int) $user['id'], $new_username, $new_email, $new_password, $new_name, $user['tipe'], $image_name);
             $_SESSION['user'] = $user_repo->getPengguna(username: $new_username);
             Logger::info(__FILE__, __LINE__, "User `{$user['username']}` profile updated");
-            Router::getInstance()->redirect('/profile');
+            Router::getInstance()->redirect("/users/{$user['id']}");
         }
     }
 }

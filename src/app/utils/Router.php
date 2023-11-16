@@ -8,7 +8,7 @@ class Router {
         $this->routes = $routes;
     }
 
-    public static function getInstance() {
+    public static function getInstance(): Router {
         if (!isset(self::$instance)) {
             require_once APP_DIR . 'routes/web.php';
             require_once APP_DIR . 'routes/api.php';

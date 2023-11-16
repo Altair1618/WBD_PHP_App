@@ -15,3 +15,22 @@ require_once MODELS_DIR . 'Pengguna.php';
 require_once MODELS_DIR . 'ProgramStudi.php';
 
 require_once MIDDLEWARES_DIR . 'Middleware.php';
+
+function is_admin($user)
+{
+  return $user['tipe'] == PENGGUNA_TIPE_ADMIN;
+}
+
+function get_img_src($user)
+{
+  if (isset($user['gambar_profil'])) {
+    return "/assets/uploads/{$user['id']}-{$user['gambar_profil']}";
+  } else {
+    return '/assets/images/Portrait_Placeholder.png';
+  }
+}
+
+function tipe_to_str($user)
+{
+  return ['Admin', 'Dosen', 'Mahasiswa'][$user['tipe']];
+}

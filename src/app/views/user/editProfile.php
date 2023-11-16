@@ -1,19 +1,3 @@
-<?php
-$user = $_SESSION['user'];
-if (isset($user['gambar_profil'])) {
-  $profpic_src = "/assets/uploads/{$user['id']}-{$user['gambar_profil']}";
-  // asumsi: file ada
-  // if (!file_exists("/var/www/html" . $profpic_src)) {
-  //   $profpic_src = "/assets/images/Portrait_Placeholder.png";
-  // }
-} else {
-  $profpic_src = "/assets/images/Portrait_Placeholder.png";
-}
-if (isset($_SESSION['errors'])) {
-  $errors = $_SESSION['errors'];
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -33,6 +17,7 @@ if (isset($_SESSION['errors'])) {
 
 <body>
   <?php require_once COMPONENTS_DIR . 'navbar.php'; ?>
+  <?php $user = $_SESSION['user']; ?>
 
   <div class="body-container">
     <main id="body-main-container" class="body-main-container">
@@ -41,11 +26,11 @@ if (isset($_SESSION['errors'])) {
       </header>
 
       <div class="main-flex-container">
-        <form class="form-container" action="/profile/edit" method="POST" enctype="multipart/form-data">
+        <form class="form-container" action="/users/<?= $user['id'] ?>/edit" method="POST" enctype="multipart/form-data">
           <section class="profile-picture-section">
             <div class="profile-picture-box">
               <input type="file" id="profile-picture-input" name="image" accept="image/*">
-              <img id="profile-picture" class="profile-picture edit" src="<?= $profpic_src ?>" alt="profile picture" />
+              <img id="profile-picture" class="profile-picture edit" src="<?= get_img_src($user) ?>" alt="profile picture" />
               <?php if (isset($errors) && isset($errors['file'])) : ?>
                 <p class="input-error image"><?= $errors['file'] ?></p>
               <?php endif ?>
@@ -55,7 +40,7 @@ if (isset($_SESSION['errors'])) {
             <div class="profile-detail-wrapper">
               <div class="profile-detail-container">
                 <label for="name" class="profile-label">Nama</label>
-                <input type="text" value="<?= $user['nama'] ?>" name="name" id="name" class="form-input" placeholder="Masukkan Nama Lengkap" required>
+                <input value="<?= $user['nama'] ?>" type="text" name="name" id="name" class="form-input" placeholder="Masukkan Nama Lengkap" required>
               </div>
 
               <div class="profile-detail-container">
@@ -64,7 +49,7 @@ if (isset($_SESSION['errors'])) {
                   <input type="text" value="<?= $user['username'] ?>" name="username" id="username" class="form-input error" placeholder="Masukkan Username" required>
                   <p class="input-error"><?= $errors['username'] ?></p>
                 <?php else : ?>
-                  <input type="text" name="username" id="username" class="form-input" placeholder="Masukkan Username" required>
+                  <input value="<?= $user['username'] ?>" type="text" name="username" id="username" class="form-input" placeholder="Masukkan Username" required>
                 <?php endif ?>
               </div>
 
@@ -74,7 +59,7 @@ if (isset($_SESSION['errors'])) {
                   <input type="email" value="<?= $user['email'] ?>" name="email" id="email" class="form-input error" placeholder="Masukkan Email" required>
                   <p class="input-error"><?= $errors['email'] ?></p>
                 <?php else : ?>
-                  <input type="email" name="email" id="email" class="form-input" placeholder="Masukkan Email" required>
+                  <input value="<?= $user['email'] ?>" type="email" name="email" id="email" class="form-input" placeholder="Masukkan Email" required>
                 <?php endif ?>
               </div>
 
@@ -94,8 +79,12 @@ if (isset($_SESSION['errors'])) {
               </div>
             </div>
 
+            <?php unset($_SESSION['errors']); ?>
+
             <div class="button-form-wrapper">
-              <button form="" id="button-batal" onclick="window.location='/profile'">BATAL</button>
+              <a class="button-link-wrapper" href="/users/<?= $user['id'] ?>">
+                <button form="" id="button-batal">BATAL</button>
+              </a>
               <button type="submit" id="button-simpan">SIMPAN</button>
             </div>
           </section>
@@ -108,7 +97,3 @@ if (isset($_SESSION['errors'])) {
 </body>
 
 </html>
-
-<?php
-unset($_SESSION['errors']);
-?>

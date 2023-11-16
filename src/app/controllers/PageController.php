@@ -1,214 +1,263 @@
 <?php
 
-class PageController {
-    public function home($params) {
-        header('Location: /courses');
+class PageController
+{
+  public function home($params)
+  {
+    if (isset($_SESSION['user']) && $_SESSION['user']['tipe'] == PENGGUNA_TIPE_ADMIN) {
+      header('Location: /users');
+    } else {
+      header('Location: /courses');
+    }
+    return;
+  }
 
-        return;
+  public function courses($params)
+  {
+    if (!isset($_SESSION['isAuthenticated']) || !$_SESSION['isAuthenticated']) {
+      header('Location: /signin');
+      return;
     }
 
-    public function courses($params) {
-        if (!isset($_SESSION['isAuthenticated']) || !$_SESSION['isAuthenticated']) {
-            header('Location: /signin');
-            return;
-        }
-        
-        if ($_SESSION['user']['tipe'] == PENGGUNA_TIPE_MAHASISWA) {
-            require_once CONTROLLERS_DIR . 'CourseController.php';
+    if ($_SESSION['user']['tipe'] == PENGGUNA_TIPE_MAHASISWA) {
+      require_once CONTROLLERS_DIR . 'CourseController.php';
 
-            $controller = new CourseController();
-            $controller->showMyCourses($params);
-        } else if ($_SESSION['user']['tipe'] == PENGGUNA_TIPE_PENGAJAR) {
-            require_once CONTROLLERS_DIR . 'CourseController.php';
+      $controller = new CourseController();
+      $controller->showMyCourses($params);
+    } else if ($_SESSION['user']['tipe'] == PENGGUNA_TIPE_PENGAJAR) {
+      require_once CONTROLLERS_DIR . 'CourseController.php';
 
-            $controller = new CourseController();
-            $controller->showCoursesTaught($params);
-        } else {
-            require_once CONTROLLERS_DIR . 'ErrorController.php';
+      $controller = new CourseController();
+      $controller->showCoursesTaught($params);
+    } else {
+      require_once CONTROLLERS_DIR . 'ErrorController.php';
 
-            $params['errorCode'] = 403;
-            $controller = new ErrorController();
-            $controller->showErrorPage($params);
-        }
+      $params['errorCode'] = 403;
+      $controller = new ErrorController();
+      $controller->showErrorPage($params);
+    }
+  }
+
+  public function coursesId($params)
+  {
+    if (!isset($_SESSION['isAuthenticated']) || !$_SESSION['isAuthenticated']) {
+      header('Location: /signin');
+      return;
     }
 
-    public function coursesId($params) {
-        if (!isset($_SESSION['isAuthenticated']) || !$_SESSION['isAuthenticated']) {
-            header('Location: /signin');
-            return;
-        }
-        
-        if ($_SESSION['user']['tipe'] == PENGGUNA_TIPE_MAHASISWA || $_SESSION['user']['tipe'] == PENGGUNA_TIPE_PENGAJAR) {
-            require_once CONTROLLERS_DIR . 'CourseController.php';
+    if ($_SESSION['user']['tipe'] == PENGGUNA_TIPE_MAHASISWA || $_SESSION['user']['tipe'] == PENGGUNA_TIPE_PENGAJAR) {
+      require_once CONTROLLERS_DIR . 'CourseController.php';
 
-            $controller = new CourseController();
-            $controller->showCourseDetail($params);
-        } else {
-            require_once CONTROLLERS_DIR . 'ErrorController.php';
+      $controller = new CourseController();
+      $controller->showCourseDetail($params);
+    } else {
+      require_once CONTROLLERS_DIR . 'ErrorController.php';
 
-            $params['errorCode'] = 403;
-            $controller = new ErrorController();
-            $controller->showErrorPage($params);
-        }
+      $params['errorCode'] = 403;
+      $controller = new ErrorController();
+      $controller->showErrorPage($params);
+    }
+  }
+
+  public function coursesCreate($params)
+  {
+    if (!isset($_SESSION['isAuthenticated']) || !$_SESSION['isAuthenticated']) {
+      header('Location: /signin');
+      return;
     }
 
-    public function coursesCreate($params) {
-        if (!isset($_SESSION['isAuthenticated']) || !$_SESSION['isAuthenticated']) {
-            header('Location: /signin');
-            return;
-        }
-        
-        if ($_SESSION['user']['tipe'] == PENGGUNA_TIPE_PENGAJAR) {
-            require_once CONTROLLERS_DIR . 'CourseController.php';
+    if ($_SESSION['user']['tipe'] == PENGGUNA_TIPE_PENGAJAR) {
+      require_once CONTROLLERS_DIR . 'CourseController.php';
 
-            $controller = new CourseController();
-            $controller->showCreateCoursePage($params);
-        } else {
-            require_once CONTROLLERS_DIR . 'ErrorController.php';
+      $controller = new CourseController();
+      $controller->showCreateCoursePage($params);
+    } else {
+      require_once CONTROLLERS_DIR . 'ErrorController.php';
 
-            $params['errorCode'] = 403;
-            $controller = new ErrorController();
-            $controller->showErrorPage($params);
-        }
+      $params['errorCode'] = 403;
+      $controller = new ErrorController();
+      $controller->showErrorPage($params);
+    }
+  }
+
+  public function coursesIdEdit($params)
+  {
+    if (!isset($_SESSION['isAuthenticated']) || !$_SESSION['isAuthenticated']) {
+      header('Location: /signin');
+      return;
     }
 
-    public function coursesIdEdit($params) {
-        if (!isset($_SESSION['isAuthenticated']) || !$_SESSION['isAuthenticated']) {
-            header('Location: /signin');
-            return;
-        }
-        
-        if ($_SESSION['user']['tipe'] == PENGGUNA_TIPE_PENGAJAR) {
-            require_once CONTROLLERS_DIR . 'CourseController.php';
+    if ($_SESSION['user']['tipe'] == PENGGUNA_TIPE_PENGAJAR) {
+      require_once CONTROLLERS_DIR . 'CourseController.php';
 
-            $controller = new CourseController();
-            $controller->showEditCoursePage($params);
-        } else {
-            require_once CONTROLLERS_DIR . 'ErrorController.php';
+      $controller = new CourseController();
+      $controller->showEditCoursePage($params);
+    } else {
+      require_once CONTROLLERS_DIR . 'ErrorController.php';
 
-            $params['errorCode'] = 403;
-            $controller = new ErrorController();
-            $controller->showErrorPage($params);
-        }
+      $params['errorCode'] = 403;
+      $controller = new ErrorController();
+      $controller->showErrorPage($params);
+    }
+  }
+
+  public function coursesIdmodulesId($params)
+  {
+    if (!isset($_SESSION['isAuthenticated']) || !$_SESSION['isAuthenticated']) {
+      header('Location: /signin');
+      return;
     }
 
-    public function coursesIdmodulesId($params) {
-        if (!isset($_SESSION['isAuthenticated']) || !$_SESSION['isAuthenticated']) {
-            header('Location: /signin');
-            return;
-        }
-        
-        if ($_SESSION['user']['tipe'] == PENGGUNA_TIPE_MAHASISWA || $_SESSION['user']['tipe'] == PENGGUNA_TIPE_PENGAJAR) {
-            require_once CONTROLLERS_DIR . 'ModulController.php';
+    if ($_SESSION['user']['tipe'] == PENGGUNA_TIPE_MAHASISWA || $_SESSION['user']['tipe'] == PENGGUNA_TIPE_PENGAJAR) {
+      require_once CONTROLLERS_DIR . 'ModulController.php';
 
-            $controller = new ModulController();
-            $controller->showModulDetail($params);
-        } else {
-            require_once CONTROLLERS_DIR . 'ErrorController.php';
+      $controller = new ModulController();
+      $controller->showModulDetail($params);
+    } else {
+      require_once CONTROLLERS_DIR . 'ErrorController.php';
 
-            $params['errorCode'] = 403;
-            $controller = new ErrorController();
-            $controller->showErrorPage($params);
-        }
+      $params['errorCode'] = 403;
+      $controller = new ErrorController();
+      $controller->showErrorPage($params);
+    }
+  }
+
+  public function coursesIdModulesCreate($params)
+  {
+    if (!isset($_SESSION['isAuthenticated']) || !$_SESSION['isAuthenticated']) {
+      header('Location: /signin');
+      return;
     }
 
-    public function coursesIdModulesCreate($params) {
-        if (!isset($_SESSION['isAuthenticated']) || !$_SESSION['isAuthenticated']) {
-            header('Location: /signin');
-            return;
-        }
+    if ($_SESSION['user']['tipe'] == PENGGUNA_TIPE_PENGAJAR) {
+      require_once CONTROLLERS_DIR . 'ModulController.php';
 
-        if ($_SESSION['user']['tipe'] == PENGGUNA_TIPE_PENGAJAR) {
-            require_once CONTROLLERS_DIR . 'ModulController.php';
+      $controller = new ModulController();
+      $controller->showCreateModulPage($params);
+    } else {
+      require_once CONTROLLERS_DIR . 'ErrorController.php';
 
-            $controller = new ModulController();
-            $controller->showCreateModulPage($params);
-        } else {
-            require_once CONTROLLERS_DIR . 'ErrorController.php';
+      $params['errorCode'] = 403;
+      $controller = new ErrorController();
+      $controller->showErrorPage($params);
+    }
+  }
 
-            $params['errorCode'] = 403;
-            $controller = new ErrorController();
-            $controller->showErrorPage($params);
-        }
+  public function coursesIdModulesIdEdit($params)
+  {
+    if (!isset($_SESSION['isAuthenticated']) || !$_SESSION['isAuthenticated']) {
+      header('Location: /signin');
+      return;
     }
 
-    public function coursesIdModulesIdEdit($params) {
-        if (!isset($_SESSION['isAuthenticated']) || !$_SESSION['isAuthenticated']) {
-            header('Location: /signin');
-            return;
-        }
+    if ($_SESSION['user']['tipe'] == PENGGUNA_TIPE_PENGAJAR) {
+      require_once CONTROLLERS_DIR . 'ModulController.php';
 
-        if ($_SESSION['user']['tipe'] == PENGGUNA_TIPE_PENGAJAR) {
-            require_once CONTROLLERS_DIR . 'ModulController.php';
+      $controller = new ModulController();
+      $controller->showEditModulPage($params);
+    } else {
+      require_once CONTROLLERS_DIR . 'ErrorController.php';
 
-            $controller = new ModulController();
-            $controller->showEditModulPage($params);
-        } else {
-            require_once CONTROLLERS_DIR . 'ErrorController.php';
+      $params['errorCode'] = 403;
+      $controller = new ErrorController();
+      $controller->showErrorPage($params);
+    }
+  }
 
-            $params['errorCode'] = 403;
-            $controller = new ErrorController();
-            $controller->showErrorPage($params);
-        }
+  public function coursesIdModulesIdMateriCreate($params)
+  {
+    if (!isset($_SESSION['isAuthenticated']) || !$_SESSION['isAuthenticated']) {
+      header('Location: /signin');
+      return;
     }
 
-    public function coursesIdModulesIdMateriCreate($params) {
-        if (!isset($_SESSION['isAuthenticated']) || !$_SESSION['isAuthenticated']) {
-            header('Location: /signin');
-            return;
-        }
+    if ($_SESSION['user']['tipe'] == PENGGUNA_TIPE_PENGAJAR) {
+      require_once CONTROLLERS_DIR . 'MateriController.php';
 
-        if ($_SESSION['user']['tipe'] == PENGGUNA_TIPE_PENGAJAR) {
-            require_once CONTROLLERS_DIR . 'MateriController.php';
+      $controller = new MateriController();
+      $controller->showCreateMateriPage($params);
+    } else {
+      require_once CONTROLLERS_DIR . 'ErrorController.php';
 
-            $controller = new MateriController();
-            $controller->showCreateMateriPage($params);
-        } else {
-            require_once CONTROLLERS_DIR . 'ErrorController.php';
+      $params['errorCode'] = 403;
+      $controller = new ErrorController();
+      $controller->showErrorPage($params);
+    }
+  }
 
-            $params['errorCode'] = 403;
-            $controller = new ErrorController();
-            $controller->showErrorPage($params);
-        }
+  public function coursesIdModulesIdMateriIdEdit($params)
+  {
+    if (!isset($_SESSION['isAuthenticated']) || !$_SESSION['isAuthenticated']) {
+      header('Location: /signin');
+      return;
     }
 
-    public function coursesIdModulesIdMateriIdEdit($params) {
-        if (!isset($_SESSION['isAuthenticated']) || !$_SESSION['isAuthenticated']) {
-            header('Location: /signin');
-            return;
-        }
+    if ($_SESSION['user']['tipe'] == PENGGUNA_TIPE_PENGAJAR) {
+      require_once CONTROLLERS_DIR . 'MateriController.php';
 
-        if ($_SESSION['user']['tipe'] == PENGGUNA_TIPE_PENGAJAR) {
-            require_once CONTROLLERS_DIR . 'MateriController.php';
+      $controller = new MateriController();
+      $controller->showEditMateriPage($params);
+    } else {
+      require_once CONTROLLERS_DIR . 'ErrorController.php';
 
-            $controller = new MateriController();
-            $controller->showEditMateriPage($params);
-        } else {
-            require_once CONTROLLERS_DIR . 'ErrorController.php';
+      $params['errorCode'] = 403;
+      $controller = new ErrorController();
+      $controller->showErrorPage($params);
+    }
+  }
 
-            $params['errorCode'] = 403;
-            $controller = new ErrorController();
-            $controller->showErrorPage($params);
-        }
+  public function catalog($params)
+  {
+    if (!isset($_SESSION['isAuthenticated']) || !$_SESSION['isAuthenticated']) {
+      header('Location: /signin');
+      return;
     }
 
-    public function catalog($params) {
-        if (!isset($_SESSION['isAuthenticated']) || !$_SESSION['isAuthenticated']) {
-            header('Location: /signin');
-            return;
-        }
-        
-        if ($_SESSION['user']['tipe'] == PENGGUNA_TIPE_MAHASISWA) {
-            require_once CONTROLLERS_DIR . 'CourseController.php';
+    if ($_SESSION['user']['tipe'] == PENGGUNA_TIPE_MAHASISWA) {
+      require_once CONTROLLERS_DIR . 'CourseController.php';
 
-            $controller = new CourseController();
-            $controller->showCourseCatalog($params);
-        } else {
-            require_once CONTROLLERS_DIR . 'ErrorController.php';
+      $controller = new CourseController();
+      $controller->showCourseCatalog($params);
+    } else {
+      require_once CONTROLLERS_DIR . 'ErrorController.php';
 
-            $params['errorCode'] = 403;
-            $controller = new ErrorController();
-            $controller->showErrorPage($params);
-        }
+      $params['errorCode'] = 403;
+      $controller = new ErrorController();
+      $controller->showErrorPage($params);
     }
+  }
+
+  public function userDetail($params)
+  {
+    if ($_SESSION['user']['tipe'] == PENGGUNA_TIPE_ADMIN) {
+      require_once CONTROLLERS_DIR . 'AdminUserController.php';
+
+      $controller = new AdminUserController();
+      $controller->showUserDetail($params);
+    } elseif ($_SESSION['user']['id'] === $params['id']) {
+      require_once CONTROLLERS_DIR . 'UserController.php';
+
+      $controller = new UserController();
+      $controller->showProfilePage();
+    } else {
+      Router::getInstance()->error(403);
+    }
+  }
+
+  public function editUser($params)
+  {
+    if ($_SESSION['user']['tipe'] == PENGGUNA_TIPE_ADMIN) {
+      require_once CONTROLLERS_DIR . 'AdminUserController.php';
+
+      $controller = new AdminUserController();
+      $controller->showEditUserPage($params);
+    } elseif ($_SESSION['user']['id'] === $params['id']) {
+      require_once CONTROLLERS_DIR . 'UserController.php';
+
+      $controller = new UserController();
+      $controller->showEditProfilePage();
+    } else {
+      Router::getInstance()->error(403);
+    }
+  }
 }

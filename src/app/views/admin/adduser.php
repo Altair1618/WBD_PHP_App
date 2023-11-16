@@ -15,7 +15,7 @@ if (isset($_SESSION['errors']) && isset($_SESSION['post'])) {
 
   <link href="/styles/global.css" rel="stylesheet">
   <link href="/styles/navbar/navbar.css" rel="stylesheet">
-  <link href="/styles/admin/add_edit_user.css" rel="stylesheet">
+  <link href="/styles/admin/form.css" rel="stylesheet">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -32,7 +32,7 @@ if (isset($_SESSION['errors']) && isset($_SESSION['post'])) {
       </header>
 
       <div class="main-flex-container">
-        <form class="form-container" action="/admin/adduser" method="POST" enctype="multipart/form-data">
+        <form class="form-container" action="/users/create" method="POST" enctype="multipart/form-data">
           <section class="profile-picture-section">
             <div class="profile-picture-box">
               <input type="file" id="profile-picture-input" name="image" accept="image/*">
@@ -94,7 +94,9 @@ if (isset($_SESSION['errors']) && isset($_SESSION['post'])) {
               </div>
 
               <div class="button-form-wrapper">
-                <button form="" id="button-batal" onclick="window.location='/admin/users'">BATAL</button>
+                <a class="button-link-wrapper" href="/users">
+                  <button form="" id="button-batal">BATAL</button>
+                </a>
                 <button type="submit" id="button-simpan">SIMPAN</button>
               </div>
           </section>
@@ -103,7 +105,7 @@ if (isset($_SESSION['errors']) && isset($_SESSION['post'])) {
     </main>
   </div>
 
-  <script src="/scripts/admin/add_edit_user.js"></script>
+  <script src="/scripts/admin/form.js"></script>
 </body>
 
 </html>

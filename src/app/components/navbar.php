@@ -2,22 +2,22 @@
 assert(isset($_SESSION['user']));
 if ($_SESSION['user']['tipe'] == PENGGUNA_TIPE_ADMIN) {
   $menus = [
-    '/admin/users' => 'Pengguna',
-    '/admin/courses' => 'Mata Kuliah',
-    '/admin/modules' => 'Modul',
-    '/admin/fakultas' => 'Fakultas',
-    '/admin/departments' => 'Program Studi',
+    '/users' => 'Pengguna',
+    '/courses' => 'Mata Kuliah',
+    '/modules' => 'Modul',
+    '/fakultas' => 'Fakultas',
+    '/prodi' => 'Program Studi',
   ];
 } elseif ($_SESSION['user']['tipe'] == PENGGUNA_TIPE_PENGAJAR) {
   $menus = [
     '/courses' => 'Mata Kuliah Saya',
-    '/profile' => 'Profil',
+    "/users/{$_SESSION['user']['id']}" => 'Profil',
   ];
 } else {
   $menus = [
     '/courses' => 'Mata Kuliah Saya',
     '/catalog' => 'Katalog Mata Kuliah',
-    '/profile' => 'Profil',
+    "/users/{$_SESSION['user']['id']}" => 'Profil',
   ];
 }
 ?>

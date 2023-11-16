@@ -1,23 +1,4 @@
 <?php
-function is_admin($user)
-{
-  return $user['tipe'] == PENGGUNA_TIPE_ADMIN;
-}
-
-function get_img_src($user)
-{
-  if (isset($user['gambar_profil'])) {
-    return '/assets/uploads/' . $user['id'] . '-' . $user['gambar_profil'];
-  } else {
-    return '/assets/images/Portrait_Placeholder.png';
-  }
-}
-
-function tipe_to_str($user)
-{
-  return ['Admin', 'Dosen', 'Mahasiswa'][$user['tipe']];
-}
-
 class AdminUserController
 {
   public function showUsers($params)
@@ -64,89 +45,57 @@ class AdminUserController
     $params = $this->getManyUsers($params);
     $users = $params['users'];
 ?>
-    <div class="table-container" id="table-container">
-      <div class="table-column" id="column-no">
-        <p class="cell cell-header" id="header-no">No</p>
-        <?php $n = 1 ?>
+    <table>
+      <thead>
+        <tr>
+          <th class="column-number">No</th>
+          <th class="column-image"></th>
+          <th class="column-name">Nama</th>
+          <th class="column-username">Username</th>
+          <th class="column-email">Email</th>
+          <th class="column-type">Tipe</th>
+          <th class="column-created-at">Waktu Dibuat</th>
+          <th class="column-updated-at">Waktu Diubah</th>
+          <th class="column-action">
+            <a class="button-action-wrapper" href="/users/create">
+              <button id="button-tambah" class="button-action">Tambah Pengguna</button>
+            </a>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php $n = ($params['page'] - 1) * ITEMS_PER_PAGE + 1 ?>
         <?php foreach ($users as $user) : ?>
           <?php if (!is_admin($user)) : ?>
-            <p class="cell cell-value"><?= $n ?></p>
+            <tr onclick="window.location='/users/<?= $user['id'] ?>'">
+              <td class="column-number"><?= $n ?></td>
+              <td class="column-image">
+                <div class="img-wrapper">
+                  <img src="<?= get_img_src($user) ?>" class="cell-img" alt="profile picture">
+                </div>
+              </td>
+              <td class="column-name"><?= htmlspecialchars($user['nama']) ?></td>
+              <td class="column-username"><?= htmlspecialchars($user['username']) ?></td>
+              <td class="column-email"><?= htmlspecialchars($user['email']) ?></td>
+              <td class="column-type"><?= tipe_to_str($user) ?></td>
+              <td class="column-created-at"><?= $user['created_at'] ?></td>
+              <td class="column-updated-at"><?= $user['updated_at'] ?></td>
+              <td class="column-action">
+                <div class="button-group">
+                  <a class="button-action-wrapper" href="/users/<?= $user['id'] ?>/edit">
+                    <button class="button-action button-ubah">Ubah</button>
+                  </a>
+                  <form class="button-action-wrapper" action="/users/<?= $user['id'] ?>/delete" method="POST">
+                    <button class="button-action button-hapus">Hapus</button>
+                  </form>
+                </div>
+              </td>
+            </tr>
             <?php $n++ ?>
           <?php endif ?>
         <?php endforeach ?>
-      </div>
-      <div class="table-column" id="column-profpic">
-        <p class="cell cell-header" id="header-profpic"></p>
-        <?php foreach ($users as $user) : ?>
-          <?php if (!is_admin($user)) : ?>
-            <div class="cell cell-value img-wrapper">
-              <img src="<?= get_img_src($user) ?>" class="cell-img" alt="profile picture">
-            </div>
-          <?php endif ?>
-        <?php endforeach ?>
-      </div>
-      <div class="table-column" id="column-name">
-        <p class="cell cell-header" id="header-name">Nama</p>
-        <?php foreach ($users as $user) : ?>
-          <?php if (!is_admin($user)) : ?>
-            <p class="cell cell-value"><?= htmlspecialchars($user['nama']) ?></p>
-          <?php endif ?>
-        <?php endforeach ?>
-      </div>
-      <div class="table-column" id="column-username">
-        <p class="cell cell-header" id="header-username">Username</p>
-        <?php foreach ($users as $user) : ?>
-          <?php if (!is_admin($user)) : ?>
-            <p class="cell cell-value"><?= htmlspecialchars($user['username']) ?></p>
-          <?php endif ?>
-        <?php endforeach ?>
-      </div>
-      <div class="table-column" id="column-email">
-        <p class="cell cell-header" id="header-email">Email</p>
-        <?php foreach ($users as $user) : ?>
-          <?php if (!is_admin($user)) : ?>
-            <p class="cell cell-value"><?= htmlspecialchars($user['email']) ?></p>
-          <?php endif ?>
-        <?php endforeach ?>
-      </div>
-      <div class="table-column" id="column-type">
-        <p class="cell cell-header" id="header-type">Tipe</p>
-        <?php foreach ($users as $user) : ?>
-          <?php if (!is_admin($user)) : ?>
-            <p class="cell cell-value"><?= tipe_to_str($user) ?></p>
-          <?php endif ?>
-        <?php endforeach ?>
-      </div>
-      <div class="table-column" id="column-created-time">
-        <p class="cell cell-header" id="header-created-time">Waktu Dibuat</p>
-        <?php foreach ($users as $user) : ?>
-          <?php if (!is_admin($user)) : ?>
-            <p class="cell cell-value"><?= $user['created_at'] ?></p>
-          <?php endif ?>
-        <?php endforeach ?>
-      </div>
-      <div class="table-column" id="column-updated-time">
-        <p class="cell cell-header" id="header-updated-time">Waktu Diubah</p>
-        <?php foreach ($users as $user) : ?>
-          <?php if (!is_admin($user)) : ?>
-            <p class="cell cell-value"><?= $user['updated_at'] ?></p>
-          <?php endif ?>
-        <?php endforeach ?>
-      </div>
-      <div class="table-column" id="column-button">
-        <button id="button-tambah" onclick="window.location='/admin/adduser'">Tambah pengguna</button>
-        <?php foreach ($users as $user) : ?>
-          <?php if (!is_admin($user)) : ?>
-            <div class="button-group">
-              <button class="button-action button-ubah" onclick="window.location='/admin/edituser/<?= $user['id'] ?>'">Ubah</button>
-              <form action="/admin/deleteuser/<?= $user['id'] ?>" method="POST">
-                <button class="button-action button-hapus">Hapus</button>
-              </form>
-            </div>
-          <?php endif ?>
-        <?php endforeach ?>
-      </div>
-    </div>
+      </tbody>
+    </table>
     <div class="body-footer" id="body-footer">
       <div class="page-number-centered">
         <?php $current_page = max((int) $params['page'], 1) ?>
@@ -193,7 +142,7 @@ class AdminUserController
     $new_name = $_POST['name'];
     $new_username = $_POST['username'];
     $new_email = $_POST['email'];
-    $new_password = $_POST['password'];
+    $new_password = password_hash($_POST['password'], PASSWORD_DEFAULT);
     $new_tipe = ["dosen" => 1, "mahasiswa" => 2][$_POST['tipe']] ?? 2;
 
     if ($user_repo->getPengguna(username: $new_username) !== false) {
@@ -209,6 +158,7 @@ class AdminUserController
       $_SESSION['errors']['email'] = "Email tidak valid";
     }
 
+    $image_name = null;
     if (isset($_FILES['image']) && !empty($_FILES['image']['name'])) {
       if ($_FILES['image']['error'] === UPLOAD_ERR_OK) {
         if (in_array($_FILES['image']['type'], ALLOWED_FILE_TYPES)) {
@@ -226,21 +176,27 @@ class AdminUserController
     }
 
     if (!empty($_SESSION['errors'])) {
-      Router::getInstance()->redirect('/admin/adduser');
+      Router::getInstance()->redirect('/users/create');
     } else {
       unset($_SESSION['errors']);
       $user_repo->insertPengguna($new_username, $new_email, $new_password, $new_name, $new_tipe, $image_name);
-      $user = $user_repo->getPengguna(username: $new_name);
+      $user = $user_repo->getPengguna(username: $new_username);
       if (isset($image_name)) {
         move_uploaded_file($tmp_name, UPLOADS_DIR . "{$user['id']}-{$image_name}");
       }
       Logger::info(__FILE__, __LINE__, "User `{$user['username']}` added");
-      Router::getInstance()->redirect('/admin/users');
+      Router::getInstance()->redirect('/users');
     }
   }
 
   public function editUser($params)
   {
+    if (isset($_SESSION['user']) && $_SESSION['user']['tipe'] != PENGGUNA_TIPE_ADMIN) {
+      require_once CONTROLLERS_DIR . 'UserController.php';
+      $controller = new UserController();
+      $controller->editProfile();
+      return;
+    }
     $_SESSION['errors'] = [];
 
     $user_repo = new PenggunaRepository();
@@ -249,8 +205,7 @@ class AdminUserController
     $new_name = $_POST['name'];
     $new_username = $_POST['username'];
     $new_email = $_POST['email'];
-    $old_password = $_POST['old-password'];
-    $new_password = $_POST['new-password'];
+    $new_password = password_hash($_POST['new-password'], PASSWORD_DEFAULT);
     $new_tipe = ["dosen" => 1, "mahasiswa" => 2][$_POST['tipe']] ?? 2;
 
     if ($new_username !== $user['username'] && $user_repo->getPengguna(username: $new_username) !== false) {
@@ -264,10 +219,6 @@ class AdminUserController
     if (!filter_var($new_email, FILTER_VALIDATE_EMAIL)) {
       // asumsi semua email yang ada di database sudah valid
       $_SESSION['errors']['email'] = "Email tidak valid";
-    }
-
-    if (!empty($old_password) && !password_verify($old_password, $user['password_hash'])) {
-      $_SESSION['errors']['password'] = "Password salah";
     }
 
     if (isset($_FILES['image']) && !empty($_FILES['image']['name'])) {
@@ -296,12 +247,12 @@ class AdminUserController
     }
 
     if (!empty($_SESSION['errors'])) {
-      Router::getInstance()->redirect('/admin/edituser/' . $user['id']);
+      Router::getInstance()->redirect("/users/{$user['id']}/edit");
     } else {
       unset($_SESSION['errors']);
       $user_repo->updatePengguna((int) $user['id'], $new_username, $new_email, $new_password, $new_name, $new_tipe, $image_name);
       Logger::info(__FILE__, __LINE__, "User `{$user['username']}` profile updated");
-      Router::getInstance()->redirect('/admin/users');
+      Router::getInstance()->redirect('/users');
     }
   }
 
@@ -313,6 +264,17 @@ class AdminUserController
       $user_repo->deletePengguna(id: (int) $user['id']);
     }
     Logger::warn(__FILE__, __LINE__, "User `{$user['username']}` deleted");
-    Router::getInstance()->redirect('/admin/users');
+    Router::getInstance()->redirect('/users');
+  }
+
+  public function showUserDetail($params)
+  {
+    $repo = new PenggunaRepository();
+    $user = $repo->getPengguna(id: (int) $params['id']);
+    if ($user === false) {
+      Router::getInstance()->error(404);
+    } else {
+      require_once VIEWS_DIR . 'admin/userDetail.php';
+    }
   }
 }

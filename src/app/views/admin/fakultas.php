@@ -8,7 +8,7 @@
 
   <link href="/styles/global.css" rel="stylesheet">
   <link href="/styles/navbar/navbar.css" rel="stylesheet">
-  <link href="/styles/admin/fakultas.css" rel="stylesheet">
+  <link href="/styles/admin/common.css" rel="stylesheet">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

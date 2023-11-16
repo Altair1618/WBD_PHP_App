@@ -15,7 +15,7 @@ if (isset($_SESSION['errors']) && isset($_SESSION['post'])) {
 
   <link href="/styles/global.css" rel="stylesheet">
   <link href="/styles/navbar/navbar.css" rel="stylesheet">
-  <link href="/styles/admin/add_edit_fakultas.css" rel="stylesheet">
+  <link href="/styles/admin/form.css" rel="stylesheet">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -32,7 +32,7 @@ if (isset($_SESSION['errors']) && isset($_SESSION['post'])) {
       </header>
 
       <div class="main-flex-container">
-        <form class="form-container" action="/admin/addfakultas" method="POST" enctype="multipart/form-data">
+        <form class="form-container" action="/fakultas/create" method="POST" enctype="multipart/form-data">
 
           <section class="profile-detail-section">
             <div class="profile-detail-wrapper">
@@ -53,7 +53,9 @@ if (isset($_SESSION['errors']) && isset($_SESSION['post'])) {
               </div>
 
               <div class="button-form-wrapper">
-                <button form="" id="button-batal" onclick="window.location='/admin/fakultas'">BATAL</button>
+                <a class="button-link-wrapper" href="/fakultas">
+                  <button form="" id="button-batal">BATAL</button>
+                </a>
                 <button type="submit" id="button-simpan">SIMPAN</button>
               </div>
           </section>

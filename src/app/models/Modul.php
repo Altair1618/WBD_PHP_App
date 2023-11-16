@@ -8,7 +8,7 @@ class ModulRepository extends Model
       return $this->db->fetch("SELECT * FROM modul");
     } catch (Exception $e) {
       Logger::error(__FILE__, __LINE__, "Failed to fetch `modul`: " . $e->getMessage());
-      throw $e;
+      Router::getInstance()->error(500);;
     }
   }
 
@@ -18,7 +18,7 @@ class ModulRepository extends Model
       return $this->db->fetch("SELECT * FROM modul WHERE id=$1 LIMIT 1", [$id]);
     } catch (Exception $e) {
       Logger::error(__FILE__, __LINE__, "Failed to fetch `modul`: " . $e->getMessage());
-      throw $e;
+      Router::getInstance()->error(500);;
     }
   }
 
@@ -27,7 +27,7 @@ class ModulRepository extends Model
       return $this->db->fetchAll("SELECT * FROM modul WHERE kode_mata_kuliah=$1", [$kode_mata_kuliah]);
     } catch (Exception $e) {
       Logger::error(__FILE__, __LINE__, "Failed to fetch `modul`: " . $e->getMessage());
-      throw $e;
+      Router::getInstance()->error(500);;
     }
   }
 
@@ -38,7 +38,7 @@ class ModulRepository extends Model
       return $this->db->execute($query, [$kode_mata_kuliah, $nama, $deskripsi]);
     } catch (Exception $e) {
       Logger::error(__FILE__, __LINE__, "Failed to insert into `modul`: " . $e->getMessage());
-      throw $e;
+      Router::getInstance()->error(500);;
     }
   }
 
@@ -49,7 +49,7 @@ class ModulRepository extends Model
       $this->db->execute($query, [$nama, $deskripsi, $id, $kode_mata_kuliah]);
     } catch (Exception $e) {
       Logger::error(__FILE__, __LINE__, "Failed to update `modul`: " . $e->getMessage());
-      throw $e;
+      Router::getInstance()->error(500);;
     }
   }
 
@@ -60,7 +60,7 @@ class ModulRepository extends Model
       $this->db->execute($query, [$id]);
     } catch (Exception $e) {
       Logger::error(__FILE__, __LINE__, "Failed to delete from `modul`: " . $e->getMessage());
-      throw $e;
+      Router::getInstance()->error(500);;
     }
   }
 }
