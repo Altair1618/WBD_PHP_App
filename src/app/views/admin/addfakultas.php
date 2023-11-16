@@ -32,7 +32,7 @@ if (isset($_SESSION['errors']) && isset($_SESSION['post'])) {
       </header>
 
       <div class="main-flex-container">
-        <form class="form-container" action="/api/fakultas/create" method="POST" enctype="multipart/form-data">
+        <form class="form-container" action="/fakultas/create" method="POST" enctype="multipart/form-data">
 
           <section class="profile-detail-section">
             <div class="profile-detail-wrapper">

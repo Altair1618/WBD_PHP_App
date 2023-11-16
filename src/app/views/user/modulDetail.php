@@ -66,7 +66,7 @@
                         </svg>
                       </a>
     
-                      <form class='delete-button-wrapper' action="/api/materi/<?=$materi['id'];?>/delete?kode=<?=$params['course-id'];?>&modul-id=<?=$params['modul-id']?>" method='POST'>
+                      <form class='delete-button-wrapper' action="/courses/<?=$params['course-id'];?>/modules/<?=$params['modul-id'];?>/<?=$materi['id']?>/delete?kode=<?=$params['course-id'];?>&modul-id=<?=$params['modul-id']?>" method='POST'>
                         <button aria-label='module-delete-button' type='submit'>
                           <svg width='14' height='15' viewBox='0 0 14 15' fill='none' xmlns='http://www.w3.org/2000/svg'>
                             <g clip-path='url(#clip0_155_780)'>

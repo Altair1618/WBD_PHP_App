@@ -43,7 +43,7 @@ class ModulController {
             header('Location: /courses/' . $params['kode'] . '/modules/' . $params['modul-id'] . '/edit');
         }
     }
-
+    
     public function showModulDetail($params) {
         require_once MODELS_DIR . 'MataKuliah.php';
         $mata_kuliah = new MataKuliahRepository();

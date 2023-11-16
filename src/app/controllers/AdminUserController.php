@@ -44,7 +44,6 @@ class AdminUserController
   {
     $params = $this->getManyUsers($params);
     $users = $params['users'];
-    $previous = $_SERVER['REQUEST_URI'];
 ?>
     <table>
       <thead>
@@ -86,7 +85,7 @@ class AdminUserController
                   <a class="button-action-wrapper" href="/users/<?= $user['id'] ?>/edit">
                     <button class="button-action button-ubah">Ubah</button>
                   </a>
-                  <form class="button-action-wrapper" action="/api/users/<?= $user['id'] ?>/delete" method="POST">
+                  <form class="button-action-wrapper" action="/users/<?= $user['id'] ?>/delete" method="POST">
                     <button class="button-action button-hapus">Hapus</button>
                   </form>
                 </div>

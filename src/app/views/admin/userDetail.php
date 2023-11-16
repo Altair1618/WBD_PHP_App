@@ -73,7 +73,7 @@
               <a class="button-link-wrapper" href="/users/<?= $user['id'] ?>/edit">
                 <button id="button-ubah">UBAH</button>
               </a>
-              <form action="/api/users/<?= $user['id'] ?>/delete" method="POST">
+              <form action="/users/<?= $user['id'] ?>/delete" method="POST">
                 <button id="button-hapus">HAPUS</button>
               </form>
             </div>

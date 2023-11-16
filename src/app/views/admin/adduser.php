@@ -32,7 +32,7 @@ if (isset($_SESSION['errors']) && isset($_SESSION['post'])) {
       </header>
 
       <div class="main-flex-container">
-        <form class="form-container" action="/api/users/create" method="POST" enctype="multipart/form-data">
+        <form class="form-container" action="/users/create" method="POST" enctype="multipart/form-data">
           <section class="profile-picture-section">
             <div class="profile-picture-box">
               <input type="file" id="profile-picture-input" name="image" accept="image/*">

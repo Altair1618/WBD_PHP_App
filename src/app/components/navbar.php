@@ -6,7 +6,7 @@ if ($_SESSION['user']['tipe'] == PENGGUNA_TIPE_ADMIN) {
     '/courses' => 'Mata Kuliah',
     '/modules' => 'Modul',
     '/fakultas' => 'Fakultas',
-    '/departments' => 'Program Studi',
+    '/prodi' => 'Program Studi',
   ];
 } elseif ($_SESSION['user']['tipe'] == PENGGUNA_TIPE_PENGAJAR) {
   $menus = [

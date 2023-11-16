@@ -226,6 +226,6 @@ Aplikasi LearnIt! adalah sebuah aplikasi LMS yang sisusun untuk memenuhi Tugas M
 - Merapikan routing table, misalkan url API disimpan di `/api/...`
 - Button yang berupa hyperlink menjadi benar-benar hyperlink, bukan mengubah `window.location` saat diklik
 - Mengubah font size menjadi sesuai dengan desain di Figma
-- Mengubah `/profile` dan `/profile/edit` menjadi `/users/:id` dan `/api/users/:id/edit`
+- Mengubah `/profile` dan `/profile/edit` menjadi `/users/:id` dan `/users/:id/edit`
 - Mengubah table admin menjadi benar-benar table, bukan div
 - Menambahkan halaman detail entitas yang muncul saat baris entitas diklik

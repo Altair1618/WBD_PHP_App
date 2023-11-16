@@ -18,7 +18,7 @@ class MataKuliahRepository extends Model
       return $this->db->fetch("SELECT * FROM mata_kuliah WHERE kode=$1 LIMIT 1", [$kode]);
     } catch (Exception $e) {
       Logger::error(__FILE__, __LINE__, "Failed to fetch `mata_kuliah`: " . $e->getMessage());
-      return null;
+      throw $e;
     }
   }
 

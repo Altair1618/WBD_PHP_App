@@ -169,7 +169,7 @@ table {
   border-spacing: 0px;
 }
 
-tr:not(:first-child):hover {
+tbody > tr:hover {
   backdrop-filter: brightness(0.9);
   cursor: pointer;
 }
