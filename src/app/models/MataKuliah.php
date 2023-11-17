@@ -183,17 +183,18 @@ class MataKuliahRepository extends Model
     }
   }
 
-  function getEnrolledStudentCount(string $kode) {
+  function getEnrolledStudentCount(string $kode, string $search = "") {
     try {
       $query = "
         SELECT 1
         FROM pendaftaran_mata_kuliah
         JOIN pengguna ON pendaftaran_mata_kuliah.id_pengguna = pengguna.id
         WHERE kode_mata_kuliah = $1
+        AND pengguna.nama ILIKE $2
         AND pengguna.tipe = " . PENGGUNA_TIPE_MAHASISWA . "
       ";
 
-      return $this->db->rowCount($query, [$kode]);
+      return $this->db->rowCount($query, [$kode, "%$search%"]);
     } catch (Exception $e) {
       Logger::error(__FILE__, __LINE__, "Failed to fetch `pendaftaran_mata_kuliah`: " . $e->getMessage());
       Router::getInstance()->error(500);;

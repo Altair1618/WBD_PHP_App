@@ -127,7 +127,9 @@ class CourseController {
         }
         
         $ret = $mata_kuliah->getEnrolledStudents($params['kode'], $params['page'], $params['search']);
-
+        $count = $mata_kuliah->getEnrolledStudentCount($params['kode'], $params['search']);
+        
+        $max_page = ceil($count / 10);
         ob_clean();
         if (!$ret) {
             echo json_encode([
@@ -139,7 +141,10 @@ class CourseController {
             echo json_encode([
                 'status' => 'success',
                 'message' => 'Peserta Course berhasil didapatkan',
-                'data' => $ret,
+                'data' => [
+                    'students' => $ret,
+                    'max_page' => $max_page,
+                ],
             ]);
         }
     }
