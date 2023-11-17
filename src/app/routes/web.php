@@ -113,7 +113,7 @@ $routes = [
   ],
 
   '/catalog/html' => [
-    'GET' => ['route' => 'CourseController@getCatalog', 'middlewares' => []],
+    'GET' => ['route' => 'CourseController@getCatalogHTML', 'middlewares' => []],
   ],
 
   '/enroll' => [
@@ -135,6 +135,12 @@ $routes = [
       'AdminAuthentication',
     ]],
     'POST' => ['route' => 'AdminUserController@addUser', 'middlewares' => []],
+  ],
+
+  '/users/subscribe' => [
+    'POST' => ['route' => 'SubscriptionController@createSubscriptionRequest', 'middlewares' => [
+      'Authentication'
+    ]],
   ],
 
   '/users/:id' => [
@@ -188,7 +194,6 @@ $routes = [
 
   '/seed/rebuild' => [
     'POST' => ['route' => 'SeederController@seedRebuild', 'middlewares' => []],
-
   ],
 
 ];

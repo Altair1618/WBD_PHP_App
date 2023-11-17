@@ -36,6 +36,17 @@ if ($_SESSION['user']['tipe'] == PENGGUNA_TIPE_ADMIN) {
   </div>
 
   <ul id="navbar-menu" class="navbar-menu">
+    <?php
+    require_once CONTROLLERS_DIR . 'SubscriptionController.php';
+    $subscriptionController = new SubscriptionController();
+    $status = $subscriptionController->getUserSubscriptionStatus([]);
+    $subscribe = isset($status->return->data);
+    ?>
+    <?php if ($_SESSION['user']['tipe'] == PENGGUNA_TIPE_MAHASISWA && !$subscribe) : ?>
+      <li class="navbar-menu-item premium">
+        <button class="navbar-menu-link premium" id="premium-button">Berlangganan Premium</button>
+      </li>
+    <?php endif ?>
     <?php foreach ($menus as $link => $title) : ?>
       <li class="navbar-menu-item">
         <a class="navbar-menu-link" href="<?= $link ?>"><?= $title ?></a>

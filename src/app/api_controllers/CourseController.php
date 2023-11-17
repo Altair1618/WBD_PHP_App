@@ -135,7 +135,7 @@ class CourseController {
             echo json_encode([
                 'status' => 'error',
                 'message' => 'Course tidak ditemukan',
-                'data' => null,
+                'data' => $ret,
             ]);
         } else {
             echo json_encode([

@@ -1,14 +1,17 @@
 <?php
 
-class Router {
+class Router
+{
     private $routes;
     private static $instance;
 
-    public function __construct($routes) {
+    public function __construct($routes)
+    {
         $this->routes = $routes;
     }
 
-    public static function getInstance(): Router {
+    public static function getInstance(): Router
+    {
         if (!isset(self::$instance)) {
             require_once APP_DIR . 'routes/web.php';
             require_once APP_DIR . 'routes/api.php';
@@ -19,7 +22,8 @@ class Router {
         return self::$instance;
     }
 
-    public function match($uri, $route) {
+    public function match($uri, $route)
+    {
         $temp = explode("?", $uri);
         $uri = $temp[0];
 
@@ -29,7 +33,7 @@ class Router {
         if (count($parsedUri) != count($parsedRoute)) {
             return [false, null];
         }
-        
+
         $params = $_GET;
         for ($i = 0; $i < count($parsedRoute); $i++) {
             if ($parsedRoute[$i] == $parsedUri[$i]) {
@@ -45,10 +49,11 @@ class Router {
         return [true, $params];
     }
 
-    public function routing($uri, $method) {
+    public function routing($uri, $method)
+    {
         foreach ($this->routes as $key => $value) {
             $match = $this->match($uri, $key);
-            
+
             if ($match[0]) {
                 if (!isset($value[$method])) {
                     return [['route' => "ErrorController@showErrorPage"], ["errorCode" => 405]];
@@ -63,7 +68,8 @@ class Router {
         return [['route' => "ErrorController@showErrorPage"], ["errorCode" => 404]];
     }
 
-    public function run() {
+    public function run()
+    {
         $uri = $_SERVER["REQUEST_URI"];
         $method = $_SERVER["REQUEST_METHOD"];
 
@@ -86,26 +92,28 @@ class Router {
 
         if (substr($uri, 0, 4) == "/api" && $controllerName !== 'ErrorController') require_once API_CONTROLLERS_DIR . $controllerName . ".php";
         else require_once CONTROLLERS_DIR . $controllerName . ".php";
-        
+
         // require_once CONTROLLERS_DIR . $controllerName . ".php";
         $controller = new $controllerName();
         $controller->$controllerMethod($params);
     }
 
-    public function redirect($uri) {
+    public function redirect($uri)
+    {
         if (isset($_POST)) {
             $_SESSION["post"] = $_POST;
         }
 
         if (isset($messages)) {
             $_SESSION["messages"] = $messages;
-        } 
+        }
 
         $_SESSION["referer"] = $_SERVER["REQUEST_URI"];
         header("Location: " . $uri);
     }
 
-    public function error(int $code) {
+    public function error(int $code)
+    {
         http_response_code($code);
         require_once VIEWS_DIR . 'error.php';
         die();
