@@ -161,6 +161,28 @@ class MataKuliahRepository extends Model
     }
   }
 
+  function getEnrolledStudents(string $kode, int $page, string $search): array
+  {
+    try {
+      $offset = ($page - 1) * 10;
+
+      $query = "
+        SELECT pengguna.id, pengguna.nama, pengguna.username, pengguna.email
+        FROM pendaftaran_mata_kuliah
+        JOIN pengguna ON pendaftaran_mata_kuliah.id_pengguna = pengguna.id
+        WHERE kode_mata_kuliah = $1
+        AND pengguna.nama ILIKE $2
+        AND pengguna.tipe = " . PENGGUNA_TIPE_MAHASISWA . "
+        LIMIT 10 OFFSET $3
+      ";
+
+      return $this->db->fetchAll($query, [$kode, "%$search%", $offset]);
+    } catch (Exception $e) {
+      Logger::error(__FILE__, __LINE__, "Failed to fetch `pendaftaran_mata_kuliah`: " . $e->getMessage());
+      Router::getInstance()->error(500);;
+    }
+  }
+
   function getEnrolledStudentCount(string $kode) {
     try {
       $query = "

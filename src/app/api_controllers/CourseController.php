@@ -111,4 +111,36 @@ class CourseController {
             ]);
         }
     }
+
+    public function getCourseEnrolledStudents($params) {
+        ob_start();
+
+        require_once MODELS_DIR . 'MataKuliah.php';
+        $mata_kuliah = new MataKuliahRepository();
+        
+        if (!isset($params['page'])) {
+            $params['page'] = 1;
+        }
+
+        if (!isset($params['search'])) {
+            $params['search'] = '';
+        }
+        
+        $ret = $mata_kuliah->getEnrolledStudents($params['kode'], $params['page'], $params['search']);
+
+        ob_clean();
+        if (!$ret) {
+            echo json_encode([
+                'status' => 'error',
+                'message' => 'Course tidak ditemukan',
+                'data' => null,
+            ]);
+        } else {
+            echo json_encode([
+                'status' => 'success',
+                'message' => 'Peserta Course berhasil didapatkan',
+                'data' => $ret,
+            ]);
+        }
+    }
 }

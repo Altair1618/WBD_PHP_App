@@ -17,10 +17,14 @@ $api_routes = [
     '/api/courses' => [
         'POST' => ['route' => 'CourseController@createCourse', 'middlewares' => []],
     ],
-
+    
     '/api/courses/:kode' => [
         'GET' => ['route' => 'CourseController@getCourseByKode', 'middlewares' => []],
         'PUT' => ['route' => 'CourseController@updateCourse', 'middlewares' => []],
         'DELETE' => ['route' => 'CourseController@deleteCourse', 'middlewares' => []],
+    ],
+
+    '/api/courses/:kode/enrolled' => [
+        'GET' => ['route' => 'CourseController@getCourseEnrolledStudents', 'middlewares' => []],
     ],
 ];
